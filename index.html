@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Buenos Aires · Mi Decreto</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230f1830'/%3E%3Cg fill='%23d4a13d'%3E%3Ccircle cx='50' cy='50' r='20'/%3E%3Cg%3E%3Cpath d='M50 8 L55 22 L45 22 Z'/%3E%3Cpath d='M50 92 L55 78 L45 78 Z'/%3E%3Cpath d='M8 50 L22 55 L22 45 Z'/%3E%3Cpath d='M92 50 L78 55 L78 45 Z'/%3E%3Cpath d='M18 18 L29 26 L26 29 Z'/%3E%3Cpath d='M82 82 L71 74 L74 71 Z'/%3E%3Cpath d='M82 18 L71 26 L74 29 Z'/%3E%3Cpath d='M18 82 L29 74 L26 71 Z'/%3E%3C/g%3E%3C/g%3E%3Ccircle cx='50' cy='50' r='20' fill='none' stroke='%234FA8E0' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230f1830'/%3E%3Cg fill='%23d4a13d'%3E%3Ccircle cx='50' cy='50' r='22'/%3E%3Cg%3E%3Cpath d='M50 4 L57 20 L43 20 Z'/%3E%3Cpath d='M50 96 L57 80 L43 80 Z'/%3E%3Cpath d='M4 50 L20 57 L20 43 Z'/%3E%3Cpath d='M96 50 L80 57 L80 43 Z'/%3E%3Cpath d='M14 14 L28 24 L24 28 Z'/%3E%3Cpath d='M86 86 L72 76 L76 72 Z'/%3E%3Cpath d='M86 14 L72 24 L76 28 Z'/%3E%3Cpath d='M14 86 L28 76 L24 72 Z'/%3E%3C/g%3E%3C/g%3E%3Ccircle cx='50' cy='50' r='22' fill='none' stroke='%234FA8E0' stroke-width='2.5'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f1830">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mi Decreto">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f1830; --navy-deep:#0a1122; --paper:#f6ecd9; --paper-soft:#efe1c4;
+    --celeste:#4FA8E0; --celeste-soft:#8ec9ed; --gold:#d4a13d; --ink:#2a2418; --ink-soft:#5a5340;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{min-height:100%;}
+  body{
+    background:var(--navy); color:var(--paper); font-family:'Work Sans',sans-serif;
+    background-image:radial-gradient(circle at 15% 10%, rgba(79,168,224,0.10), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(212,161,61,0.10), transparent 40%);
+    padding-bottom: 0;
+  }
+  .nav-spacer{height:calc(96px + env(safe-area-inset-bottom,0px));}
+  .ver-top{margin-top:6px; font-size:11px; letter-spacing:0.4px; color:var(--celeste-soft); font-weight:700;}
+  .scroll-frame{max-width:480px; margin:0 auto;}
+  header{padding:22px 22px 10px; text-align:center; padding-top: calc(22px + env(safe-area-inset-top,0px));}
+  .eyebrow{font-size:10.5px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); font-weight:600;}
+  h1.hero-title{
+    font-family:'Bebas Neue'; font-size:42px; line-height:0.95; letter-spacing:1px; margin:6px 0 4px;
+    background:linear-gradient(180deg, var(--paper) 30%, var(--gold) 120%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero-sub{font-size:11.5px; color:var(--celeste-soft);}
+  .flourish{width:100%; height:14px; display:flex; align-items:center; justify-content:center; opacity:0.85;}
+  .flourish svg{height:11px; width:80%;}
+  .countdown-card{
+    margin:12px 18px 6px; background:linear-gradient(160deg, var(--paper) 0%, var(--paper-soft) 100%);
+    color:var(--ink); border-radius:4px; padding:14px 14px 12px; position:relative;
+    box-shadow:0 10px 22px rgba(0,0,0,0.3); border:1px solid rgba(212,161,61,0.5);
+  }
+  .cd-grid{display:flex; justify-content:center; gap:6px; margin:6px 0 4px;}
+  .cd-unit{text-align:center; min-width:42px;}
+  .cd-num{font-family:'Bebas Neue'; font-size:24px; line-height:1; color:var(--celeste);}
+  .cd-label{font-size:7.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--ink-soft); margin-top:2px;}
+  .cd-sep{font-family:'Bebas Neue'; font-size:20px; color:var(--gold);}
+  .cd-big-msg{font-family:'Bebas Neue'; font-size:22px; color:var(--celeste); text-align:center; padding:6px 0;}
+  .phrase-box{text-align:center; min-height:30px; display:flex; align-items:center; justify-content:center;}
+  .phrase{font-family:'Caveat'; font-size:19px; font-weight:700; color:var(--celeste); transition:opacity 0.6s ease;}
+  .phrase.fade{opacity:0;}
+  .live-strip{display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:10px 18px 4px;}
+  .live-tile{background:rgba(246,236,217,0.06); border:1px solid rgba(212,161,61,0.25); border-radius:6px; padding:8px 7px; text-align:center;}
+  .live-tile .lt-label{font-size:8px; letter-spacing:1.2px; text-transform:uppercase; color:var(--celeste-soft); font-weight:700;}
+  .live-tile .lt-value{font-family:'Bebas Neue'; font-size:19px; color:var(--paper); margin-top:2px;}
+  .live-tile .lt-sub{font-size:9px; color:#c7c3ad; margin-top:1px;}
+  .moon-tile .lt-value{font-size:22px;}
+  .tz-note{text-align:center; font-size:9px; color:#8a8568; margin:5px 18px 10px; font-style:italic;}
+
+  main{padding:4px 16px 24px;}
+  .tab-panel{display:none; animation:rise .3s ease;}
+  .tab-panel.active{display:block;}
+  @keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+  .section-title{font-family:'Bebas Neue'; font-size:21px; letter-spacing:1px; color:var(--gold); margin:16px 0 10px; display:flex; align-items:center; gap:8px;}
+  .section-title:first-child{margin-top:6px;}
+  .subsection-title{font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--celeste-soft); font-weight:700; margin:14px 0 8px;}
+
+  .info-card{background:linear-gradient(160deg, var(--paper) 0%, var(--paper-soft) 100%); color:var(--ink); border-radius:6px; padding:15px; margin-bottom:12px; box-shadow:0 6px 16px rgba(0,0,0,0.25);}
+  .info-card h3{font-family:'Bebas Neue'; font-size:18px; color:var(--ink); margin-bottom:7px;}
+  .info-row{display:flex; justify-content:space-between; font-size:12.5px; padding:4px 0; border-bottom:1px dashed rgba(42,36,24,0.15);}
+  .info-row:last-child{border-bottom:none;}
+  .info-row span:first-child{color:var(--ink-soft);}
+  .info-row span:last-child{font-weight:600; text-align:right;}
+  .note{font-size:11.5px; color:var(--ink-soft); margin-top:6px; line-height:1.4;}
+  .tip{margin-top:10px; font-size:11.5px; color:var(--ink-soft); font-style:italic; background:rgba(79,168,224,0.1); padding:8px 10px; border-radius:4px; border-left:2px solid var(--celeste);}
+  .badge{display:inline-block; font-size:9.5px; padding:2px 7px; border-radius:999px; font-weight:700;}
+  .badge.ok{background:var(--celeste); color:white;}
+
+  .day-card{background:rgba(246,236,217,0.06); border:1px solid rgba(212,161,61,0.25); border-radius:6px; margin-bottom:10px; overflow:hidden;}
+  .acc-card{background:rgba(246,236,217,0.06); border:1px solid rgba(212,161,61,0.25); border-radius:6px; margin-bottom:10px; overflow:hidden;}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:13px 15px; cursor:pointer;}
+  .acc-head-title{font-family:'Bebas Neue'; font-size:17px; letter-spacing:0.5px; color:var(--gold);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .4s ease; padding:0 15px;}
+  .acc-card.open .acc-body{max-height:20000px; padding-bottom:15px;}
+  .acc-card.open .chevron{transform:rotate(90deg);}
+  .day-head{display:flex; justify-content:space-between; align-items:center; padding:11px 13px; cursor:pointer;}
+  .day-head-left{display:flex; align-items:baseline; gap:9px;}
+  .day-num{font-family:'Bebas Neue'; font-size:24px; color:var(--celeste);}
+  .day-date{font-size:10px; color:#c7c3ad;}
+  .day-zone{font-size:12px; color:var(--paper); font-weight:600;}
+  .chevron{transition:transform .25s ease; color:var(--gold); font-size:13px;}
+  .day-card.open .chevron{transform:rotate(90deg);}
+  .day-body{max-height:0; overflow:hidden; transition:max-height .4s ease; padding:0 13px;}
+  .day-card.open .day-body{max-height:4000px; padding-bottom:13px;}
+  .slot{margin-top:11px; padding-left:11px; border-left:2px solid rgba(212,161,61,0.4);}
+  .slot-label{font-size:9.5px; letter-spacing:1.8px; text-transform:uppercase; color:var(--celeste-soft); font-weight:700;}
+  .slot-text{font-size:12.5px; color:#ece6d3; line-height:1.5; margin-top:2px;}
+  .places-row{display:flex; gap:6px; margin-top:12px;}
+  .places-row input{flex:1; padding:7px 9px; font-size:11.5px; border-radius:4px; border:1px solid rgba(79,168,224,0.3); background:rgba(255,255,255,0.07); color:var(--paper);}
+  .places-row input::placeholder{color:#7a765f;}
+  .places-add{background:var(--celeste); color:white; border:none; width:30px; border-radius:4px; font-size:15px; cursor:pointer; flex-shrink:0;}
+  .places-tags{margin-top:7px; display:flex; flex-wrap:wrap; gap:5px;}
+  .place-tag{background:rgba(79,168,224,0.15); color:var(--celeste-soft); font-size:10px; padding:3px 8px 3px 9px; border-radius:999px; display:flex; align-items:center; gap:5px;}
+  .place-tag .rm{cursor:pointer; color:#8a8568; font-size:11px;}
+
+  .check-group{margin-bottom:14px;}
+  .check-item{display:flex; align-items:center; gap:9px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.06); cursor:pointer;}
+  .check-item input{width:17px; height:17px; accent-color:var(--celeste); flex-shrink:0;}
+  .check-item label{font-size:12.5px; color:#ece6d3; cursor:pointer;}
+  .check-item.checked label{color:#7a765f; text-decoration:line-through;}
+  .progress-wrap{margin:6px 0 14px;}
+  .progress-bar-bg{background:rgba(255,255,255,0.08); border-radius:999px; height:7px; overflow:hidden;}
+  .progress-bar-fill{background:linear-gradient(90deg, var(--celeste), var(--gold)); height:100%; width:0%; transition:width .4s ease; border-radius:999px;}
+  .progress-txt{font-size:10px; color:#c7c3ad; margin-top:5px; text-align:right;}
+
+  .noche-card{background:rgba(246,236,217,0.06); border:1px solid rgba(212,161,61,0.25); border-radius:6px; padding:11px 13px; margin-bottom:9px;}
+  .noche-head{display:flex; align-items:center; gap:8px;}
+  .noche-icon{font-size:20px;}
+  .noche-name{font-family:'Bebas Neue'; font-size:18px; color:var(--paper);}
+  .noche-tag{display:inline-block; font-size:8.5px; letter-spacing:1px; text-transform:uppercase; font-weight:700; padding:2px 7px; border-radius:999px; margin:3px 5px 2px 0;}
+  .tag-club{background:rgba(79,168,224,0.25); color:var(--celeste-soft);}
+  .tag-bar{background:rgba(212,161,61,0.25); color:var(--gold);}
+  .tag-rooftop{background:rgba(180,120,220,0.25); color:#d9bdf2;}
+  .day-est{margin-top:10px; font-size:11.5px; color:var(--paper); font-weight:600;}
+  .tag-cultura{background:rgba(246,236,217,0.15); color:#ece6d3;}
+  .noche-note{font-size:11px; color:#c7c3ad; margin-top:4px; line-height:1.4;}
+  .noche-footer{display:flex; justify-content:space-between; align-items:center; margin-top:8px;}
+  .noche-footer .maps-link{margin-top:0;}
+  .maps-link{font-size:10.5px; color:var(--celeste-soft); font-weight:700; text-decoration:none; border:1px solid var(--celeste); padding:4px 9px; border-radius:999px; display:inline-block; margin-top:8px;}
+  .noche-check{display:flex; align-items:center; gap:5px; font-size:9px; color:#8a8568;}
+  .noche-check input{width:16px; height:16px; accent-color:var(--celeste);}
+  .noche-action{display:flex; align-items:center; gap:6px; font-size:10px; color:var(--gold); margin-top:8px; padding-top:8px; border-top:1px dashed rgba(212,161,61,0.25);}
+  .noche-action input{width:15px; height:15px; accent-color:var(--gold);}
+
+  .budget-table{width:100%; border-collapse:collapse; font-size:12px;}
+  .budget-table th{text-align:left; font-size:8.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); padding-bottom:7px; border-bottom:1px solid rgba(212,161,61,0.3);}
+  .budget-table td{padding:8px 3px; border-bottom:1px solid rgba(255,255,255,0.06); vertical-align:top;}
+  .b-real{color:var(--celeste-soft); font-weight:700; font-size:10.5px;}
+  .b-aprox{color:#c7c3ad; font-size:10.5px;}
+  .budget-total{margin-top:14px; background:rgba(79,168,224,0.15); border:1px solid rgba(79,168,224,0.4); border-radius:6px; padding:12px; display:flex; justify-content:space-between; align-items:center;}
+  .budget-total .lbl{font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--celeste-soft);}
+  .budget-total .amt{font-family:'Bebas Neue'; font-size:22px; color:var(--paper);}
+
+  .form-row{display:flex; gap:7px; align-items:center; margin-bottom:9px;}
+  .form-row input[type="number"], .form-row input[type="text"]{flex:1; padding:9px 11px; border-radius:5px; border:1px solid rgba(42,36,24,0.25); font-size:14px; font-weight:600; color:var(--ink); background:#fffdf7;}
+  .form-row select{padding:9px 8px; border-radius:5px; border:1px solid rgba(42,36,24,0.25); font-size:12px; font-weight:600; color:var(--ink); background:#fffdf7;}
+  .btn{background:var(--celeste); color:white; border:none; padding:9px 16px; border-radius:5px; font-size:12.5px; font-weight:700; cursor:pointer;}
+  .btn-outline{background:transparent; border:1px solid var(--celeste); color:var(--celeste); padding:8px 14px; border-radius:5px; font-size:11.5px; font-weight:700; cursor:pointer;}
+  .conv-result-row{display:flex; justify-content:space-between; padding:9px 11px; background:rgba(79,168,224,0.1); border-radius:5px; margin-bottom:6px; font-size:13px;}
+  .conv-result-row .val{font-weight:700; color:var(--celeste);}
+  .rate-toggle{font-size:10.5px; color:var(--ink-soft); text-align:center; margin-top:8px; cursor:pointer; text-decoration:underline;}
+  .rate-edit{display:none; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(42,36,24,0.2);}
+  .rate-edit.show{display:block;}
+  .rate-edit-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; font-size:11.5px;}
+  .rate-edit-row input{width:85px; padding:6px 7px; border-radius:4px; border:1px solid rgba(42,36,24,0.25); font-size:12px; text-align:right;}
+
+  .expense-item{display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px dashed rgba(42,36,24,0.15); font-size:12px; cursor:pointer;}
+  .expense-item .meta{color:var(--ink-soft); font-size:10px; display:block;}
+  .expense-item .del{color:#a33; cursor:pointer; font-size:11px; margin-left:8px;}
+  .pay-badge{font-size:8.5px; background:rgba(79,168,224,0.15); color:var(--celeste); padding:1px 6px; border-radius:999px; font-weight:700;}
+  .low-balance{color:#b8741a !important; font-weight:700;}
+  .ticket-icon{font-size:11px; margin-left:4px;}
+
+  .doc-slot{background:linear-gradient(160deg, var(--paper) 0%, var(--paper-soft) 100%); border-radius:6px; padding:14px; margin-bottom:12px; color:var(--ink);}
+  .doc-slot-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:8px;}
+  .doc-slot-title{font-family:'Bebas Neue'; font-size:17px; color:var(--ink);}
+  .doc-slot-title-input{font-family:'Work Sans'; font-size:13px; font-weight:700; color:var(--ink); border:none; border-bottom:1px dashed rgba(42,36,24,0.3); background:transparent; padding:3px 0; width:60%;}
+  .doc-thumb{width:100%; max-height:160px; object-fit:cover; border-radius:5px; margin-top:8px; cursor:pointer; display:none;}
+  .doc-thumb.show{display:block;}
+  .doc-pdf-link{display:none; margin-top:8px; font-size:12px; color:var(--celeste); font-weight:700; text-decoration:underline; cursor:pointer;}
+  .doc-pdf-link.show{display:inline-block;}
+  .doc-upload-label{display:inline-block; font-size:11.5px; color:var(--celeste); border:1px solid var(--celeste); padding:6px 12px; border-radius:5px; cursor:pointer; font-weight:700; flex-shrink:0;}
+  .doc-upload-label input{display:none;}
+  .doc-empty-note{font-size:11px; color:var(--ink-soft); margin-top:6px;}
+
+  #imgModal{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:999; align-items:center; justify-content:center; padding:20px;}
+  #imgModal.show{display:flex;}
+  #imgModal img{max-width:100%; max-height:85vh; border-radius:6px;}
+  #imgModal .close-modal{position:absolute; top:20px; right:20px; color:white; font-size:28px; cursor:pointer;}
+
+  footer{text-align:center; padding:22px 20px 4px; font-family:'Caveat'; font-size:18px; color:var(--gold);}
+  .version-tag{text-align:center; padding:8px 20px 10px; margin-bottom:0; font-size:13px; color:var(--celeste); font-weight:700; letter-spacing:0.3px;}
+
+  .bottom-nav{
+    position:fixed; bottom:0; left:0; right:0; background:var(--navy-deep);
+    border-top:1px solid rgba(212,161,61,0.3); display:flex; z-index:100;
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  .nav-btn{flex:1; background:none; border:none; color:#8a8568; padding:9px 2px 8px; display:flex; flex-direction:column; align-items:center; gap:2px; cursor:pointer;}
+  .nav-btn .nav-icon{font-size:19px;}
+  .nav-btn .nav-label{font-size:8.5px; letter-spacing:0.3px; font-weight:600;}
+  .nav-btn.active{color:var(--gold);}
+
+  /* --- Presupuesto v4: billeteras, categorías, ojito global --- */
+  header{position:relative;}
+  #eyeToggle{position:absolute; top:calc(12px + env(safe-area-inset-top,0px)); right:16px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; font-size:18px; line-height:1; cursor:pointer; background:rgba(246,236,217,0.08); border:1px solid rgba(212,161,61,0.3); border-radius:999px; user-select:none;}
+  .money{display:inline-block;}
+  body.hide-amounts .money{color:transparent !important; text-shadow:0 0 9px rgba(140,140,140,0.95); user-select:none;}
+  body.hide-amounts .bar-fill{visibility:hidden;}
+  .neg{color:#c1272d !important; font-weight:700;}
+  .budget-table .neg{color:#ff8a8f !important;}
+  .budget-table .sub, .sub{display:block; font-size:9.5px; color:#a9a58c; font-weight:400; margin-top:1px;}
+  .budget-table tr.tot td{font-weight:700; border-top:1px solid rgba(212,161,61,0.4);}
+  .form-row input[type="date"]{flex:1; padding:9px 11px; border-radius:5px; border:1px solid rgba(42,36,24,0.25); font-size:13px; color:var(--ink); background:#fffdf7; min-width:0;}
+  .wallet{padding:10px 0; border-bottom:1px dashed rgba(42,36,24,0.15);}
+  .wallet:last-child{border-bottom:none;}
+  .wallet-name{font-size:12.5px; font-weight:700; color:var(--ink); margin-bottom:6px;}
+  .wallet-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:8px; align-items:end;}
+  .wallet-grid label{display:block; font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-soft); font-weight:700; margin-bottom:3px;}
+  .wallet-grid input{width:100%; padding:7px 8px; border-radius:5px; border:1px solid rgba(42,36,24,0.25); font-size:13px; font-weight:600; color:var(--ink); background:#fffdf7;}
+  .wallet-val{font-size:13px; font-weight:700; color:var(--ink); padding:7px 0;}
+  .est-cmp{font-size:12px; margin-top:8px; padding:8px 10px; border-radius:5px; background:rgba(79,168,224,0.12); color:var(--ink); line-height:1.4;}
+  .bar-bg{background:rgba(42,36,24,0.12); border-radius:999px; height:9px; overflow:hidden; margin-top:8px;}
+  .bar-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--celeste),var(--gold)); border-radius:999px; transition:width .4s ease;}
+  .bar-fill.over{background:#c1272d;}
+  .cat-card{background:rgba(246,236,217,0.06); border:1px solid rgba(212,161,61,0.2); border-radius:6px; margin-bottom:8px; overflow:hidden;}
+  .cat-head{display:flex; align-items:center; padding:11px 13px; cursor:pointer; gap:8px;}
+  .cat-name{font-size:13px; font-weight:600; color:var(--paper);}
+  .cat-total{font-size:12px; color:var(--celeste-soft); font-weight:700; margin-left:auto;}
+  .cat-body{display:none; padding:0 13px 12px;}
+  .cat-card.open .cat-body{display:block;}
+  .cat-card.open .chevron{transform:rotate(90deg);}
+  .cat-empty{font-size:11px; color:#8a8568; font-style:italic; padding:6px 0 2px;}
+  .exp-line{padding:9px 0; border-top:1px dashed rgba(212,161,61,0.2); font-size:12px; color:#ece6d3;}
+  .exp-main{display:flex; justify-content:space-between; gap:8px;}
+  .exp-desc{font-weight:600;}
+  .exp-meta{font-size:10px; color:#a9a58c; margin-top:2px;}
+  .exp-actions{margin-top:5px; display:flex; gap:14px; font-size:10.5px; font-weight:700;}
+  .exp-actions span{cursor:pointer; color:var(--celeste-soft);}
+  .exp-actions .del{color:#ff9a9d;}
+  .edit-form{background:linear-gradient(160deg, var(--paper) 0%, var(--paper-soft) 100%); color:var(--ink); border-radius:6px; padding:10px; margin-top:8px;}
+  .seg{display:flex; gap:6px; margin:8px 0;}
+  .seg button{flex:1; padding:9px 6px; border-radius:6px; border:1px solid rgba(79,168,224,0.6); background:transparent; color:var(--ink); font:inherit; font-size:13px; cursor:pointer;}
+  .seg button.on{background:var(--celeste); color:var(--navy); font-weight:700;}
+  .btn-ghost{background:transparent; border:1px solid rgba(212,161,61,0.5); color:var(--gold); padding:9px 14px; border-radius:5px; font-size:12px; font-weight:700; cursor:pointer;}
+  .btn-danger{background:transparent; border:1px dashed rgba(255,138,143,0.6); color:#ff9a9d; padding:8px 14px; border-radius:5px; font-size:11.5px; font-weight:700; cursor:pointer;}
+  .day-entry{margin-top:12px; font-size:11.5px; color:var(--paper); font-weight:600; background:rgba(212,161,61,0.12); border-left:2px solid var(--gold); padding:6px 9px; border-radius:4px; line-height:1.45;}
+  .ent-row{display:flex; gap:7px; align-items:baseline; margin-top:6px; font-weight:400; font-size:11.5px; flex-wrap:wrap;}
+  .ent-row input{width:auto; margin:0; accent-color:var(--gold);}
+  .ent-row .money{margin-left:auto; font-weight:600;}
+  .ent-sub{margin-top:6px; font-weight:700;}
+  #convResults{display:flex; gap:10px; flex-wrap:wrap;}
+  #convResults .conv-result-row{flex:1; min-width:110px;}
+  .day-entry .opt{display:block; font-weight:400; color:#c7c3ad; font-size:11px;}
+  .daily-big{font-family:'Bebas Neue'; font-size:34px; letter-spacing:0.5px; color:var(--ink); line-height:1.1; margin:2px 0 2px;}
+  .daily-sub{font-size:12px; color:var(--ink-soft); margin-bottom:6px;}
+  .wx-note{display:block; margin-top:2px; font-style:normal;}
+  .day-spent{margin-top:12px; font-size:11.5px; color:var(--celeste-soft); font-weight:600;}
+  .cd-wallets{font-size:11px; color:var(--ink-soft); text-align:center; padding:2px 6px 4px; font-weight:600;}
+</style>
+</head>
+<body>
+<div class="scroll-frame">
+  <header>
+    <div class="eyebrow">Santiago · Buenos Aires</div>
+    <h1 class="hero-title">MI DECRETO</h1>
+    <div class="hero-sub" id="heroSub">Buenos Aires, ida y vuelta hacia mí</div>
+    <div class="ver-top">Rinasco a modo mio 🧡 · v5.9</div>
+    <div id="eyeToggle" title="Ocultar / mostrar cifras">👁️</div>
+  </header>
+
+  <div class="flourish">
+    <svg viewBox="0 0 300 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 7 Q 30 -4 60 7 T 120 7 T 180 7 T 240 7 T 300 7" stroke="#d4a13d" stroke-width="1.4"/>
+      <circle cx="150" cy="7" r="3" fill="#4FA8E0"/>
+    </svg>
+  </div>
+
+  <div class="countdown-card" id="countdownCard"></div>
+
+  <div class="live-strip">
+    <div class="live-tile"><div class="lt-label">Santiago</div><div class="lt-value" id="clockCL">--:--</div><div class="lt-sub" id="dateCL">—</div></div>
+    <div class="live-tile"><div class="lt-label">Buenos Aires</div><div class="lt-value" id="clockAR">--:--</div><div class="lt-sub" id="dateAR">—</div></div>
+    <div class="live-tile moon-tile"><div class="lt-label">Luna hoy</div><div class="lt-value" id="moonToday">🌙</div><div class="lt-sub" id="moonTodayName">—</div></div>
+    <div class="live-tile"><div class="lt-label">Clima BA ahora</div><div class="lt-value" id="wxTemp" style="font-size:19px;">17–25°C</div><div class="lt-sub" id="wxSub">Estimado nov.</div></div>
+  </div>
+  <div class="tz-note">Horarios en vivo · hoy comparten huso horario, se ajusta solo según temporada<span class="wx-note" id="wxNote">Clima: sin conexión todavía, mostrando el estimado de noviembre (17–25°C)</span></div>
+
+  <main>
+    <div class="tab-panel active" id="tab-prep">
+      <div class="section-title">🎒 Preparación</div>
+
+      <div class="acc-card open" id="acc-equipaje">
+        <div class="acc-head"><span class="acc-head-title">Equipaje</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="progress-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div><div class="progress-txt" id="progressTxt">0 de 0 listo</div></div>
+          <div id="checklistContainer"></div>
+        </div>
+      </div>
+
+      <div class="acc-card" id="acc-pendientes">
+        <div class="acc-head"><span class="acc-head-title">Pendientes</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="progress-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFillPend"></div></div><div class="progress-txt" id="progressTxtPend">0 de 0 listo</div></div>
+          <div id="pendientesContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-docs">
+      <div class="section-title">📄 Documentos</div>
+
+      <div class="acc-card open" id="acc-misdocs">
+        <div class="acc-head"><span class="acc-head-title">Mis documentos</span><span class="chevron">▶</span></div>
+        <div class="acc-body"><div id="fixedDocsContainer"></div><div id="customDocsContainer"></div></div>
+      </div>
+
+      <div class="acc-card" id="acc-aeropuertos">
+        <div class="acc-head"><span class="acc-head-title">Guía de aeropuertos</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card"><h3>SCL — Salida (1 nov, madrugada)</h3><div class="note">1. Uber/Transvip te deja en Terminal de Salidas, primer piso.<br>2. Control Policía Internacional (PDI) — cédula.<br>3. Control de seguridad.<br>4. Embarque: 2° y 3° piso.</div></div>
+          <div class="info-card"><h3>AEP — Llegada (1 nov, 11:20)</h3><div class="note">1. Carteles "Llegadas Internacionales" (planta baja).<br>2. Migraciones argentinas — cédula.<br>3. Sin equipaje facturado, sales directo.<br>4. Zona Arribos para tu Uber.</div></div>
+          <div class="info-card"><h3>AEP — Salida (7 nov, noche)</h3><div class="note">1. Planta baja → primer piso (salidas).<br>2. Sector internacional, seguridad.<br>3. Migraciones — sello de salida.<br>4. Duty Free.<br>5. Pre-embarque, esperas puerta.</div></div>
+          <div class="info-card"><h3>SCL — Llegada (8 nov, 00:42)</h3><div class="note">1. Carteles "Llegadas Internacionales".<br>2. Control PDI — entras a Chile.<br>3. Sales directo, sin espera.<br>4. Uber de vuelta a casa.</div><div class="tip">✦ Sigue siempre "Salidas/Llegadas Internacionales" y "Migraciones" — constantes aunque cambien mostradores.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-itin">
+      <div class="section-title">🗓️ Día a día</div>
+      <div id="daysContainer"></div>
+
+      <div class="acc-card" id="acc-comer">
+        <div class="acc-head"><span class="acc-head-title">🍝 Para comer bien</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card"><h3>🧀 L'adesso Ristorante</h3><div class="info-row"><span>Dirección</span><span>Fray Justo Sta. María de Oro 2047, Palermo</span></div><div class="info-row"><span>Horario</span><span>Mar-sáb 20:00-00:00 · dom 12:30-16:30 · lunes cerrado</span></div><div class="note">Pasta dentro de una rueda de queso gigante. Precio por persona AR$30.000-70.000 (≈ CLP 18.800-43.800). Reserva en ladesso.com.ar: se abre 10 días antes (24 oct para el martes 3 nov). Propuesto para la cena de cumpleaños.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=L%27adesso+Ristorante+Fray+Justo+Santa+Maria+de+Oro+2047+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🥩 Fogón Asado (descartado)</h3><div class="info-row"><span>Dirección</span><span>Gorriti 3780, Palermo</span></div><div class="note">Puesto 22 en World's Best Steak Restaurants 2026 y mención Michelin 2024. Menú degustación de 9 pasos desde AR$131.000 (≈ USD 90, ≈ <span class="money">CLP 82.000</span>) sin maridaje; incluye cóctel de bienvenida, agua, café y clase de chimichurri. Con vinos, unos 100-150 euros (≈ <span class="money">CLP 110.000-160.000</span>); el estimado de la app usa este valor. Reserva en fogonasado.com o Instagram. Lo descartaste: tu cena de cumpleaños es en L'adesso.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Fogon+Asado+Gorriti+3780+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🧀 Italpast (Hotel Faena, Puerto Madero)</h3><div class="note">Sirve pasta a la horma de queso. No verifiqué precio ni carta de esta sucursal: revisa antes de ir.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Italpast+Faena+Puerto+Madero+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🍝 Pasta económica</h3><div class="info-row"><span>Cantina Palermo</span><span>Fitz Roy 2238</span></div><div class="info-row"><span>Pippo (Microcentro)</span><span>Paraná 356</span></div><div class="note">Precios de una nota de marzo (AR$7.500-10.500 por plato), pueden estar desactualizados.</div></div>
+        </div>
+      </div>
+
+      <div class="acc-card" id="acc-reservas">
+        <div class="acc-head"><span class="acc-head-title">🎟️ Reservas y entradas</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card"><h3>📅 Cuándo se abren las reservas</h3><div class="info-row"><span>L'adesso (mar 3 nov)</span><span>desde el 24 oct</span></div><div class="note">Usa solo el enlace oficial de cada lugar. Trade Sky Bar y Uptown BA quedaron fuera del plan (mínimo de consumo de AR$35.000 y ambiente sofisticado); si cambias de idea, sus reservas se abrían el 18 y el 22 de octubre.</div></div>
+          <div class="info-card"><h3>✅ Ya reservado: Misión BA</h3><div class="info-row"><span>Cuándo</span><span>Vie 6 nov · 20:00 · Barra · 1 persona</span></div><div class="info-row"><span>Código</span><span>PVFGT1</span></div><div class="info-row"><span>Dirección</span><span>Godoy Cruz 1715, Palermo</span></div><div class="info-row"><span>Sushi y vino libre</span><span>20:00-21:30 · AR$35.000</span></div><div class="info-row"><span>Instagram</span><span>@misionclub.ba</span></div><div class="info-row"><span>Reservas</span><span>mision.meitre.com</span></div><div class="note">Mix de piezas elegido por la cocina (sin nigiris ni calientes), con opción veggie; no se acumula con otras promos. Zapatillas permitidas, con derecho de admisión. Tolerancia de 15 min. Cancelación por WhatsApp +54 9 11 7099-1715: con más de 24 h se reintegra el 50% del pago (tú no pagaste nada); dentro de las 24 h, sin reintegro.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Mision+Godoy+Cruz+1715+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🏛️ Palacio Barolo (lun 2 nov)</h3><div class="info-row"><span>Dirección</span><span>Av. de Mayo 1370</span></div><div class="info-row"><span>Tour</span><span>90 min con mirador · 11:00, 13:00 y 16:00</span></div><div class="info-row"><span>Civitatis</span><span>≈ CLP 37.500</span></div><div class="info-row"><span>Web oficial</span><span>AR$54.000 ≈ CLP 33.800</span></div><div class="note">Civitatis: se reserva hasta 3 h antes; cancelación gratis hasta 6 h antes; el de las 11:00 es sin degustación. Operador oficial: WhatsApp +54 9 11 6915-2385 (cerrado los martes). Decides allá.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Palacio+Barolo+Av+de+Mayo+1370+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🎭 Teatro Colón (Día 6)</h3><div class="info-row"><span>Visita</span><span>50 min · todos los días 10:00-16:45</span></div><div class="info-row"><span>Idiomas</span><span>Español cada 15 min · inglés 10 a 15 h</span></div><div class="info-row"><span>Entrada general</span><span>AR$34.000 ≈ CLP 21.300</span></div><div class="note">Compra en teatrocolon.org.ar o en la boletería (Tucumán 1171). Efectivo y tarjeta en 1 pago; no acepta moneda extranjera. Tolerancia de 5 min. El circuito puede cambiar por ensayos o eventos, sin devolución.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Teatro+Colon+Tucuman+1171+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🌿 Jardín Japonés y MALBA (Día 5)</h3><div class="info-row"><span>Jardín Japonés</span><span>Av. Casares 3500 · 10:00-18:45</span></div><div class="info-row"><span>Entrada no residentes</span><span>AR$24.000 ≈ CLP 15.000</span></div><div class="info-row"><span>MALBA</span><span>Av. Figueroa Alcorta 3415 · jue 12:00-20:00</span></div><div class="info-row"><span>Entrada general</span><span>AR$7.000 ≈ CLP 4.400</span></div><div class="note">El MALBA cierra los martes y abre a las 11:00 los miércoles. El Rosedal abre 8:00-18:00 de martes a domingo y su entrada es gratuita (según una publicación de Instagram). Confirma vigencia en sus webs.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-budget">
+      <div class="section-title">💰 Presupuesto</div>
+
+      <div class="info-card" style="border:1px solid rgba(79,168,224,0.4);">
+        <div class="subsection-title" style="margin:0 0 4px; color:var(--ink-soft); font-size:11px;">💱 Conversor</div>
+        <div class="form-row"><input type="number" id="convAmount" value="1000" min="0"><select id="convFrom"><option value="CLP">CLP</option><option value="USD">USD</option><option value="ARS">ARS</option></select></div>
+        <div id="convResults"></div>
+        <div class="rate-toggle" id="rateToggle">Ajustar tipo de cambio</div>
+        <div class="rate-edit" id="rateEdit">
+          <div class="rate-edit-row"><span>1 USD = ? CLP</span><input type="number" id="rateUsdClp" value="998"></div>
+          <div class="rate-edit-row"><span>1 USD = ? ARS</span><input type="number" id="rateUsdArs" value="1540"></div>
+        </div>
+      </div>
+
+      <div class="info-card" id="dailyCard" style="border:1px solid rgba(212,161,61,0.55);">
+        <h3>🎯 Cuánto puedes gastar por día</h3>
+        <div class="daily-big money" id="dailyTotal">—</div>
+        <div class="daily-sub" id="dailySub"></div>
+        <div id="dailyWallets"></div>
+        <div class="note" id="dailyPlan" style="margin-top:6px;"></div>
+        <div class="note" id="dailyNote"></div>
+      </div>
+
+      <div class="acc-card open" id="acc-registro">
+        <div class="acc-head"><span class="acc-head-title">➕ Registro de gasto</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card">
+            <div class="form-row"><input type="text" id="expConcept" placeholder="Descripción (vacía = nombre de la categoría)"></div>
+            <div class="form-row">
+              <input type="number" id="expAmount" placeholder="Monto" step="any" inputmode="decimal">
+              <select id="expCurrency"><option value="CLP">CLP</option><option value="ARS">ARS</option><option value="USD">USD</option></select>
+            </div>
+            <div class="form-row">
+              <select id="expCategory" style="flex:1;"></select>
+              <select id="expMethod" style="flex:1;"></select>
+            </div>
+            <div class="form-row">
+              <input type="date" id="expDate">
+              <span id="expDayLabel" style="flex:1; font-size:12px; color:var(--ink-soft); font-weight:600;"></span>
+            </div>
+            <div class="form-row"><button class="btn" id="expAddBtn" style="width:100%;">Agregar gasto</button></div>
+            <div class="note" id="expMsg" style="min-height:14px; margin-top:0;"></div>
+            <div class="tip">✦ Hostal (<span class="money">CLP 132.500</span>, se paga al llegar): al pagarlo, regístralo en <b>Alojamiento</b> con la palabra <b>Hostal</b> en la descripción y forma de pago Global66. Depósito de garantía (reembolsable): regístralo en Alojamiento con la billetera en que lo dejes, y cuando te lo devuelvan agrégalo de nuevo con <b>monto negativo</b>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-card open" id="acc-saldos">
+        <div class="acc-head"><span class="acc-head-title">🎯 Saldos por billetera</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card">
+            <div class="note" style="margin-top:0;">Anota cuánto llevas en cada forma de pago. Puedes editarlo cuando quieras (por ejemplo si traspasas plata de un medio a otro). Cada billetera es independiente: si se agota una, no toca las otras.</div>
+            <div id="walletsContainer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>Estimado vs. lo que llevas</h3>
+        <div class="info-row"><span>🏠 Hostal Play Garden</span><span class="money" id="estHostal">—</span></div>
+        <div class="note" id="estHostalStatus" style="margin:0 0 6px;"></div>
+        <div class="info-row"><span>Resto del viaje (sin hostal)</span><span class="money" id="estRest">—</span></div>
+        <div class="info-row" style="font-weight:700;"><span>Total estimado</span><span class="money" id="estRange">—</span></div>
+        <div class="info-row"><span>Tu tope máximo</span><span class="money" id="capVal">—</span></div>
+        <div class="est-cmp" id="capMsg" style="margin-top:4px;"></div>
+        <div class="seg" id="scenSeg"><button data-scen="normal">Plan normal</button><button data-scen="eco">Plan económico</button></div>
+        <div class="note" id="scenNote" style="margin:0 0 6px;"></div>
+        <label class="ent-row" style="color:var(--ink); margin:8px 0; display:none;"><input type="checkbox" id="fogonToggle"> <span>Incluir Fogón Asado en la cena de cumpleaños (≈ CLP 110.000-160.000)</span></label>
+        <div class="info-row"><span>Saldo general inicial</span><span class="money" id="generalInitial">$0</span></div>
+        <div class="est-cmp" id="estCompare"></div>
+        <div class="note">El hostal va aparte porque se paga al llegar (Global66). No incluye lo ya pagado antes del viaje (vuelo, power bank, seguro). Todo se convierte a CLP al tipo de cambio configurado arriba.</div>
+      </div>
+
+      <div class="acc-card" id="acc-balance">
+        <div class="acc-head"><span class="acc-head-title">📊 Balance total</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card">
+            <div class="info-row"><span>Presupuesto (saldo general inicial)</span><span class="money" id="balBudget">$0</span></div>
+            <div class="info-row"><span>Gastado</span><span class="money" id="balSpent">$0</span></div>
+            <div class="info-row"><span>Disponible</span><span class="money" id="balAvail">$0</span></div>
+            <div class="info-row"><span>% usado</span><span class="money" id="balPct">—</span></div>
+            <div class="bar-bg"><div class="bar-fill" id="balBar"></div></div>
+            <div class="note">Se calcula solo a partir de tus saldos iniciales y tus gastos. No se edita aquí.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-card" id="acc-categorias">
+        <div class="acc-head"><span class="acc-head-title">🗂️ Gastos por categoría</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div id="catList"></div>
+          <div class="form-row" style="margin-top:12px;"><input type="text" id="newCatInput" placeholder="Nueva categoría"><button class="btn" id="addCatBtn">+ Agregar</button></div>
+          <div class="note" id="catMsg" style="min-height:14px; margin-top:0; color:#a9a58c;"></div>
+          <div class="form-row"><button class="btn-ghost" id="csvBtn">⬇️ Descargar CSV</button></div>
+          <div class="note" id="csvMsg" style="min-height:14px; margin-top:0; color:#a9a58c;"></div>
+        </div>
+      </div>
+
+      <div class="acc-card" id="acc-entradas">
+        <div class="acc-head"><span class="acc-head-title">🎟️ Entradas por día (precios confirmados)</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div id="entDayList"></div>
+          <div class="info-card"><div class="info-row" style="font-weight:700;"><span>Total entradas marcadas</span><span class="money" id="entTotalClp">—</span></div><div class="info-row"><span>…en pesos argentinos</span><span class="money" id="entTotalArs">—</span></div><div class="note">Solo cuenta las entradas marcadas en el itinerario. El bus turístico está desactivado. En el Teatro Colón no se paga con moneda extranjera: lleva pesos o tarjeta. Barolo: CLP según Civitatis (más caro) o la web oficial.</div></div>
+        </div>
+      </div>
+
+      <div class="acc-card" id="acc-estimados">
+        <div class="acc-head"><span class="acc-head-title">Estimados por categoría + cuánto ARS llevar</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <table class="budget-table"><thead><tr><th>Día</th><th>Estimado</th><th>Gastado</th><th>Estado</th></tr></thead><tbody id="dayEstBody"></tbody></table>
+          <div class="note">Gasto diario estimado sin hostal. Semáforo según lo gastado ese día: ⚪ sin gastos · 🟢 menos del 80% del máximo · 🟡 entre 80% y 100% · 🔴 sobre el máximo. Cambia si marcas o desmarcas entradas o eliges el plan económico.</div>
+          <h3 style="margin:14px 0 4px;">💵 Efectivo vs. tarjeta por día</h3>
+          <table class="budget-table"><thead><tr><th>Día</th><th>Efectivo (ARS)</th><th>Tarjeta (CLP)</th></tr></thead><tbody id="cashDayBody"></tbody></table>
+          <div class="note">Supuestos: efectivo ≈ 50% de la comida (ferias, kioscos, helados), 40% de traslados, 25% de la noche y 50% de las entradas; el resto va con tarjeta. Souvenirs 70% en efectivo e imprevistos 100% efectivo.</div>
+          <table class="budget-table" style="margin-top:12px;"><thead><tr><th>Categoría</th><th>Gastado</th><th>Vs. tope</th></tr></thead><tbody id="estBody"></tbody></table>
+          <div class="info-card" style="margin-top:12px;">
+            <h3>Ya pagado antes del viaje (referencia)</h3>
+            <div id="prepaidList"></div>
+            <div class="note">Esto no descuenta de tus billeteras ni entra en el estimado.</div>
+          </div>
+          <div class="info-card">
+            <h3>Cuánto ARS llevar</h3>
+            <div class="info-row"><span>Gasto en Argentina (sin hostal)</span><span class="money" id="estArsBaseClp">—</span></div>
+            <div class="info-row"><span>…en ARS</span><span class="money" id="estArs">—</span></div>
+            <div class="info-row"><span>Efectivo a llevar (según la tabla por día), en ARS</span><span class="money" id="estCashArs">—</span></div>
+            <div class="info-row"><span>…equivale a</span><span class="money" id="estCashClp">—</span></div>
+            <div class="info-row"><span>Ya anotado en "Efectivo ARS"</span><span class="money" id="estArsHave">—</span></div>
+            <div class="est-cmp" id="estArsGap"></div>
+            <div class="note">El hostal no entra: se paga aparte con Global66. De ese gasto, lleva en efectivo solo la parte de ferias, kioscos, propinas y entradas; el resto va con tarjeta (restaurantes, Uber, clubes). Convierte de a poco allá. Cálculo según el tipo de cambio de arriba.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin:20px 0 6px;">
+        <button class="btn-danger" id="resetBudgetBtn">Reiniciar presupuesto</button>
+        <div class="note" id="resetMsg" style="color:#a9a58c; text-align:center;">Borra solo gastos, saldos y categorías propias. No toca documentos ni checklist.</div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-noche">
+      <div class="section-title">🌙 Vida nocturna</div>
+
+      <div class="acc-card open" id="acc-noche-club">
+        <div class="acc-head"><span class="acc-head-title">🎧 Clubes</span><span class="chevron">▶</span></div>
+        <div class="acc-body"><div id="nocheContainerClub"></div></div>
+      </div>
+
+      <div class="acc-card" id="acc-noche-bar">
+        <div class="acc-head"><span class="acc-head-title">🍸 Bares</span><span class="chevron">▶</span></div>
+        <div class="acc-body"><div id="nocheContainerBar"></div></div>
+      </div>
+
+      <div class="acc-card" id="acc-noche-roof">
+        <div class="acc-head"><span class="acc-head-title">🌆 Rooftops y vistas</span><span class="chevron">▶</span></div>
+        <div class="acc-body"><div id="nocheContainerRoof"></div></div>
+      </div>
+
+      <div class="acc-card" id="acc-noche-cultura">
+        <div class="acc-head"><span class="acc-head-title">🥁 Cultura</span><span class="chevron">▶</span></div>
+        <div class="acc-body"><div id="nocheContainerCultura"></div></div>
+      </div>
+
+      <div class="tip">✦ Revisa el line-up real de la semana en Resident Advisor antes de elegir — los horarios y DJs cambian seguido.</div>
+    </div>
+
+    <div class="tab-panel" id="tab-souv">
+      <div class="section-title">🎁 Souvenirs</div>
+
+      <div class="acc-card open" id="acc-souv-exclusivo">
+        <div class="acc-head"><span class="acc-head-title">Exclusivo de Argentina</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card"><h3>👛 Billetera de cuero (la que te falta)</h3><div class="info-row"><span>Dónde</span><span>Feria de San Telmo (domingo 1 nov) o talabarterías de San Telmo</span></div><div class="note">El domingo, en la feria de Plaza Dorrego, hay varios puestos de cuero; el miércoles 4 la feria no está, pero las talabarterías de la calle Defensa sí abren. Calle Florida también tiene tiendas. Pregunta por "cuero genuino", revisa costuras y cierre, compara 2 o 3 puestos y lleva efectivo. Precio por averiguar: anótalo en Souvenirs y regalos cuando lo sepas.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Feria+de+San+Telmo+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>💎 Rodocrosita (Rosa del Inca)</h3><div class="note">Sí: es una piedra rosada o rojo rosado con vetas blancas, y es la piedra nacional de Argentina; viene de Catamarca. Se vende como colgantes, anillos y pulseras de plata en ferias y tiendas de artesanías, incluido el norte del país (de memoria; compara precios y pide que sea piedra natural).</div></div>
+          <div class="info-card"><h3>🥃 Fernet Branca</h3><div class="note">El trago nacional — no se consigue igual en Chile. Una botella pasa de 100 ml, así que no entra en mochila de cabina. Opciones: la tienda libre de impuestos de Aeroparque después del control de seguridad (verifica que la acepten en tu vuelo), una miniatura de hasta 100 ml, o agregar una maleta despachada.</div></div>
+          <div class="info-card"><h3>👡 Alpargatas</h3><div class="note">Calzado tradicional argentino, muy distinto a lo que se vende en Chile.</div></div>
+          <div class="info-card"><h3>🎨 Fileteado porteño</h3><div class="note">Cuadros, imanes o llaveros con esta ornamentación típica — San Telmo o Caminito.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Feria+de+San+Telmo+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>⚽ Camiseta Boca/River</h3><div class="note">Oficial, en tiendas de club o en Calle Florida.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Calle+Florida+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+        </div>
+      </div>
+
+      <div class="acc-card" id="acc-souv-clasicos">
+        <div class="acc-head"><span class="acc-head-title">Clásicos para comer y beber</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card"><h3>🍬 Arcor Center</h3><div class="info-row"><span>Dirección</span><span>Av. Corrientes 1335</span></div><div class="info-row"><span>Horario</span><span>Lun-sáb 10-20 · dom 12-19</span></div><div class="note">Golosinas a granel — día 2 de Microcentro.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Arcor+Center+Av+Corrientes+1335+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🍮 Dulce de leche</h3><div class="info-row"><span>La Serenísima / Chimbote</span><span>Cualquier súper</span></div></div>
+          <div class="info-card"><h3>🥜 Mantecol</h3><div class="info-row"><span>Georgalos</span><span>Kiosco o súper</span></div></div>
+          <div class="info-card"><h3>🍪 Alfajores</h3><div class="info-row"><span>Balcarce / Cofler / Guaymallén</span><span>Kiosco</span></div><div class="info-row"><span>Alfajor de maicena</span><span>En confiterías</span></div></div>
+          <div class="info-card"><h3>🧉 Mate + yerba</h3><div class="info-row"><span>Yerba: Rosamonte / Taragüi / CBSé</span><span>Súper</span></div><div class="note">El mate y su bolsito: Feria de San Telmo o una talabartería.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Feria+de+San+Telmo+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>🍷 Vino Malbec</h3><div class="info-row"><span>Trapiche / Norton / Luigi Bosca</span><span>Vinoteca o duty-free</span></div><div class="note">Mismo caso que el fernet: una botella no va en cabina. Cómpralo en el duty-free de Aeroparque después de seguridad o despáchalo. Confirma en aduana.cl cuántos litros de alcohol puedes traer; las fuentes dan cifras distintas.</div></div>
+          <div class="tip">✦ Al volver a Chile: no entran frutas, verduras, carnes ni embutidos (SAG). Los productos envasados y sellados, como alfajores y yerba, normalmente pasan. El monto libre de impuestos cambia según la fuente: confírmalo en aduana.cl antes de viajar.</div>
+        </div>
+      </div>
+
+      <div class="acc-card" id="acc-souv-tarot">
+        <div class="acc-head"><span class="acc-head-title">🔮 Tarot &amp; Esoterismo</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card"><h3>🃏 Mi mazo (Vibración 33)</h3><div class="form-row"><input type="text" id="deckName" placeholder="Nombre exacto del mazo que quieres comprar"></div><div class="note">Se guarda en tu teléfono. El Rider-Waite-Smith es el más común: pregunta en cada tienda por "Rider Waite Smith, 78 cartas, edición original" (también sirve la edición "Pamela Colman Smith"). Confirma stock por Instagram antes de ir; si no lo tienen, prueba en El Ateneo (Día 3) o en otra librería.</div></div>
+          <div class="info-card"><h3>Magia Libros</h3><div class="info-row"><span>Dirección</span><span>Thames 1619, Palermo</span></div><div class="info-row"><span>Horario</span><span>Mar-vie 11-19 · sáb-dom 12-19</span></div><div class="note">Tarot, astrología y psicodelia. Día 5 en el itinerario. Su web tiene Tarot de Marsella, Rider Waite Smith y oráculos. Precio de referencia: un Tarot de Marsella AR$59.500 (≈ CLP 37.000); confirma que sea el mazo y cuál tienen en stock. Instagram @magialibros · WhatsApp +54 9 11 5137-0117.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Magia+Libros+Thames+1619+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>FE</h3><div class="info-row"><span>Dirección</span><span>Av. Santa Fe 2729, PB local 9 (Galería Patio del Liceo)</span></div><div class="info-row"><span>Horario</span><span>Galería lun-sáb, típico 11-20 (por confirmar)</span></div><div class="note">Su web tiene mazos de tarot (Marsella, Rider Waite, Thoth, Egipcio, históricos). Se mencionan lecturas en inglés: pregunta si las hacen en castellano. Subte más cercano: Agüero. Cerca de Recoleta: calza con tu cumpleaños (día 3).</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=FE+Av+Santa+Fe+2729+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>Librería Esotérica de La Diosa</h3><div class="info-row"><span>Zona</span><span>Su sitio habla de un local en Núñez (dirección por confirmar)</span></div><div class="info-row"><span>Horario</span><span>Jue-dom 13-20 · "La Nocturna" 22-01</span></div><div class="note">Solo libros esotéricos nuevos (no es claro que vendan mazos). Para visitar el local hay que pedir turno y pagar una entrada de AR$40.000 (≈ CLP 25.000, valor de septiembre) que se descuenta de tu compra. Ya escribiste a libreria@esotericadeladiosa.com.ar: espera la respuesta (dirección, turno y entrada).</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Libreria+Esoterica+La+Diosa+Palermo+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>The West of the Moon</h3><div class="info-row"><span>Zona</span><span>Palermo</span></div><div class="note">Dirección por confirmar: ubícala por su Instagram.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=The+West+of+the+Moon+Palermo+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>Altar</h3><div class="info-row"><span>Zona</span><span>Colegiales</span></div><div class="note">Café con lecturas de tarot. Dirección por confirmar en su Instagram.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Altar+Colegiales+Buenos+Aires+tarot" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>Un día en Venus</h3><div class="note">Librería esotérica "secreta". Ubícala por su Instagram.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Un+dia+en+Venus+libreria+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="info-card"><h3>Editorial Fera</h3><div class="note">Mazos y oráculos ilustrados; talleres de tarot + arte + emprendimiento. Ideal para llevarte un mazo.</div><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Editorial+Fera+Buenos+Aires" target="_blank" rel="noopener">Abrir en Maps</a></div>
+          <div class="tip">✦ Confirma horarios y si atienden sin reserva (lecturas) por Instagram antes de ir.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>Rinasco a modo mio 🧡</footer>
+  <div class="version-tag">v5.9 · Creado por Melitalove</div>
+  <div class="nav-spacer"></div>
+</div>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-tab="prep"><span class="nav-icon">🎒</span><span class="nav-label">Prep.</span></button>
+  <button class="nav-btn" data-tab="docs"><span class="nav-icon">📄</span><span class="nav-label">Docs</span></button>
+  <button class="nav-btn" data-tab="itin"><span class="nav-icon">🗓️</span><span class="nav-label">Itin.</span></button>
+  <button class="nav-btn" data-tab="budget"><span class="nav-icon">💰</span><span class="nav-label">$</span></button>
+  <button class="nav-btn" data-tab="noche"><span class="nav-icon">🌙</span><span class="nav-label">Noche</span></button>
+  <button class="nav-btn" data-tab="souv"><span class="nav-icon">🎁</span><span class="nav-label">Souv.</span></button>
+</nav>
+
+<div id="imgModal"><span class="close-modal" id="closeModal">&times;</span><img id="modalImg" src=""></div>
+
+<script>
+function lsGet(key, fb){ try{ const v=localStorage.getItem(key); return v?JSON.parse(v):fb; }catch(e){ return fb; } }
+function lsSet(key, v){ try{ localStorage.setItem(key, JSON.stringify(v)); }catch(e){} }
+
+let idbInstance=null;
+function openIDB(){ return new Promise((res,rej)=>{ if(idbInstance){res(idbInstance);return;} const req=indexedDB.open('mi-decreto-db',1); req.onupgradeneeded=e=>e.target.result.createObjectStore('images'); req.onsuccess=e=>{idbInstance=e.target.result; res(idbInstance);}; req.onerror=rej; }); }
+async function idbSaveImage(key, dataUrl){ const db=await openIDB(); return new Promise((res,rej)=>{ const tx=db.transaction('images','readwrite'); tx.objectStore('images').put(dataUrl,key); tx.oncomplete=res; tx.onerror=rej; }); }
+async function idbGetImage(key){ const db=await openIDB(); return new Promise(res=>{ const tx=db.transaction('images','readonly'); const req=tx.objectStore('images').get(key); req.onsuccess=()=>res(req.result||null); req.onerror=()=>res(null); }); }
+
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+/* ---------- Countdown with trip states ---------- */
+const tripStart = new Date("2026-11-01T09:13:00-04:00").getTime();
+const tripEnd = new Date("2026-11-08T01:30:00-04:00").getTime();
+const phrases = ["Il mio decreto, la mia libertà","Oggi decido io","Rinasco a modo mio","Libera di essere me stessa"];
+let phraseIdx=0;
+const countdownCard = document.getElementById('countdownCard');
+
+function renderCountdownShell(){
+  countdownCard.innerHTML = `
+    <div class="cd-grid">
+      <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Días</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-hours">--</div><div class="cd-label">Horas</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-min">--</div><div class="cd-label">Min</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-sec">--</div><div class="cd-label">Seg</div></div>
+    </div>
+    <div class="phrase-box"><div class="phrase" id="phrase">${phrases[0]}</div></div>
+  `;
+}
+const TRIP_FIRST_DAY = '2026-11-01'; const TRIP_DAYS = 7;
+function localISO(){ return new Date().toLocaleDateString('en-CA'); }
+function rawDay(iso){
+  if(!iso) return null;
+  const [y,m,d] = iso.split('-').map(Number); const [y0,m0,d0] = TRIP_FIRST_DAY.split('-').map(Number);
+  return Math.round((Date.UTC(y,m-1,d) - Date.UTC(y0,m0-1,d0))/86400000) + 1;
+}
+function dayFromDate(iso){ const n = rawDay(iso); return (n>=1 && n<=TRIP_DAYS) ? n : null; }
+function inTrip(){ const n = Date.now(); return n>=tripStart && n<tripEnd; }
+function renderDuringTrip(){
+  const dayNum = Math.min(TRIP_DAYS, Math.max(1, rawDay(localISO()) || 1));
+  countdownCard.innerHTML = `<div class="cd-big-msg">Día ${dayNum} de ${TRIP_DAYS} — ¡lo estás viviendo! 🧡</div><div class="cd-wallets">${walletsLine()}</div><div class="phrase-box"><div class="phrase" id="phrase">${phrases[0]}</div></div>`;
+}
+function renderAfterTrip(){
+  countdownCard.innerHTML = `<div class="cd-big-msg">Ya lo viviste. Rinasco cumplido 🧡</div><div class="phrase-box"><div class="phrase" id="phrase">Il mio decreto, la mia libertà</div></div>`;
+}
+function refreshCountdownState(){
+  const now = Date.now();
+  if(now < tripStart){ renderCountdownShell(); updateCountdown(); }
+  else if(now < tripEnd){ renderDuringTrip(); }
+  else{ renderAfterTrip(); }
+}
+function updateCountdown(){
+  const el = document.getElementById('cd-days'); if(!el) return;
+  let diff = tripStart - Date.now(); if(diff<0) diff=0;
+  document.getElementById('cd-days').textContent = Math.floor(diff/86400000);
+  document.getElementById('cd-hours').textContent = String(Math.floor((diff/3600000)%24)).padStart(2,'0');
+  document.getElementById('cd-min').textContent = String(Math.floor((diff/60000)%60)).padStart(2,'0');
+  document.getElementById('cd-sec').textContent = String(Math.floor((diff/1000)%60)).padStart(2,'0');
+}
+setInterval(()=>{
+  const p = document.getElementById('phrase'); if(!p) return;
+  p.classList.add('fade');
+  setTimeout(()=>{ phraseIdx=(phraseIdx+1)%phrases.length; if(document.getElementById('phrase')) document.getElementById('phrase').textContent=phrases[phraseIdx]; if(p) p.classList.remove('fade'); }, 600);
+}, 4200);
+setInterval(()=>{ updateCountdown(); }, 1000);
+setInterval(refreshCountdownState, 60000);
+
+/* ---------- Clocks ---------- */
+function updateClocks(){
+  const now=new Date(); const ot={hour:'2-digit',minute:'2-digit',hour12:false}, od={day:'numeric',month:'short'};
+  document.getElementById('clockCL').textContent = now.toLocaleTimeString('es-CL',{...ot, timeZone:'America/Santiago'});
+  document.getElementById('dateCL').textContent = now.toLocaleDateString('es-CL',{...od, timeZone:'America/Santiago'});
+  document.getElementById('clockAR').textContent = now.toLocaleTimeString('es-AR',{...ot, timeZone:'America/Argentina/Buenos_Aires'});
+  document.getElementById('dateAR').textContent = now.toLocaleDateString('es-AR',{...od, timeZone:'America/Argentina/Buenos_Aires'});
+}
+updateClocks(); setInterval(updateClocks, 30000);
+
+/* ---------- Clima actual de Buenos Aires (Open-Meteo, con respaldo sin internet) ---------- */
+const WX_URL = 'https://api.open-meteo.com/v1/forecast?latitude=-34.6037&longitude=-58.3816&current=temperature_2m,apparent_temperature,weather_code&timezone=America%2FArgentina%2FBuenos_Aires';
+function wxInfo(code){
+  if(code===0) return ['☀️','Despejado'];
+  if(code===1) return ['🌤️','Mayormente despejado'];
+  if(code===2) return ['⛅','Parcialmente nublado'];
+  if(code===3) return ['☁️','Nublado'];
+  if(code===45||code===48) return ['🌫️','Niebla'];
+  if(code>=51&&code<=57) return ['🌦️','Llovizna'];
+  if(code>=61&&code<=67) return ['🌧️','Lluvia'];
+  if(code>=71&&code<=77) return ['❄️','Nieve'];
+  if(code>=80&&code<=82) return ['🌦️','Chubascos'];
+  if(code===85||code===86) return ['❄️','Chubascos de nieve'];
+  if(code>=95) return ['⛈️','Tormenta'];
+  return ['🌡️','Clima'];
+}
+function showWeather(w, live){
+  const [ic, txt] = wxInfo(w.code);
+  document.getElementById('wxTemp').textContent = Math.round(w.t) + '°C';
+  document.getElementById('wxSub').textContent = ic + ' ' + txt;
+  const hh = new Date(w.ts).toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit',hour12:false});
+  document.getElementById('wxNote').textContent = 'Clima en Buenos Aires: sensación ' + Math.round(w.feels) + '°C · ' + (live ? 'actualizado ' : 'última lectura guardada ') + hh;
+}
+function showWeatherFallback(){
+  document.getElementById('wxTemp').textContent = '17–25°C';
+  document.getElementById('wxSub').textContent = 'Estimado nov.';
+  document.getElementById('wxNote').textContent = 'Clima: sin conexión todavía, mostrando el estimado de noviembre (17–25°C)';
+}
+async function loadWeather(){
+  const cached = lsGet('ba-weather', null);
+  try{
+    const ctrl = new AbortController(); const tm = setTimeout(()=>ctrl.abort(), 8000);
+    const r = await fetch(WX_URL, {signal: ctrl.signal}); clearTimeout(tm);
+    if(!r.ok) throw new Error('http');
+    const j = await r.json(); const cu = j.current;
+    if(!cu || typeof cu.temperature_2m !== 'number') throw new Error('data');
+    const w = {t: cu.temperature_2m, feels: typeof cu.apparent_temperature==='number' ? cu.apparent_temperature : cu.temperature_2m, code: cu.weather_code, ts: Date.now()};
+    lsSet('ba-weather', w); showWeather(w, true);
+  }catch(e){
+    if(cached && typeof cached.t==='number') showWeather(cached, false); else showWeatherFallback();
+  }
+}
+(function(){ const el=document.getElementById('deckName'); if(!el) return; el.value = lsGet('deck-name','') || 'Rider-Waite-Smith (clásico, 78 cartas)'; el.addEventListener('input', ()=> lsSet('deck-name', el.value)); })();
+loadWeather();
+setInterval(loadWeather, 15*60*1000);
+window.addEventListener('online', loadWeather);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) loadWeather(); });
+
+/* ---------- Moon ---------- */
+function moonPhase(date){ const s=29.53058867, k=Date.UTC(2000,0,6,18,14,0); let p=((date.getTime()-k)/86400000 % s)/s; if(p<0)p+=1; return p; }
+function moonInfo(p){ const st=[{max:0.03,icon:'🌑',name:'Luna Nueva'},{max:0.22,icon:'🌒',name:'Creciente'},{max:0.28,icon:'🌓',name:'Cuarto Creciente'},{max:0.47,icon:'🌔',name:'Gibosa Creciente'},{max:0.53,icon:'🌕',name:'Luna Llena'},{max:0.72,icon:'🌖',name:'Gibosa Menguante'},{max:0.78,icon:'🌗',name:'Cuarto Menguante'},{max:0.97,icon:'🌘',name:'Menguante'},{max:1.01,icon:'🌑',name:'Luna Nueva'}]; for(const s2 of st){if(p<=s2.max)return s2;} return st[0]; }
+const tm=moonInfo(moonPhase(new Date())); document.getElementById('moonToday').textContent=tm.icon; document.getElementById('moonTodayName').textContent=tm.name;
+
+/* ---------- Checklist ---------- */
+const checklistData = {
+  "Documentos y dinero": ["Cédula de identidad","Comprobante hostal","Pase de abordar","Póliza de seguro","Tarjeta Global66","Débito BCI activada p/ extranjero","Efectivo pesos + USD 10"],
+  "Electrónica": ["Celular + cargador","Power bank Anker (comprimida)","Auriculares","Bolsa impermeable celular"],
+  "Ropa": ["Poleras livianas x4","Pantalón/jeans","Abrigo liviano","Sweater","Outfits de noche","Outfit cumpleaños","Zapatillas + calzado noche","Pantuflas outdoor"],
+  "Neceser": ["Toallas de microfibra","Cepillo/pasta dientes","Protector solar","Botiquín básico"],
+  "Hostal": ["Candado para locker"],
+  "Extras": ["Organizadores de equipaje","Bolsa ropa sucia"]
+};
+const checklistContainer=document.getElementById('checklistContainer');
+let allItems=[];
+Object.entries(checklistData).forEach(([group,items])=>{
+  const g=document.createElement('div'); g.className='check-group'; g.innerHTML=`<div class="subsection-title">${group}</div>`;
+  items.forEach(item=>{ const id='chk-'+item.replace(/[^a-zA-Z0-9]/g,''); allItems.push(id);
+    const row=document.createElement('div'); row.className='check-item'; row.innerHTML=`<input type="checkbox" id="${id}"><label for="${id}">${item}</label>`; g.appendChild(row); });
+  checklistContainer.appendChild(g);
+});
+function loadChecklist(){ const s=lsGet('packing-checklist',{}); allItems.forEach(id=>{ if(s[id]){document.getElementById(id).checked=true; document.getElementById(id).closest('.check-item').classList.add('checked');} }); updateProgress(); }
+function saveChecklist(){ const s={}; allItems.forEach(id=>s[id]=document.getElementById(id).checked); lsSet('packing-checklist',s); }
+function updateProgress(){ const t=allItems.length, d=allItems.filter(id=>document.getElementById(id).checked).length; document.getElementById('progressFill').style.width=(d/t*100)+'%'; document.getElementById('progressTxt').textContent=`${d} de ${t} listo`; }
+checklistContainer.addEventListener('change', e=>{ if(e.target.type==='checkbox'){ e.target.closest('.check-item').classList.toggle('checked', e.target.checked); updateProgress(); saveChecklist(); } });
+loadChecklist();
+
+/* ---------- Pendientes (mate y niceto/RA movidos fuera) ---------- */
+const pendientesData = [
+  "Hacer check-in online vuelo de IDA (24-48h antes del 1 nov)",
+  "Hacer check-in online vuelo de VUELTA (24-48h antes del 7 nov)",
+  "Guardar ambas tarjetas de embarque en el celular",
+  "Subir el voucher del seguro (con el teléfono de emergencia) en Documentos",
+  "Revisar vigencia del roaming Claro unos días antes de viajar",
+  "Descargar app Mi Claro (monitoreo de datos)",
+  "Sacar efectivo (ARS) para el depósito de garantía del hostal (USD 10)",
+  "Lavar la toalla de microfibra antes de usarla",
+  "Revisar el pronóstico real la semana antes de viajar",
+  "Avisar a alguien de confianza tu itinerario completo",
+  "Reservar L'adesso (pasta en rueda de queso) para el martes 3 nov en ladesso.com.ar (se abre el 24 oct); según la respuesta, decidir la cena de cumpleaños",
+  "Escribir a Helka Wine Bar por Instagram para pedir tarot",
+  "Elegir una cena de barrio para el jueves 5 nov en Palermo y otra para el lunes 2 nov en el centro (bodegón o pizzería)",
+  "Preguntar al hostal por check-in temprano (llegas 11:20) y por guardar equipaje el 7 nov",
+  "Elegir el tour del Palacio Barolo (11, 13 o 16 h) y reservarlo por Civitatis",
+  "Comprar una billetera de cuero (Feria de San Telmo el domingo 1 nov o una talabartería)",
+  "Llevar una bolsa de compras (para traer los souvenirs desde Buenos Aires)",
+  "1 de nov: buscar en Passline la entrada gratuita para la fiesta HYPE! (la general cuesta AR$6.000)",
+  "Pedir un Uber en el aeropuerto de Santiago al llegar (00:42 del 8 nov)",
+  "Cargar la Anker el sábado 31 oct y llevarla en el equipaje de mano (no en la maleta) con un cable USB-C de respaldo",
+  "Cambiar los USD 200 (billetes de 100, comprados a CLP 998) en una casa de cambio formal de Buenos Aires: comparar 2 o 3 y mirar el precio de COMPRA más alto"
+];
+const pendContainer=document.getElementById('pendientesContainer');
+let pendItems=[];
+pendientesData.forEach(item=>{ const id='pend-'+item.replace(/[^a-zA-Z0-9]/g,'').slice(0,40); pendItems.push(id);
+  const row=document.createElement('div'); row.className='check-item'; row.innerHTML=`<input type="checkbox" id="${id}"><label for="${id}">${item}</label>`; pendContainer.appendChild(row); });
+function loadPendientes(){ const s=lsGet('pending-tasks',{}); pendItems.forEach(id=>{ if(s[id]){document.getElementById(id).checked=true; document.getElementById(id).closest('.check-item').classList.add('checked');} }); updateProgressPend(); }
+function savePendientes(){ const s={}; pendItems.forEach(id=>s[id]=document.getElementById(id).checked); lsSet('pending-tasks',s); }
+function updateProgressPend(){ const t=pendItems.length, d=pendItems.filter(id=>document.getElementById(id).checked).length; document.getElementById('progressFillPend').style.width=(d/t*100)+'%'; document.getElementById('progressTxtPend').textContent=`${d} de ${t} listo`; }
+pendContainer.addEventListener('change', e=>{ if(e.target.type==='checkbox'){ e.target.closest('.check-item').classList.toggle('checked', e.target.checked); updateProgressPend(); savePendientes(); } });
+loadPendientes();
+
+/* ---------- Documentos: Ida/Vuelta separados + custom con imagen o PDF ---------- */
+const fixedDocs = [
+  {key:'doc-vuelo-ida', title:'✈️ Vuelo — Ida', sub:'1 nov, 09:13 SCL → 11:20 AEP'},
+  {key:'doc-vuelo-vuelta', title:'✈️ Vuelo — Vuelta', sub:'7 nov, 22:20 AEP → 00:42 SCL (+1)'},
+  {key:'doc-hostal', title:'🏠 Hostal (Play Garden)', sub:'Paraguay 4539, Palermo · se paga al llegar · solo por chat de Booking (ignorar WhatsApp +351 966 806 908: estafa)'},
+  {key:'doc-seguro', title:'🛡️ Seguro (Latam 35)', sub:'Cobertura USD 35.000 · vigencia 1-8 nov'}
+];
+function renderModal(dataUrl){ document.getElementById('modalImg').src=dataUrl; document.getElementById('imgModal').classList.add('show'); }
+document.getElementById('closeModal').addEventListener('click', ()=>document.getElementById('imgModal').classList.remove('show'));
+document.getElementById('imgModal').addEventListener('click', e=>{ if(e.target.id==='imgModal') e.currentTarget.classList.remove('show'); });
+function fileToDataUrl(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); }); }
+
+async function buildDocSlot(container, key, titleHtml, subNote, editableTitle){
+  const wrap=document.createElement('div'); wrap.className='doc-slot'; const uid='upload-'+key;
+  wrap.innerHTML = `
+    <div class="doc-slot-head">
+      ${editableTitle ? `<input type="text" class="doc-slot-title-input" id="title-${key}" value="${titleHtml}" placeholder="Título del documento">` : `<div class="doc-slot-title">${titleHtml}</div>`}
+      <label class="doc-upload-label">Subir<input type="file" accept="image/*,application/pdf" id="${uid}"></label>
+    </div>
+    ${subNote?`<div class="note">${subNote}</div>`:''}
+    <img class="doc-thumb" id="thumb-${key}">
+    <a class="doc-pdf-link" id="pdflink-${key}">📄 Ver PDF guardado</a>
+    <div class="doc-empty-note" id="empty-${key}">Sin documento guardado todavía. Acepta JPG, PNG o PDF.</div>
+  `;
+  container.appendChild(wrap);
+  const existing = await idbGetImage(key);
+  const thumb=document.getElementById('thumb-'+key), pdfLink=document.getElementById('pdflink-'+key), emptyNote=document.getElementById('empty-'+key);
+  function applyPreview(dataUrl){
+    if(dataUrl.startsWith('data:application/pdf')){ pdfLink.href=dataUrl; pdfLink.target='_blank'; pdfLink.classList.add('show'); thumb.classList.remove('show'); emptyNote.style.display='none'; }
+    else{ thumb.src=dataUrl; thumb.classList.add('show'); pdfLink.classList.remove('show'); emptyNote.style.display='none'; }
+  }
+  if(existing) applyPreview(existing);
+  document.getElementById(uid).addEventListener('change', async e=>{
+    const file=e.target.files[0]; if(!file) return;
+    const dataUrl=await fileToDataUrl(file); await idbSaveImage(key, dataUrl); applyPreview(dataUrl);
+  });
+  thumb.addEventListener('click', ()=>{ if(thumb.src) renderModal(thumb.src); });
+  if(editableTitle){
+    const ti=document.getElementById('title-'+key);
+    ti.addEventListener('input', ()=>{ const t=lsGet('custom-doc-titles',{}); t[key]=ti.value; lsSet('custom-doc-titles',t); });
+  }
+}
+const fixedDocsContainer=document.getElementById('fixedDocsContainer');
+fixedDocs.forEach(d=>buildDocSlot(fixedDocsContainer, d.key, d.title, d.sub, false));
+const customDocsContainer=document.getElementById('customDocsContainer');
+const savedTitles=lsGet('custom-doc-titles',{});
+for(let i=1;i<=4;i++){ const key='doc-custom-'+i; buildDocSlot(customDocsContainer, key, savedTitles[key]||`Documento ${i}`, '', true); }
+
+/* ---------- Itinerario ---------- */
+const ENTRY_ITEMS = {
+  barolo:{day:2, name:'Palacio Barolo (tour guiado)', lo:34000, hi:38000, ars:54000, def:true},
+  jardin:{day:5, name:'Jardín Japonés', lo:15000, hi:15000, ars:24000, def:true},
+  malba:{day:5, name:'MALBA (AR$7.000)', lo:4400, hi:4400, ars:7000, def:true},
+  bus:{day:3, name:'Bus turístico 24 h (AR$58.500, tarifa extranjero)', lo:36600, hi:36600, ars:58500, def:false},
+  colon:{day:6, name:'Teatro Colón (tour 50 min, AR$34.000)', lo:21300, hi:21300, ars:34000, def:true}
+};
+const DAY_NOTES = {1:'Sin entradas pagadas', 3:'Museos y cementerio gratis', 4:'Sin entradas pagadas', 6:'Sin otras entradas', 7:'Sin entradas pagadas'};
+const DAY_OPTS = {};
+const DAY_PLAN = {
+  1:{comida:[28000,34000], transp:[15000,20000], noche:[12000,18000]},
+  2:{comida:[18000,22000], transp:[6000,10000], noche:[10000,16000]},
+  3:{comida:[28000,40000], transp:[10000,15000], noche:[19000,40000]},
+  4:{comida:[18000,22000], transp:[6000,10000],  noche:[28000,35000]},
+  5:{comida:[18000,22000], transp:[6000,12000], noche:[14000,22000]},
+  6:{comida:[16000,20000], transp:[6000,12000],  noche:[25000,35000]},
+  7:{comida:[15000,18000], transp:[15000,25000],  noche:[0,0]}
+};
+const FOGON_DAY3 = [120000,175000]; /* almuerzo liviano + Fogón Asado (reemplaza la cena de cumpleaños) */
+const BUDGET_CAP = 780000;
+/* Escenarios: el plan "Normal" es el base; "Económico" recorta comida, traslados y noches (las reservas fijas no bajan) */
+const SCEN = {
+  normal:{label:'Normal', f:{comida:1, transp:1, noche:1}, souv:[30000,45000], otra:[35000,45000]},
+  eco:{label:'Económico', f:{comida:0.85, transp:0.75, noche:0.8}, souv:[30000,37000], otra:[25000,35000]}
+};
+function scenKey(){ const v = lsGet('plan-scenario','normal'); return SCEN[v] ? v : 'normal'; }
+function sc(r,k){ const f = SCEN[scenKey()].f[k]; return [Math.round(r[0]*f/1000)*1000, Math.round(r[1]*f/1000)*1000]; }
+/* Parte estimada en efectivo por categoría (el resto va con tarjeta) */
+const CASH_SHARE = {comida:0.5, transp:0.4, noche:0.25, ent:0.5};
+function dayCash(n){
+  const e = dayEst(n); let cl=0, ch=0;
+  Object.keys(CASH_SHARE).forEach(k=>{ cl += e[k][0]*CASH_SHARE[k]; ch += e[k][1]*CASH_SHARE[k]; });
+  return {cash:[cl,ch], card:[e.lo-cl, e.hi-ch]};
+}
+function extrasCash(){ const x = SCEN[scenKey()]; return [x.souv[0]*0.7 + x.otra[0], x.souv[1]*0.7 + x.otra[1]]; }
+function fogonOn(){ return !!lsGet('plan-fogon', false); }
+function entDay(n){
+  let lo=0, hi=0; Object.keys(ENTRY_ITEMS).forEach(id=>{ const it=ENTRY_ITEMS[id]; if(it.day===n && entState(id)){ lo+=it.lo; hi+=it.hi; } });
+  return [lo,hi];
+}
+function dayEst(n){
+  const pl = DAY_PLAN[n]; let com = sc(pl.comida,'comida'); if(n===3 && fogonOn()) com = FOGON_DAY3;
+  const tr = sc(pl.transp,'transp'), no = sc(pl.noche,'noche');
+  const e = entDay(n);
+  return {comida:com, transp:tr, noche:no, ent:e, lo: com[0]+tr[0]+no[0]+e[0], hi: com[1]+tr[1]+no[1]+e[1]};
+}
+function entState(id){ const st = lsGet('planned-entries', {}); return (id in st) ? !!st[id] : ENTRY_ITEMS[id].def; }
+function plannedEntries(){
+  let lo=0, hi=0; Object.keys(ENTRY_ITEMS).forEach(id=>{ if(entState(id)){ lo+=ENTRY_ITEMS[id].lo; hi+=ENTRY_ITEMS[id].hi; } });
+  return {lo, hi};
+}
+const days = [
+  {num:1, date:"Dom 1 nov", zone:"Llegada · Palermo", slots:[
+    {label:"Mañana", text:"Vuelo SCL→AEP (09:13-11:20). Traslado desde casa: Uber o Transvip (~$8.000-15.000 CLP p/persona, cotizar en transvip.cl antes de reservar)."},
+    {label:"Almuerzo", text:"Algo liviano cerca del hostel."},
+    {label:"Tarde", text:"Caminata de reconocimiento por Plaza Serrano."},
+    {label:"Tarde (opcional)", text:"Feria de San Telmo (Plaza Dorrego) — domingos de 10:00 a 17:00 (algunos puestos y actividades hasta las 18:00). Si sales del hostal antes de las 16:00, alcanzas a recorrerla. Aquí puedes buscar tu billetera de cuero y el mate."},
+    {label:"🍦 Helado del día", text:"Persicco Riobamba — Riobamba 1295, esquina Juncal, Recoleta · todos los días 9:00–00:00."},
+    {label:"Noche", text:"Cena de pastas (lugar por elegir) + un trago tranquilo: La Uat Bar (Thames 1627 · domingo 19:00–00:00)."}
+  ]},
+  {num:2, date:"Lun 2 nov", zone:"Microcentro · Historia y arquitectura", slots:[
+    {label:"Mañana", text:"Café Tortoni (Av. de Mayo 825 · todos los días 8:00–21:00 · unos AR$20.000–30.000 por persona), Obelisco, Plaza de Mayo (Casa Rosada, Cabildo, Catedral)."},
+    {label:"Almuerzo", text:"Pizzería Güerrín — Av. Corrientes 1368 (11:00–01:00; vie y sáb hasta las 02:00)."},
+    {label:"Mediodía y tarde", text:"🎟️ Palacio Barolo (Av. de Mayo 1370): tour guiado de 90 min con subida al mirador, salidas a las 11:00, 13:00 y 16:00 (el de las 11 es sin degustación) · ≈ CLP 34.000–38.000. Reserva por Civitatis (hasta 3 h antes; cancelación gratis hasta 6 h antes) o en la web oficial: eliges allá. + Calle Florida + Galería Pacífico (entrada libre)."},
+    {label:"🍦 Helado del día", text:"Cadore — Av. Corrientes 1695 (dom–jue 12:00–24:00 · vie y sáb 12:00–02:00)."},
+    {label:"🎁 Souvenir cercano", text:"Arcor Center — Av. Corrientes 1335 (lun–sáb 10:00–20:00 · dom 12:00–19:00)."},
+    {label:"Noche", text:"Noche de centro clásico: Av. Corrientes iluminada (teatros, librerías y el Obelisco), cena en una pizzería o bodegón de barrio (lugar por elegir; unos AR$12.000-20.000) y Confitería La Ideal (Suipacha 384; histórica, con cúpula de vitrales; martes 7:00–00:00, los otros días pueden variar). Tango callejero si lo encuentras."}
+  ]},
+  {num:3, date:"Mar 3 nov · Cumpleaños 🎂", zone:"Recoleta", slots:[
+    {label:"Mañana", text:"Cementerio de la Recoleta + Centro Cultural Recoleta + Museo Nacional de Bellas Artes (entrada gratuita)."},
+    {label:"Mañana (alternativa)", text:"🎟️ Buenos Aires Bus (turístico amarillo) — sale de Av. Quintana 596, mismo barrio. Recorre Recoleta, Colón, Caminito, Puerto Madero. Ticket de 24 h adulto AR$58.500 (≈ CLP 36.600, tarifa extranjero; también hay de 48 y 72 h). Confirma en buenosairesbus.com cómo se cuentan las 24 h. No está sumado al presupuesto: márcalo en 🎟️ Entradas si lo eliges."},
+    {label:"Almuerzo", text:"El Cuartito — Talcahuano 937, Recoleta (martes 12:30–01:00 según una guía): pizzería tradicional de las porteñas, con pizza de mozzarella y fugazza con queso. Para milanesa, alternativa: Rodi Bar (Vicente López y Ayacucho, Recoleta), bodegón con milanesas 'a la vieja usanza'; suele llenarse al mediodía y reserva solo por teléfono (horario por confirmar)."},
+    {label:"Tarde", text:"El Ateneo Grand Splendid (Av. Santa Fe 1860 · lun–jue 9:00–22:00; librería dentro de un teatro de 1919) + Floralis Genérica."},
+    {label:"🔮 Tarot cercano", text:"FE — Av. Santa Fe 2729, local 9 (Galería Patio del Liceo): mazos de tarot (Marsella, Rider-Waite, Thoth), piedras y sahumerios. Horario por confirmar: la galería abre de lunes a sábado, típicamente de 11:00 a 20:00. Se mencionan lecturas en inglés: pregunta si las hacen en castellano."},
+    {label:"🍦 Helado del día", text:"Rapanui — Uruguay 1284, Recoleta · martes 10:00–01:00."},
+    {label:"♏ Tu decreto de cumpleaños", text:"Escorpio · La Muerte (transformación): 'Hoy cierro un ciclo y abro otro. Decreto que este año es mío, y lo vivo sin pedir permiso.'"},
+    {label:"Noche", text:"Cena especial de cumpleaños: L'adesso (pasta en rueda de queso, Fray Justo Sta. María de Oro 2047 · mar–sáb 20:00–00:00 · AR$30.000–70.000 por persona). Reserva en ladesso.com.ar: se abre 10 días antes (24 oct). La cena final depende de la respuesta que recibas al reservar (cupo, horario y precio)."},
+    {label:"Noche (baile)", text:"Fiesta HYPE! (martes 23:55–06:00, Honduras 5339: reggaeton y trap). Entrada general AR$6.000 (≈ CLP 3.800) y hay entradas gratuitas: búscalas en Passline el 1 de nov. El horario te deja pasar por el hostal a cambiarte después de la cena."}
+  ]},
+  {num:4, date:"Mié 4 nov", zone:"San Telmo + La Boca", slots:[
+    {label:"Mañana", text:"San Telmo — Plaza Dorrego, Paseo de la Historieta."},
+    {label:"Almuerzo", text:"Mercado de San Telmo (esquina Bolívar y Carlos Calvo) — Hierro Parrilla, El Hornero (empanadas) o La Choripanería, los tres bajo el mismo techo (horarios por confirmar)."},
+    {label:"Tarde", text:"La Boca — Caminito. Pizza en Banchero (Av. Almirante Brown 1200)."},
+    {label:"🍦 Helado del día", text:"Nonna Bianca (también Nonna San Telmo) — Chile 501, esquina Bolívar, San Telmo · martes a domingo 9:00–21:00 (lunes cerrado) · +54 11 6093-1778. Cafetería y heladería artesanal de estilo clásico."},
+    {label:"🎁 Souvenir cercano", text:"Talabartería (tu billetera, si aún no la compraste), mate y fileteado porteño en las tiendas de San Telmo; la feria grande es el domingo."},
+    {label:"Noche", text:"Volver a Palermo y noche libre: tango callejero por el centro o una milonga si te dan ganas (por ejemplo La Del Centro Milonga, Rodríguez Peña 361, miércoles 20:30–02:00, con clase para principiantes)."}
+  ]},
+  {num:5, date:"Jue 5 nov", zone:"Palermo a fondo", slots:[
+    {label:"Mañana", text:"Bosques de Palermo + El Rosedal (8:00–18:00, entrada gratuita según una publicación de Instagram) + 🎟️ Jardín Japonés (Av. Casares 3500 · 10:00–18:45 · AR$24.000 no residentes ≈ CLP 15.000)."},
+    {label:"Almuerzo", text:"Palermo Hollywood (lugar por elegir)."},
+    {label:"Tarde", text:"🎟️ MALBA (Av. Figueroa Alcorta 3415 · jueves 12:00–20:00 · AR$7.000 ≈ CLP 4.400; cierra los martes)."},
+    {label:"Tarde libre", text:"Palermo Soho a pie (Plaza Serrano, calles Honduras y Armenia) y vuelta al hostal para cambiarte antes de la cena. El Ateneo Grand Splendid ya está en tu Día 3 (Recoleta)."},
+    {label:"🍦 Helado del día", text:"Opcional: Rapanui — Malabia 2014, Palermo Soho (cerca de tu hostal y de tu tarde libre; horario por confirmar). El helado principal de la semana en Rapanui es el del Día 3."},
+    {label:"Noche", text:"Cena de barrio en Palermo (un bodegón o parrilla tradicional, lugar por elegir; unos AR$15.000-25.000) en vez de un restaurante sofisticado."},
+    {label:"Noche (bares)", text:"🔮 Helka Wine Bar (Freire 1117, Colegiales · jueves 19:00–01:30): tarot express, pedir por Instagram. Luego, si te queda energía, un bar de Palermo (Bestial Skybar, Humboldt 2495, piso 11, es opcional y más caro)."}
+  ]},
+  {num:6, date:"Vie 6 nov", zone:"Palermo · Noche electrónica", slots:[
+    {label:"Mañana", text:"🎟️ Teatro Colón — visita guiada de 50 min (salidas cada 15 min de 10:00 a 16:45; en español cada 15 min; AR$34.000 ≈ CLP 21.300). Entradas en teatrocolon.org.ar o en la boletería (Tucumán 1171); acepta efectivo y tarjeta de débito o crédito en 1 pago, no moneda extranjera. Tolerancia de 5 min."},
+    {label:"Almuerzo", text:"Confitería La Ideal (Suipacha 384, a unas 10 cuadras del Teatro Colón; martes 7:00–00:00, el viernes puede variar): almuerzo o merienda bajo su cúpula de vitrales, antes de tomar rumbo a Palermo para el Museo Evita de las 16:00."},
+    {label:"Tarde", text:"🏛️ Museo Evita (Lafinur 2988, Palermo · martes a domingo 11:00–19:00): visita guiada gratuita a las 16:00, de unos 45 min (llega unos minutos antes; confirma en museoevita.org.ar). Vida y obra de Eva Perón, con ropa, objetos personales y un café en el patio. Luego vuelve al hostal a cambiarte para Misión."},
+    {label:"🍦 Helado del día", text:"Via Maggiore — Callao 777 (cerca del Teatro Colón · jueves 12:00–02:30; el viernes puede variar). Respaldo: AlChEmY, Humboldt 1923, Palermo (sabores exóticos y opciones veganas)."},
+    {label:"Alternativa", text:"Distrito Arcos (Paraguay 4979, Palermo; a unas 4 cuadras de tu hostal): es un outlet con unos 60 locales (Nike, Adidas, Lacoste, Havanna, Starbucks), todos los días 10:00–21:00 y gastronomía hasta las 22:00 (viernes hasta las 23:00). Solo sirve para compras o para matar tiempo antes de cambiarte: no está cerca del Teatro Colón."},
+    {label:"Noche", text:"🍸 Misión BA (Godoy Cruz 1715): reserva confirmada para 1 persona, viernes 6, 20:00, en la Barra (código PVFGT1; tolerancia de 15 min; cancelación por WhatsApp +54 9 11 7099-1715, sin reintegro dentro de las 24 h). Sushi y vino libre AR$35.000 (≈ CLP 21.900), de 20:00 a 21:30 (llega puntual): mix de piezas elegido por la cocina, sin nigiris ni platos calientes, con opción veggie; no se acumula con otras promos. Happy hour también 20:00-21:30. La pista abre a las 00:00 y suelen cerrar hacia las 06:00. Zapatillas permitidas, pero la casa se reserva el derecho de admisión; la música depende de la noche (mira @misionclub.ba ese día). Más tarde, opcional: Puticlú o Artlab (direcciones por confirmar)."}
+  ]},
+  {num:7, date:"Sáb 7 nov", zone:"Libre + vuelo de regreso", slots:[
+    {label:"Mañana", text:"Checkout 11:00 — deja mochila en recepción."},
+    {label:"Tarde", text:"Últimas compras y souvenirs; luego Puerto Madero y el Puente de la Mujer, una caminata final con vista al río antes del aeropuerto."},
+        {label:"🍦 Helado del día", text:"Vuelve a tu favorita de la semana."},
+    {label:"Noche", text:"Vuelo AEP→SCL, 22:20 → 00:42 (+1). Al llegar a Santiago, pide un Uber a casa."}
+  ]}
+];
+const daysContainer=document.getElementById('daysContainer');
+function nTxt(n){ return Math.round(n).toLocaleString('es-CL'); }
+function entRange(lo,hi){ return lo===hi ? 'CLP '+nTxt(lo) : 'CLP '+nTxt(lo)+' – '+nTxt(hi); }
+function dayEntrySub(n){
+  let lo=0, hi=0; Object.keys(ENTRY_ITEMS).forEach(id=>{ const it=ENTRY_ITEMS[id]; if(it.day===n && entState(id)){ lo+=it.lo; hi+=it.hi; } });
+  return lo===0&&hi===0 ? 'CLP 0' : entRange(lo,hi);
+}
+function entryHTML(d){
+  const ids = Object.keys(ENTRY_ITEMS).filter(id=> ENTRY_ITEMS[id].day===d.num);
+  const opt = DAY_OPTS[d.num] ? `<span class="opt">${esc(DAY_OPTS[d.num])}</span>` : '';
+  if(!ids.length) return `<div class="day-entry">🎟️ Entradas <span class="money">CLP 0</span> · ${esc(DAY_NOTES[d.num]||'')}${opt}</div>`;
+  const rows = ids.map(id=>{ const it=ENTRY_ITEMS[id]; return `<label class="ent-row"><input type="checkbox" data-ent="${id}" ${entState(id)?'checked':''}> <span>${esc(it.name)}</span> <span class="money">${entRange(it.lo,it.hi)}</span></label>`; }).join('');
+  return `<div class="day-entry">🎟️ Entradas (marca las que sí vas a pagar)${rows}<div class="ent-sub">Subtotal del día: <span class="money" id="ent-sub-${d.num}">${dayEntrySub(d.num)}</span></div>${opt}</div>`;
+}
+days.forEach((d,i)=>{
+  const card=document.createElement('div'); card.className='day-card'+(i===0?' open':'');
+  card.innerHTML = `
+    <div class="day-head"><div class="day-head-left"><div class="day-num">${String(d.num).padStart(2,'0')}</div><div><div class="day-zone">${d.zone}</div><div class="day-date">${d.date}</div></div></div><div class="chevron">▶</div></div>
+    <div class="day-body">
+      ${d.slots.map(s=>`<div class="slot"><div class="slot-label">${s.label}</div><div class="slot-text">${moneyWrap(s.text)}</div></div>`).join('')}
+      ${entryHTML(d)}
+      <div class="day-est">📊 Gasto estimado del día: <span class="money" id="day-est-${d.num}">—</span><span style="font-weight:400; color:#c7c3ad;"> (comida, transporte, noche y entradas; sin hostal)</span></div>
+      <div class="day-spent">💵 Gastado este día: <span class="money" id="day-spent-${d.num}">$0</span></div>
+      <div class="places-row"><input type="text" id="place-input-${d.num}" placeholder="📍 Agrega un lugar que visitaste"><button class="places-add" id="place-add-${d.num}">+</button></div>
+      <div class="places-tags" id="places-tags-${d.num}"></div>
+    </div>
+  `;
+  card.querySelector('.day-head').addEventListener('click', ()=>card.classList.toggle('open'));
+  daysContainer.appendChild(card);
+});
+daysContainer.addEventListener('change', ev=>{
+  const id = ev.target && ev.target.dataset && ev.target.dataset.ent; if(!id) return;
+  const st = lsGet('planned-entries', {}); st[id] = ev.target.checked; lsSet('planned-entries', st);
+  days.forEach(d=>{ const el=document.getElementById('ent-sub-'+d.num); if(el) el.textContent = dayEntrySub(d.num); });
+  renderBudgetAll({keepCats:true});
+});
+function renderPlaces(dayNum){
+  const list = lsGet('day-places-'+dayNum, []);
+  const cont = document.getElementById('places-tags-'+dayNum);
+  cont.innerHTML = list.map((p,i)=>`<span class="place-tag">${p}<span class="rm" data-day="${dayNum}" data-idx="${i}">✕</span></span>`).join('');
+  cont.querySelectorAll('.rm').forEach(el=> el.addEventListener('click', ()=>{
+    const dn=el.dataset.day; const l=lsGet('day-places-'+dn, []); l.splice(parseInt(el.dataset.idx),1); lsSet('day-places-'+dn, l); renderPlaces(dn);
+  }));
+}
+days.forEach(d=>{
+  renderPlaces(d.num);
+  document.getElementById('place-add-'+d.num).addEventListener('click', ()=>{
+    const inp=document.getElementById('place-input-'+d.num); const val=inp.value.trim(); if(!val) return;
+    const l=lsGet('day-places-'+d.num, []); l.push(val); lsSet('day-places-'+d.num, l); inp.value=''; renderPlaces(d.num);
+  });
+  document.getElementById('place-input-'+d.num).addEventListener('keypress', e=>{ if(e.key==='Enter') document.getElementById('place-add-'+d.num).click(); });
+});
+
+/* ---------- Presupuesto (billeteras independientes) ---------- */
+const METHODS = [
+  {key:'Débito Global66', label:'💳 Global66 (USD)', short:'Global66', cur:'USD'},
+  {key:'Efectivo USD', label:'💵 Efectivo USD', short:'USD', cur:'USD'},
+  {key:'Efectivo ARS', label:'🇦🇷 Efectivo ARS', short:'ARS', cur:'ARS'},
+  {key:'Débito BCI', label:'💳 Débito BCI (CLP)', short:'BCI', cur:'CLP'}
+];
+const CURRENCIES = ['CLP','ARS','USD'];
+const BASE_CATEGORIES = ['Alojamiento','Transporte','Comida y helados','Entradas y tours','Vida nocturna','Souvenirs y regalos','Propinas','Otra'];
+let ESTIMATES = {}, EST_LOW = 0, EST_HIGH = 0;
+function recomputeEstimates(){
+  const sum = (k,i)=> [1,2,3,4,5,6,7].reduce((t,n)=> t + dayEst(n)[k][i], 0);
+  const fog = fogonOn();
+  ESTIMATES = {
+    'Alojamiento':        {low:141840, high:141840, note:'Hostal $132.540 (se paga al llegar) + depósito $9.300 (reembolsable)'},
+    'Transporte':         {low:sum('transp',0), high:sum('transp',1), note:'Uber, subte, traslados; incluye Uber desde el aeropuerto de Santiago el día 7'},
+    'Comida y helados':   {low:sum('comida',0), high:sum('comida',1), note: fog ? "Incluye Fogón Asado (cena de cumpleaños) y helados" : "Incluye cena de cumpleaños en L'adesso y helados"},
+    'Entradas y tours':   {low:sum('ent',0), high:sum('ent',1), note:'Solo las entradas marcadas en el itinerario (Barolo, Jardín, MALBA, Teatro Colón; bus turístico desactivado)'},
+    'Vida nocturna':      {low:sum('noche',0), high:sum('noche',1), note:'6 noches: cenas de barrio, L\'adesso (cumpleaños), Misión BA, bares y baile'},
+    'Souvenirs y regalos':{low:SCEN[scenKey()].souv[0], high:SCEN[scenKey()].souv[1], note:'Incluye el mazo de tarot (≈ CLP 37.000 en Magia Libros) y una billetera de cuero (precio por averiguar)'},
+    'Propinas':           {low:0,      high:0,      note:''},
+    'Otra':               {low:SCEN[scenKey()].otra[0],  high:SCEN[scenKey()].otra[1],  note:'Efectivo de respaldo / imprevistos'}
+  };
+  EST_LOW  = Object.values(ESTIMATES).reduce((t,e)=>t+e.low,0);
+  EST_HIGH = Object.values(ESTIMATES).reduce((t,e)=>t+e.high,0);
+}
+recomputeEstimates();
+const HOSTAL_COST = 132540;
+const HOSTAL_RE = /host(a|e)l|play|garden/i;
+const PREPAID = [
+  {c:'Vuelo (JetSmart, ida/vuelta)', v:201561},
+  {c:'Power bank', v:23867},
+  {c:'Seguro de viaje', v:29949}
+];
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function moneyWrap(t){ return String(t).replace(/(~?\$[\d.]+(?:-\$?[\d.]+)?(?:\s?CLP)?)/g,'<span class="money">$1</span>'); }
+function currentRates(){ return { uc: parseFloat(document.getElementById('rateUsdClp').value)||998, ua: parseFloat(document.getElementById('rateUsdArs').value)||1540 }; }
+function convert(amount, from, to){
+  if(from===to) return amount;
+  const {uc,ua} = currentRates();
+  const usd = from==='USD' ? amount : from==='CLP' ? amount/uc : amount/ua;
+  return to==='USD' ? usd : to==='CLP' ? usd*uc : usd*ua;
+}
+/* Siempre con el código de moneda (CLP / ARS / USD). CLP y ARS completos y sin decimales (132.540); USD con 2 decimales */
+function fmtMoney(n, cur){
+  const neg = n < -0.005; const a = Math.abs(n); const code = cur || 'CLP';
+  const num = code==='USD' ? a.toLocaleString('es-CL',{minimumFractionDigits:2, maximumFractionDigits:2}) : Math.round(a).toLocaleString('es-CL');
+  return (neg?'-':'') + code + ' ' + num;
+}
+function fmtExact(n, cur){
+  const neg = n < -0.005; const a = Math.abs(n); const code = cur || 'CLP';
+  const num = code==='USD' ? a.toLocaleString('es-CL',{minimumFractionDigits:2, maximumFractionDigits:2}) : Math.round(a).toLocaleString('es-CL');
+  return (neg?'-':'') + code + ' ' + num;
+}
+function mny(n, cur){ return `<span class="money">${fmtMoney(n, cur||'CLP')}</span>`; }
+function optionsHTML(list, selected){
+  return list.map(x=>{ const v = typeof x==='string' ? x : x.key; return `<option value="${esc(v)}" ${v===selected?'selected':''}>${esc(v)}</option>`; }).join('');
+}
+
+/* Datos: SIEMPRE se recalcula desde la lista de gastos */
+function loadExpenses(){
+  const raw = lsGet('expense-log', []);
+  let changed = false;
+  const list = raw.map(e=>{
+    if(!e.id){ e.id = uid(); changed = true; }
+    if(!e.category){ e.category = 'Otra'; changed = true; }
+    return e;
+  });
+  if(changed) lsSet('expense-log', list);
+  return list;
+}
+function saveExpenses(l){ lsSet('expense-log', l); }
+function loadBalances(){ return lsGet('method-balances', {}); }
+function loadCustomCats(){ return lsGet('bud-categories', []); }
+function allCategories(){ return BASE_CATEGORIES.concat(loadCustomCats().filter(c=>!BASE_CATEGORIES.includes(c))); }
+function catOf(e){ return allCategories().includes(e.category) ? e.category : 'Otra'; }
+
+function computeAll(){
+  const exps = loadExpenses(); const bal = loadBalances();
+  const wallets = METHODS.map(m=>{
+    const initial = Number(bal[m.key]) || 0;
+    const spent = exps.filter(e=>e.method===m.key).reduce((s,e)=> s + convert(e.amount, e.currency, m.cur), 0);
+    return {...m, initial, spent, avail: initial - spent};
+  });
+  const generalInitial = wallets.reduce((s,w)=> s + convert(w.initial, w.cur, 'CLP'), 0);
+  const totalSpent = exps.reduce((s,e)=> s + convert(e.amount, e.currency, 'CLP'), 0);
+  return {exps, wallets, generalInitial, totalSpent, available: generalInitial - totalSpent};
+}
+function spentByCategory(exps){
+  const map = {}; allCategories().forEach(c=> map[c]=0);
+  exps.forEach(e=>{ map[catOf(e)] += convert(e.amount, e.currency, 'CLP'); });
+  return map;
+}
+function walletsLine(){
+  const c = computeAll();
+  if(c.generalInitial <= 0) return 'Registra tus saldos iniciales en la pestaña 💰';
+  return c.wallets.filter(w=> w.initial>0 || w.spent!==0).map(w=> `${w.short} ${mny(w.avail, w.cur)}`).join(' · ');
+}
+
+/* Hostal aparte + gasto diario */
+function hostalPaid(exps){
+  return exps.filter(e=> catOf(e)==='Alojamiento' && e.amount>0 && HOSTAL_RE.test(e.concept||'')).reduce((s,e)=> s + convert(e.amount, e.currency, 'CLP'), 0);
+}
+function tripDaysLeft(){
+  const now = Date.now();
+  if(now < tripStart) return TRIP_DAYS;
+  if(now >= tripEnd) return 0;
+  const n = Math.min(TRIP_DAYS, Math.max(1, rawDay(localISO()) || 1));
+  return TRIP_DAYS - n + 1;
+}
+function renderDaily(c){
+  const days = tripDaysLeft();
+  const tot = document.getElementById('dailyTotal'), sub = document.getElementById('dailySub');
+  const wl = document.getElementById('dailyWallets'), note = document.getElementById('dailyNote');
+  if(c.generalInitial <= 0){
+    tot.textContent = '—'; tot.classList.remove('neg');
+    sub.textContent = 'Anota tus saldos iniciales en "Saldos por billetera" y aquí verás cuánto puedes gastar cada día.';
+    wl.innerHTML = ''; note.textContent = ''; return;
+  }
+  if(days === 0){
+    tot.textContent = '—'; tot.classList.remove('neg');
+    sub.textContent = 'El viaje ya terminó.'; wl.innerHTML = ''; note.textContent = ''; return;
+  }
+  const paid = hostalPaid(c.exps);
+  const reserve = Math.max(0, HOSTAL_COST - paid);
+  const entSpent = c.exps.filter(e=> catOf(e)==='Entradas y tours').reduce((t,e)=> t + convert(e.amount, e.currency, 'CLP'), 0);
+  const entReserve = Math.max(0, plannedEntries().hi - entSpent);
+  const net = c.available - reserve - entReserve;
+  const perDay = net / days;
+  tot.textContent = fmtMoney(perDay,'CLP'); tot.classList.toggle('neg', perDay < -0.005);
+  const started = Date.now() >= tripStart;
+  let subTxt = started ? `Quedan ${days} ${days===1?'día':'días'} (contando hoy).` : `Repartido en ${days} días (1–7 nov).`;
+  if(started){
+    const today = c.exps.filter(e=> e.date===localISO() && catOf(e)!=='Alojamiento').reduce((s,e)=> s + convert(e.amount, e.currency, 'CLP'), 0);
+    const allowToday = (net + today) / days;
+    const over = today > allowToday + 0.5;
+    subTxt += ` Hoy: gastado ${mny(today)} de ${mny(allowToday)}` + (over ? ` — <span class="neg money">te pasaste por ${fmtMoney(today-allowToday,'CLP')}</span>` : ' ✓') + '.';
+  }
+  sub.innerHTML = subTxt;
+  wl.innerHTML = c.wallets.filter(w=> w.initial>0 || w.spent!==0).map(w=>{
+    const av = w.avail - (w.key==='Débito Global66' ? convert(reserve,'CLP','USD') : 0);
+    const pd = av / days;
+    const approx = w.cur==='CLP' ? '' : ` <span style="font-weight:400;">(≈ ${fmtMoney(convert(pd,w.cur,'CLP'),'CLP')})</span>`;
+    return `<div class="info-row"><span>${esc(w.label)}</span><span class="money ${pd<-0.005?'neg':''}">${fmtMoney(pd,w.cur)} / día${approx}</span></div>`;
+  }).join('');
+  note.innerHTML = (reserve>0 ? `Descontado: hostal pendiente ${mny(reserve)} (de Global66). ` : '') + (entReserve>0 ? `Descontado: entradas marcadas en el itinerario ${mny(entReserve)} (solo en el total, no por billetera). ` : '') + 'Los montos grandes se abrevian: 132,5 mil = 132.500.';
+}
+
+/* Ojito: oculta todas las cifras de la app */
+let amountsHidden = lsGet('amounts-hidden', false);
+function applyHidden(){
+  document.body.classList.toggle('hide-amounts', !!amountsHidden);
+  document.getElementById('eyeToggle').textContent = amountsHidden ? '🙈' : '👁️';
+}
+document.getElementById('eyeToggle').addEventListener('click', ()=>{ amountsHidden = !amountsHidden; lsSet('amounts-hidden', amountsHidden); applyHidden(); });
+applyHidden();
+
+/* Acordeones estáticos */
+document.querySelectorAll('.acc-head').forEach(head=>{
+  head.addEventListener('click', ()=> head.closest('.acc-card').classList.toggle('open'));
+});
+
+/* Formulario de registro */
+function fillCategorySelect(){
+  const sel = document.getElementById('expCategory'); const cats = allCategories();
+  const cur = sel.value; sel.innerHTML = optionsHTML(cats, cats.includes(cur) ? cur : 'Comida y helados');
+}
+document.getElementById('expMethod').innerHTML = optionsHTML(METHODS, 'Débito Global66');
+fillCategorySelect();
+document.getElementById('expDate').value = localISO();
+function updateDayLabel(){
+  const d = dayFromDate(document.getElementById('expDate').value);
+  document.getElementById('expDayLabel').textContent = d ? `Día ${d} de ${TRIP_DAYS}` : 'Fuera de las fechas del viaje';
+}
+document.getElementById('expDate').addEventListener('input', updateDayLabel);
+updateDayLabel();
+
+function setMsg(id, text){ const el = document.getElementById(id); if(el) el.textContent = text; }
+document.getElementById('expAddBtn').addEventListener('click', ()=>{
+  const amount = parseFloat(document.getElementById('expAmount').value);
+  if(!isFinite(amount) || amount===0){ setMsg('expMsg','Ingresa un monto (distinto de 0).'); return; }
+  const category = document.getElementById('expCategory').value;
+  const concept = document.getElementById('expConcept').value.trim() || category;
+  const currency = document.getElementById('expCurrency').value;
+  const method = document.getElementById('expMethod').value;
+  const date = document.getElementById('expDate').value || localISO();
+  const l = loadExpenses(); l.push({id:uid(), concept, amount, currency, method, date, category}); saveExpenses(l);
+  document.getElementById('expConcept').value = ''; document.getElementById('expAmount').value = '';
+  setMsg('expMsg', `✓ Guardado en ${method}. Mira cómo cambian tus saldos.`);
+  renderBudgetAll();
+  const target = document.getElementById('acc-saldos'); const r = target.getBoundingClientRect();
+  if(r.top > window.innerHeight*0.6) target.scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* Billeteras: una fila por medio de pago (Inicial editable, Gastado, Disponible) */
+function buildWallets(){
+  const bal = loadBalances();
+  document.getElementById('walletsContainer').innerHTML = METHODS.map((m,i)=>`
+    <div class="wallet">
+      <div class="wallet-name">${m.label}</div>
+      <div class="wallet-grid">
+        <div><label>Inicial (${m.cur})</label><input type="number" step="any" inputmode="decimal" id="w-init-${i}" value="${bal[m.key] ? bal[m.key] : ''}" placeholder="0"></div>
+        <div><label>Gastado</label><div class="wallet-val money" id="w-spent-${i}">—</div></div>
+        <div><label>Disponible</label><div class="wallet-val money" id="w-avail-${i}">—</div></div>
+      </div>
+    </div>`).join('');
+  METHODS.forEach((m,i)=>{
+    document.getElementById('w-init-'+i).addEventListener('input', e=>{
+      const b = loadBalances(); b[m.key] = parseFloat(e.target.value) || 0; lsSet('method-balances', b);
+      renderBudgetAll({keepCats:true});
+    });
+  });
+}
+buildWallets();
+
+/* Gastos por categoría: acordeones, edición en línea, eliminar con doble toque */
+const openCats = new Set(); let editingId = null; let pendingDel = null; let pendingTimer = null;
+function expLineHTML(e){
+  if(e.id === editingId) return editFormHTML(e);
+  const d = dayFromDate(e.date);
+  const meta = `${d ? 'Día '+d : 'Día —'} · ${esc(e.date || 'sin fecha')} · ${esc(e.method)}`;
+  const delLabel = pendingDel===e.id ? '⚠️ Toca de nuevo para eliminar' : '🗑️ Eliminar';
+  return `<div class="exp-line"><div class="exp-main"><span class="exp-desc">${esc(e.concept)}</span><span class="money">${fmtExact(e.amount, e.currency)}</span></div><div class="exp-meta">${meta}</div><div class="exp-actions"><span data-act="edit" data-id="${e.id}">✏️ Editar</span><span class="del" data-act="del" data-id="${e.id}">${delLabel}</span></div></div>`;
+}
+function editFormHTML(e){
+  return `<div class="edit-form">
+    <div class="form-row"><input type="text" data-f="concept" value="${esc(e.concept)}" placeholder="Descripción"></div>
+    <div class="form-row"><input type="number" step="any" inputmode="decimal" data-f="amount" value="${e.amount}"><select data-f="currency">${optionsHTML(CURRENCIES, e.currency)}</select></div>
+    <div class="form-row"><select data-f="category">${optionsHTML(allCategories(), catOf(e))}</select><select data-f="method">${optionsHTML(METHODS, e.method)}</select></div>
+    <div class="form-row"><input type="date" data-f="date" value="${esc(e.date||'')}"></div>
+    <div class="form-row"><button class="btn" data-act="save" data-id="${e.id}">Guardar</button><button class="btn-outline" data-act="cancel">Cancelar</button></div>
+    <div class="note" data-f="msg" style="min-height:12px; margin-top:0;"></div>
+  </div>`;
+}
+function renderCategories(c){
+  const cats = allCategories(); const byCat = {}; cats.forEach(k=> byCat[k]=[]);
+  c.exps.forEach(e=> byCat[catOf(e)].push(e));
+  document.getElementById('catList').innerHTML = cats.map(cat=>{
+    const items = byCat[cat].slice().sort((a,b)=> (a.date||'').localeCompare(b.date||''));
+    const total = items.reduce((s,e)=> s + convert(e.amount, e.currency, 'CLP'), 0);
+    const body = items.length ? items.map(expLineHTML).join('') : '<div class="cat-empty">Sin gastos en esta categoría aún</div>';
+    return `<div class="cat-card ${openCats.has(cat)?'open':''}" data-cat="${esc(cat)}"><div class="cat-head"><span class="cat-name">${esc(cat)}</span><span class="cat-total money">${fmtMoney(total,'CLP')}</span><span class="chevron">▶</span></div><div class="cat-body">${body}</div></div>`;
+  }).join('');
+}
+function handleAct(el){
+  const act = el.dataset.act, id = el.dataset.id;
+  const list = loadExpenses(); const idx = list.findIndex(x=> x.id===id);
+  if(act==='edit'){
+    if(idx<0) return; editingId = id; pendingDel = null; openCats.add(catOf(list[idx])); renderBudgetAll();
+  } else if(act==='cancel'){
+    editingId = null; renderBudgetAll();
+  } else if(act==='save'){
+    if(idx<0) return;
+    const form = el.closest('.edit-form'); const val = f => form.querySelector(`[data-f="${f}"]`).value;
+    const amount = parseFloat(val('amount'));
+    if(!isFinite(amount) || amount===0){ form.querySelector('[data-f="msg"]').textContent = 'Ingresa un monto válido.'; return; }
+    const category = val('category'); const concept = val('concept').trim() || category;
+    list[idx] = {...list[idx], concept, amount, currency: val('currency'), category, method: val('method'), date: val('date') || list[idx].date || localISO()};
+    saveExpenses(list); editingId = null; openCats.add(category); renderBudgetAll();
+  } else if(act==='del'){
+    if(pendingDel !== id){
+      pendingDel = id; clearTimeout(pendingTimer);
+      pendingTimer = setTimeout(()=>{ pendingDel = null; renderBudgetAll({keepCats:true}); renderCategories(computeAll()); }, 4000);
+      renderBudgetAll();
+    } else {
+      clearTimeout(pendingTimer); pendingDel = null;
+      if(idx>=0){ list.splice(idx,1); saveExpenses(list); }
+      if(editingId===id) editingId = null;
+      renderBudgetAll();
+    }
+  }
+}
+document.getElementById('catList').addEventListener('click', ev=>{
+  const actEl = ev.target.closest('[data-act]');
+  if(actEl){ handleAct(actEl); return; }
+  const head = ev.target.closest('.cat-head');
+  if(head){
+    const card = head.closest('.cat-card'); const cat = card.dataset.cat;
+    if(openCats.has(cat)) openCats.delete(cat); else openCats.add(cat);
+    card.classList.toggle('open');
+  }
+});
+
+document.getElementById('addCatBtn').addEventListener('click', ()=>{
+  const inp = document.getElementById('newCatInput'); const name = inp.value.trim();
+  if(!name){ setMsg('catMsg','Escribe un nombre para la categoría.'); return; }
+  if(allCategories().some(c=> c.toLowerCase()===name.toLowerCase())){ setMsg('catMsg','Esa categoría ya existe.'); return; }
+  const custom = loadCustomCats(); custom.push(name); lsSet('bud-categories', custom);
+  inp.value = ''; openCats.add(name); fillCategorySelect(); renderBudgetAll();
+  setMsg('catMsg', `✓ Categoría "${name}" agregada.`);
+});
+
+function buildCSV(){
+  const exps = loadExpenses().slice().sort((a,b)=> (a.date||'').localeCompare(b.date||''));
+  const q = s => '"' + String(s==null?'':s).replace(/"/g,'""') + '"';
+  const rows = [['Fecha','Día','Categoría','Descripción','Forma de pago','Monto','Moneda'].map(q).join(';')];
+  exps.forEach(e=> rows.push([q(e.date||''), dayFromDate(e.date)||'', q(catOf(e)), q(e.concept), q(e.method), String(e.amount).replace('.',','), q(e.currency)].join(';')));
+  return '\uFEFF' + rows.join('\r\n');
+}
+document.getElementById('csvBtn').addEventListener('click', ()=>{
+  if(!loadExpenses().length){ setMsg('csvMsg','Aún no hay gastos para descargar.'); return; }
+  const blob = new Blob([buildCSV()], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href = url; a.download = 'gastos-mi-decreto.csv'; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=> URL.revokeObjectURL(url), 1500);
+  setMsg('csvMsg','✓ Descarga iniciada (revisa tus descargas).');
+});
+
+/* Resumen, balance, estimados */
+function compareMessage(S){
+  if(S <= 0) return 'Registra tus saldos iniciales para compararlos con el estimado.';
+  if(S < EST_LOW) return `Llevas ${mny(EST_LOW - S)} menos que el mínimo estimado.`;
+  if(S > EST_HIGH) return `Llevas ${mny(S - EST_HIGH)} más que el máximo estimado.`;
+  return 'Tu saldo está dentro del rango estimado. 👌';
+}
+function estStatus(est, spent){
+  if(!est || est.high===0) return spent>0 ? '<span class="sub">sin estimado</span>' : '—';
+  if(spent<=0) return '—';
+  if(spent > est.high) return `<span class="neg money">+${fmtMoney(spent - est.high,'CLP')}</span>`;
+  return `<span class="money">queda ${fmtMoney(est.high - spent,'CLP')}</span>`;
+}
+function rangeText(lo, hi){ return lo===hi ? fmtMoney(lo,'CLP') : fmtMoney(lo,'CLP') + ' – ' + fmtMoney(hi,'CLP').replace(/^CLP /,''); }
+function rangeCur(lo, hi, cur){ return fmtMoney(lo,cur) + ' – ' + fmtMoney(hi,cur).replace(/^[A-Z]{3} /,''); }
+function renderEstimates(c){
+  const spentBy = spentByCategory(c.exps); let tSpent = 0;
+  const rows = allCategories().map(cat=>{
+    const est = ESTIMATES[cat]; const spent = spentBy[cat] || 0; tSpent += spent;
+    const range = est ? rangeText(est.low, est.high) : 'sin estimado';
+    const note = est && est.note ? `<span class="sub">${moneyWrap(esc(est.note))}</span>` : '';
+    return `<tr><td>${esc(cat)}<span class="sub"><span class="money">${range}</span></span>${note}</td><td><span class="money">${fmtMoney(spent,'CLP')}</span></td><td>${estStatus(est, spent)}</td></tr>`;
+  }).join('');
+  const total = `<tr class="tot"><td>Total<span class="sub"><span class="money">${rangeText(EST_LOW, EST_HIGH)}</span></span></td><td><span class="money">${fmtMoney(tSpent,'CLP')}</span></td><td>${estStatus({low:EST_LOW, high:EST_HIGH}, tSpent)}</td></tr>`;
+  document.getElementById('estBody').innerHTML = rows + total;
+  const {uc,ua} = currentRates(); const toARS = clp => clp/uc*ua; const r1000 = n => Math.round(n/1000)*1000;
+  const aloj = ESTIMATES['Alojamiento'] || {low:0, high:0};
+  const bLo = EST_LOW - aloj.low, bHi = EST_HIGH - aloj.high;
+  document.getElementById('estArsBaseClp').textContent = rangeCur(r1000(bLo), r1000(bHi),'CLP');
+  document.getElementById('estArs').textContent = rangeCur(r1000(toARS(bLo)), r1000(toARS(bHi)),'ARS');
+  let kLo = extrasCash()[0], kHi = extrasCash()[1];
+  [1,2,3,4,5,6,7].forEach(n=>{ const d = dayCash(n); kLo += d.cash[0]; kHi += d.cash[1]; });
+  document.getElementById('estCashClp').textContent = rangeCur(r1000(kLo), r1000(kHi),'CLP');
+  const cLo = r1000(toARS(kLo)), cHi = r1000(toARS(kHi));
+  document.getElementById('estCashArs').textContent = rangeCur(cLo, cHi,'ARS');
+  const wArs = (c.wallets||[]).find(w=> w.cur==='ARS'); const have = wArs ? wArs.initial : 0;
+  document.getElementById('estArsHave').textContent = fmtMoney(have,'ARS');
+  document.getElementById('estArsGap').innerHTML = have<=0 ? 'Anota cuánto ARS llevas en "Saldos por billetera" para ver cuánto te falta.' : have < cLo ? `Te faltan ${mny(cLo-have,'ARS')} para el mínimo de efectivo.` : have > cHi ? `Llevas ${mny(have-cHi,'ARS')} sobre el máximo de efectivo sugerido.` : 'Tu efectivo en ARS está dentro del rango sugerido. 👌';
+  renderEntradasDia();
+}
+function renderEntradasDia(){
+  const box = document.getElementById('entDayList'); if(!box) return;
+  let tLo=0, tHi=0, tArs=0, html='';
+  for(let n=1;n<=TRIP_DAYS;n++){
+    const its = Object.keys(ENTRY_ITEMS).filter(id=> ENTRY_ITEMS[id].day===n && entState(id)).map(id=>ENTRY_ITEMS[id]);
+    if(!its.length) continue;
+    let lo=0, hi=0, ars=0;
+    const rows = its.map(it=>{ lo+=it.lo; hi+=it.hi; ars+=it.ars||0; return `<div class="info-row"><span>${esc(it.name)}</span><span class="money">${it.ars?fmtMoney(it.ars,'ARS')+' · ':''}${entRange(it.lo,it.hi)}</span></div>`; }).join('');
+    tLo+=lo; tHi+=hi; tArs+=ars;
+    html += `<div class="info-card"><h3>Día ${n} · ${esc(days[n-1].date)}</h3>${rows}<div class="info-row" style="font-weight:700;"><span>Subtotal del día</span><span class="money">${entRange(lo,hi)}</span></div></div>`;
+  }
+  box.innerHTML = html || '<div class="note">No hay entradas marcadas.</div>';
+  document.getElementById('entTotalClp').textContent = entRange(tLo,tHi);
+  document.getElementById('entTotalArs').textContent = fmtMoney(tArs,'ARS');
+}
+function renderPrepaid(){
+  const sum = PREPAID.reduce((s,p)=> s+p.v, 0);
+  document.getElementById('prepaidList').innerHTML = PREPAID.map(p=> `<div class="info-row"><span>${p.c}</span><span class="money">${fmtMoney(p.v,'CLP')}</span></div>`).join('')
+    + `<div class="info-row" style="font-weight:700;"><span>Subtotal</span><span class="money">${fmtMoney(sum,'CLP')}</span></div>`;
+}
+renderPrepaid();
+function updateDaySpent(c){
+  for(let n=1; n<=TRIP_DAYS; n++){
+    const el = document.getElementById('day-spent-'+n); if(!el) continue;
+    const s = c.exps.filter(e=> dayFromDate(e.date)===n).reduce((t,e)=> t + convert(e.amount, e.currency, 'CLP'), 0);
+    el.textContent = fmtMoney(s,'CLP');
+  }
+}
+function renderDayEst(c){
+  document.getElementById('dayEstBody').innerHTML = [1,2,3,4,5,6,7].map(n=>{
+    const e = dayEst(n);
+    const spent = c.exps.filter(x=> dayFromDate(x.date)===n && catOf(x)!=='Alojamiento').reduce((t,x)=> t + convert(x.amount, x.currency, 'CLP'), 0);
+    const el = document.getElementById('day-est-'+n); if(el) el.textContent = rangeText(e.lo, e.hi);
+    const dot = spent<=0 ? '⚪' : spent>e.hi ? '🔴' : spent>=0.8*e.hi ? '🟡' : '🟢';
+    return `<tr><td>Día ${n}</td><td><span class="money">${rangeText(e.lo,e.hi)}</span></td><td><span class="money">${fmtMoney(spent,'CLP')}</span></td><td style="text-align:center;">${dot}</td></tr>`;
+  }).join('');
+  const {uc:_uc, ua:_ua} = currentRates(); const toA = clp => clp/_uc*_ua; const r1k = n => Math.round(n/1000)*1000;
+  let cl=0, ch=0, kl=0, kh=0;
+  const crow = [1,2,3,4,5,6,7].map(n=>{ const d = dayCash(n); cl+=d.cash[0]; ch+=d.cash[1]; kl+=d.card[0]; kh+=d.card[1];
+    return `<tr><td>Día ${n}</td><td><span class="money">${rangeCur(r1k(toA(d.cash[0])), r1k(toA(d.cash[1])),'ARS')}</span></td><td><span class="money">${rangeText(r1k(d.card[0]), r1k(d.card[1]))}</span></td></tr>`; }).join('');
+  const sx = SCEN[scenKey()]; const xc = extrasCash(); cl+=xc[0]; ch+=xc[1]; kl+=sx.souv[0]*0.3; kh+=sx.souv[1]*0.3;
+  const xrow = `<tr><td>Souvenirs e imprevistos</td><td><span class="money">${rangeCur(r1k(toA(xc[0])), r1k(toA(xc[1])),'ARS')}</span></td><td><span class="money">${rangeText(r1k(sx.souv[0]*0.3), r1k(sx.souv[1]*0.3))}</span></td></tr>`;
+  const trow = `<tr class="tot"><td>Total</td><td><span class="money">${rangeCur(r1k(toA(cl)), r1k(toA(ch)),'ARS')}</span></td><td><span class="money">${rangeText(r1k(kl), r1k(kh))}</span></td></tr>`;
+  const cb = document.getElementById('cashDayBody'); if(cb) cb.innerHTML = crow + xrow + trow;
+  const tl = [1,2,3,4,5,6,7].reduce((t,n)=> t+dayEst(n).lo,0), th = [1,2,3,4,5,6,7].reduce((t,n)=> t+dayEst(n).hi,0);
+  const avgEl = document.getElementById('dailyPlan');
+  if(avgEl) avgEl.innerHTML = `Tu plan estima unos ${mny(tl/7)} – ${fmtMoney(th/7,'CLP').replace(/^CLP /,'')} por día (sin hostal).`;
+}
+function renderBudgetAll(opts){
+  recomputeEstimates();
+  const c = computeAll();
+  document.getElementById('fogonToggle').checked = fogonOn();
+  document.querySelectorAll('#scenSeg button').forEach(b=> b.classList.toggle('on', b.dataset.scen===scenKey()));
+  document.getElementById('scenNote').textContent = scenKey()==='eco' ? 'Económico: comidas −15%, traslados −25% (más subte y caminata), noches −20% e imprevistos menores. L\'adesso y Misión BA (reservas con precio fijo) no bajan.' : 'Normal: es el plan base del itinerario, calculado para no pasar tu tope.';
+  document.getElementById('capVal').textContent = fmtMoney(BUDGET_CAP,'CLP');
+  const m = BUDGET_CAP - EST_HIGH;
+  document.getElementById('capMsg').innerHTML = m >= 0 ? `Con el estimado más alto te quedan ${mny(m)} bajo tu tope.` : `<span class="neg">El estimado más alto supera tu tope por ${fmtMoney(-m,'CLP')}.</span> Recorta entradas o noches, o prueba el plan económico.`;
+  renderDayEst(c);
+  document.getElementById('estRange').textContent = rangeText(EST_LOW, EST_HIGH);
+  document.getElementById('estHostal').textContent = fmtMoney(HOSTAL_COST,'CLP');
+  document.getElementById('estRest').textContent = rangeText(EST_LOW - HOSTAL_COST, EST_HIGH - HOSTAL_COST);
+  const hp = hostalPaid(c.exps);
+  document.getElementById('estHostalStatus').innerHTML = hp >= HOSTAL_COST - 0.5 ? '✓ Registrado como pagado.' : (hp>0 ? `Registrado ${mny(hp)}; faltan ${mny(HOSTAL_COST-hp)}.` : 'Pendiente: se paga al llegar con Global66. Al registrarlo en Alojamiento (con "hostal" en la descripción) pasa a pagado.');
+  renderDaily(c);
+  document.getElementById('generalInitial').textContent = fmtMoney(c.generalInitial,'CLP');
+  document.getElementById('estCompare').innerHTML = compareMessage(c.generalInitial);
+  c.wallets.forEach((w,i)=>{
+    document.getElementById('w-spent-'+i).textContent = fmtMoney(w.spent, w.cur);
+    const av = document.getElementById('w-avail-'+i);
+    av.textContent = fmtMoney(w.avail, w.cur);
+    av.classList.toggle('neg', w.avail < -0.005);
+    av.classList.toggle('low-balance', w.avail >= -0.005 && w.initial>0 && w.avail < w.initial*0.15);
+  });
+  document.getElementById('balBudget').textContent = fmtMoney(c.generalInitial,'CLP');
+  document.getElementById('balSpent').textContent = fmtMoney(c.totalSpent,'CLP');
+  const balAvail = document.getElementById('balAvail');
+  balAvail.textContent = fmtMoney(c.available,'CLP'); balAvail.classList.toggle('neg', c.available < -0.005);
+  const pct = c.generalInitial>0 ? (c.totalSpent / c.generalInitial * 100) : null;
+  document.getElementById('balPct').textContent = pct===null ? '—' : Math.round(pct) + '%';
+  const bar = document.getElementById('balBar');
+  bar.style.width = pct===null ? '0%' : Math.min(100, Math.max(0, pct)) + '%';
+  bar.classList.toggle('over', pct!==null && pct>100);
+  if(!(opts && opts.keepCats && editingId)) renderCategories(c);
+  renderEstimates(c); updateDaySpent(c);
+  if(inTrip()) refreshCountdownState();
+}
+
+/* Reiniciar (solo presupuesto), con doble toque */
+let resetArmed = false, resetTimer = null;
+document.querySelectorAll('#scenSeg button').forEach(b=> b.addEventListener('click', ()=>{ lsSet('plan-scenario', b.dataset.scen); renderBudgetAll({keepCats:true}); }));
+document.getElementById('fogonToggle').addEventListener('change', e=>{ lsSet('plan-fogon', e.target.checked); renderBudgetAll({keepCats:true}); });
+document.getElementById('resetBudgetBtn').addEventListener('click', ()=>{
+  const btn = document.getElementById('resetBudgetBtn');
+  if(!resetArmed){
+    resetArmed = true; btn.textContent = 'Toca otra vez para borrar el presupuesto';
+    resetTimer = setTimeout(()=>{ resetArmed = false; btn.textContent = 'Reiniciar presupuesto'; }, 4000);
+    return;
+  }
+  clearTimeout(resetTimer); resetArmed = false; btn.textContent = 'Reiniciar presupuesto';
+  ['expense-log','method-balances','bud-categories'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
+  editingId = null; pendingDel = null; openCats.clear();
+  buildWallets(); fillCategorySelect(); renderBudgetAll();
+  setMsg('resetMsg','Presupuesto reiniciado. Todo parte de cero.');
+});
+renderBudgetAll();
+
+/* ---------- Conversor ---------- */
+const convAmount=document.getElementById('convAmount'), convFrom=document.getElementById('convFrom'), convResults=document.getElementById('convResults');
+const rateUsdClp=document.getElementById('rateUsdClp'), rateUsdArs=document.getElementById('rateUsdArs');
+document.getElementById('rateToggle').addEventListener('click', ()=>document.getElementById('rateEdit').classList.toggle('show'));
+function toUSD(a,c){ const uc=parseFloat(rateUsdClp.value)||998, ua=parseFloat(rateUsdArs.value)||1540; if(c==='USD')return a; if(c==='CLP')return a/uc; return a/ua; }
+function fromUSD(u,c){ const uc=parseFloat(rateUsdClp.value)||998, ua=parseFloat(rateUsdArs.value)||1540; if(c==='USD')return u; if(c==='CLP')return u*uc; return u*ua; }
+function fmt(n,c){ return c==='USD'?n.toFixed(2):Math.round(n).toLocaleString('es-CL'); }
+function renderConversion(){ const a=parseFloat(convAmount.value)||0, f=convFrom.value, u=toUSD(a,f); convResults.innerHTML=['CLP','USD','ARS'].filter(c=>c!==f).map(c=>`<div class="conv-result-row"><span>${c}</span><span class="val">${fmt(fromUSD(u,c),c)} ${c}</span></div>`).join(''); }
+[convAmount, convFrom, rateUsdClp, rateUsdArs].forEach(el=>el.addEventListener('input', ()=>{ renderConversion(); lsSet('exchange-rates',{usdClp:rateUsdClp.value, usdArs:rateUsdArs.value}); renderBudgetAll({keepCats:true}); }));
+(function(){ const s=lsGet('exchange-rates', null); if(s && !(String(s.usdClp)==='930' && String(s.usdArs)==='1485')){ rateUsdClp.value=s.usdClp; rateUsdArs.value=s.usdArs; } renderConversion(); renderBudgetAll(); })();
+
+/* ---------- Noche con íconos por tipo + acciones de evento ---------- */
+const nocheData = [
+  {name:"Niceto Club", tag:"club", icon:"🎧", zone:"Palermo", addr:"Cnel. Niceto Vega 5510", note:"Line-ups locales e internacionales.", hasCortesia:true},
+  {name:"Bahrein", tag:"club", icon:"🎧", zone:"Microcentro", addr:"Lavalle 345", note:"Clásico histórico de la escena electrónica."},
+  {name:"Crobar", tag:"club", icon:"🎧", zone:"Palermo", addr:"Av. Libertador 3883", note:"Histórico, buena opción de fin de semana."},
+  {name:"Club Araoz", tag:"club", icon:"🎧", zone:"Palermo", addr:"Costa Rica 4508", note:"Ambiente under."},
+  {name:"La Biblioteca", tag:"club", icon:"🎧", zone:"Palermo", addr:"Verificar en Instagram", note:"Venue chico y under."},
+  {name:"Puticlú", tag:"club", icon:"🎧", zone:"Villa Crespo/Chacarita", addr:"Verificar en Instagram", note:"Club queer/underground techno-house."},
+  {name:"Deseo Club", tag:"club", icon:"🎧", zone:"Palermo", addr:"Verificar en Instagram", note:""},
+  {name:"Artlab", tag:"club", icon:"🎧", zone:"Palermo", addr:"Verificar en Instagram", note:""},
+  {name:"Atis Bar", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Verificar en Instagram", note:"Cocktail bar, antes de salir a bailar."},
+  {name:"Frank's", tag:"bar", icon:"🍸", zone:"Palermo Hollywood", addr:"Arévalo 1445", note:"Speakeasy años 20, contraseña semanal."},
+  {name:"Uptown BA", tag:"bar", icon:"🍸", zone:"Palermo Hollywood", addr:"Arévalo 2030", note:"OPCIONAL, fuera del plan por ahora (restaurante sofisticado). Se entra como a una estación de subte de Nueva York (pasas un torniquete y un vagón). Reserva solo para cenar: turnos 20:00, 20:30, 22:00 y 22:30, mesa por 2 h; para solo tragos, ingreso por orden de llegada. Se reserva hasta 2 semanas antes (jueves 5 nov: desde el 22 oct) por el enlace de su Instagram. Consumo mínimo AR$35.000 (≈ CLP 21.900). Dress to impress: sin bermudas, ojotas, ropa deportiva ni mochilas. Solo mayores de 21. Cancelas hasta 2 h antes; no-show AR$20.000 (piden tarjeta de garantía)."},
+  {name:"Victoria Brown", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Costa Rica 4827", note:"Speakeasy steampunk/victoriano."},
+  {name:"Harrison", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Malabia 1764", note:"Speakeasy clásico."},
+  {name:"La Bomba de Tiempo", tag:"cultura", icon:"🥁", zone:"Ciudad Cultural Konex", addr:"Sarmiento 3131", note:"Fuera del plan por ahora. Función del lunes 2 nov a las 19:00; entrada Patio AR$22.000 anticipada o AR$27.000 el día, más service charge. La siguiente es el 9 nov."},
+  {name:"Una milonga", tag:"cultura", icon:"💃", zone:"Varias zonas", addr:"Según la milonga", note:"Clase de tango + show."},
+  {name:"Trade Sky Club", tag:"rooftop", icon:"🌆", zone:"Palermo", addr:"Av. Juan B. Justo 1517 (piso 28, Torre Qiub)", note:"OPCIONAL, fuera del plan. Vista de 360° a más de 100 m. After Office 18:00-20:00, restaurante 20:00-00:00, DJ de 00:00 a 03:00. Cóctel ~AR$18.000 (≈ CLP 11.000); platos AR$27.000-57.000. Abrió a fines de agosto o septiembre de 2026 y hay pocas reseñas; algunas dicen que la comida no destaca, así que mejor solo tragos. Confirma que abra el martes."},
+  {name:"Bestial Skybar", tag:"rooftop", icon:"🌆", zone:"Palermo", addr:"Humboldt 2495 (piso 11)", note:"Mar-mié 19-01, jue-sáb 19-02:30. Cócteles de autor y platos pequeños."},
+  {name:"Trade Sky Bar (Piso 19)", tag:"rooftop", icon:"🌆", zone:"Microcentro", addr:"Av. Corrientes 222 (piso 19)", note:"OPCIONAL, fuera del plan por ahora (mínimo AR$35.000). Vista al Obelisco, Retiro y Puerto Madero. Reserva After Office (18:00 o 18:30, 1 h 30) o cena (desde 20:00, 2 h); para solo tragos, ingreso por orden de llegada. Reserva desde 15 días antes (lunes 2 nov: desde el 18 oct). Consumo mínimo AR$35.000 (≈ CLP 21.900). Elegante casual, sin ropa deportiva; mayores de 18. Cancelas hasta 2 h antes; no-show AR$20.000."},
+  {name:"Alvear Roof Bar", tag:"rooftop", icon:"🌆", zone:"Recoleta", addr:"Av. Alvear 1891 (piso 11)", note:"Mié-dom 19-23:30, house y coctelería de autor. Requiere reserva."},
+  {name:"Salón 1923 (Palacio Barolo)", tag:"rooftop", icon:"🌆", zone:"Microcentro", addr:"Av. de Mayo 1370 (piso 16)", note:"Mié-dom 18-00. Los lunes cierra: no sirve para el Día 2."},
+  {name:"Crystal Bar", tag:"rooftop", icon:"🌆", zone:"Puerto Madero", addr:"Aimé Painé 1130 (piso 32)", note:"18-01:30, cierra los lunes. Requiere reserva."},
+  {name:"Misión BA", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Godoy Cruz 1715", note:"RESERVADO: viernes 6 nov, 20:00, Barra, 1 persona (código PVFGT1). Sushi y vino libre AR$35.000 (≈ CLP 21.900), mié-dom de 20:00 a 21:30, mix elegido por la cocina (sin nigiris ni calientes), opción veggie, no acumulable con otras promos; happy hour en el mismo horario. No hay el 25% en efectivo que muestra su página de reservas. Pista desde las 00:00; cierran hacia las 06:00. Zapatillas permitidas, con derecho de admisión; la música depende de la noche. Por preguntar: entrada a la pista. Reservas en mision.meitre.com. Cancelación por WhatsApp +54 9 11 7099-1715 (sin reintegro dentro de las 24 h). Instagram @misionclub.ba."},
+  {name:"La Uat Bar", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Thames 1627", note:"Escondido tras una rotisería; música de los 80 y 90. Pegado a Magia Libros. Horario (según Google): domingo 19:00-00:00 y jueves 20:00-00:00; vie y sáb también de madrugada."},
+  {name:"Helka Wine Bar", tag:"bar", icon:"🔮", zone:"Colegiales", addr:"Capitán Gral. Ramón Freire 1117", note:"Casona de 1917 con tarot express (~15 min). Jueves 19:00-01:30. Pídelo por mensaje directo a su Instagram."},
+  {name:"CIMA", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Guatemala 4701 (sobre pizzería Orno)", note:"Cócteles de autor; noches de bingo con drag queens."},
+  {name:"Augusto y Augusta", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Av. Ernesto Tornquist 6385", note:"Restaurante que se vuelve pista; público mayor de 30."},
+  {name:"Fiesta HYPE!", tag:"club", icon:"🎧", zone:"Palermo", addr:"Honduras 5339", note:"Martes 23:55-06:00: hip hop, trap, reggaeton, afrobeat. Entrada general AR$6.000 (≈ CLP 3.800) y hay entradas gratuitas en Passline (revisa el 1 de nov). Calza con tu cumpleaños."},
+  {name:"Club Lucero", tag:"club", icon:"🎧", zone:"Palermo", addr:"Nicaragua 6048", note:"Selección de DJs, mié-sáb."},
+  {name:"La Del Centro Milonga", tag:"cultura", icon:"💃", zone:"Microcentro", addr:"Rodríguez Peña 361 (Sala La Argentina)", note:"Miércoles 20:30-02:00, con clases simultáneas para principiantes. Sin código de vestimenta; recibe turistas. Precio por confirmar. Según una nota de Time Out (dic 2025)."},
+  {name:"Yira Yira (Club Gricel)", tag:"cultura", icon:"💃", zone:"Almagro", addr:"La Rioja 1180", note:"Viernes: clase 19:30 y milonga 21:00-03:00, para todos los niveles. Precio por confirmar. Según Time Out (dic 2025)."},
+  {name:"La Viruta", tag:"cultura", icon:"💃", zone:"Palermo", addr:"Armenia 1366 (1er subsuelo)", note:"Los días varían según la fuente (Time Out: mié, vie y dom; su web: milonga los sábados desde las 00:00, clases lun y mar). Reservas por WhatsApp desde su web. Precio por confirmar."}
+];
+const nocheContainerClub=document.getElementById('nocheContainerClub');
+const nocheContainerBar=document.getElementById('nocheContainerBar');
+const nocheContainerCultura=document.getElementById('nocheContainerCultura');
+const nocheContainerRoof=document.getElementById('nocheContainerRoof');
+const nocheTargets = {club: nocheContainerClub, bar: nocheContainerBar, cultura: nocheContainerCultura, rooftop: nocheContainerRoof};
+nocheData.forEach((v,i)=>{
+  const id='noche-'+i;
+  const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(v.name+' '+v.addr+' Buenos Aires');
+  const card=document.createElement('div'); card.className='noche-card';
+  card.innerHTML = `
+    <div class="noche-head"><span class="noche-icon">${v.icon}</span><div class="noche-name">${v.name}</div></div>
+    <span class="noche-tag tag-${v.tag}">${v.tag}</span><span class="noche-tag" style="background:rgba(255,255,255,0.08); color:#c7c3ad;">${v.zone}</span>
+    <div class="noche-note">📍 ${v.addr}</div>
+    ${v.note?`<div class="noche-note">${v.note}</div>`:''}
+    <div class="noche-footer"><a class="maps-link" href="${mapsUrl}" target="_blank" rel="noopener">Abrir en Maps</a><label class="noche-check"><input type="checkbox" id="${id}"> Fui</label></div>
+    ${v.hasCortesia ? `<div class="noche-action"><input type="checkbox" id="niceto-cortesia"><label for="niceto-cortesia">Escribí por Instagram por cortesía de cumpleaños</label></div><div class="noche-action"><input type="checkbox" id="niceto-ra"><label for="niceto-ra">Revisé Resident Advisor el line-up del 3 de nov</label></div>` : ''}
+  `;
+  nocheTargets[v.tag].appendChild(card);
+});
+function loadNoche(){
+  const s=lsGet('noche-visited',{}); nocheData.forEach((v,i)=>{ const el=document.getElementById('noche-'+i); if(s['noche-'+i]) el.checked=true; });
+  const ex=lsGet('noche-extra',{}); ['niceto-cortesia','niceto-ra'].forEach(id=>{ const el=document.getElementById(id); if(el && ex[id]) el.checked=true; });
+}
+[nocheContainerClub, nocheContainerBar, nocheContainerCultura, nocheContainerRoof].forEach(cont=> cont.addEventListener('change', ()=>{
+  const s={}; nocheData.forEach((v,i)=> s['noche-'+i]=document.getElementById('noche-'+i).checked); lsSet('noche-visited', s);
+  const ex={}; ['niceto-cortesia','niceto-ra'].forEach(id=>{ const el=document.getElementById(id); if(el) ex[id]=el.checked; }); lsSet('noche-extra', ex);
+}));
+loadNoche();
+refreshCountdownState();
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').then(reg=>{
+      reg.addEventListener('updatefound', ()=>{
+        const newWorker = reg.installing;
+        if(!newWorker) return;
+        newWorker.addEventListener('statechange', ()=>{
+          if(newWorker.state==='installed' && navigator.serviceWorker.controller){
+            showUpdateBanner(reg);
+          }
+        });
+      });
+    }).catch(()=>{});
+  });
+}
+function showUpdateBanner(reg){
+  if(document.getElementById('updateBanner')) return;
+  const banner = document.createElement('div');
+  banner.id = 'updateBanner';
+  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#4FA8E0;color:white;text-align:center;padding:11px 16px;font-size:12.5px;font-weight:700;z-index:200;cursor:pointer;padding-top:calc(11px + env(safe-area-inset-top,0px));';
+  banner.textContent = '🔄 Hay una actualización disponible — Toca para actualizar';
+  banner.addEventListener('click', ()=>{
+    if(reg.waiting) reg.waiting.postMessage('skipWaiting');
+    setTimeout(()=> window.location.reload(), 300);
+  });
+  document.body.appendChild(banner);
+}
+</script>
+</body>
+</html>
