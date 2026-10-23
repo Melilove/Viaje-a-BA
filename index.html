@@ -74,6 +74,7 @@
   .info-row span:first-child{color:var(--ink-soft);}
   .info-row span:last-child{font-weight:600; text-align:right;}
   .note{font-size:11.5px; color:var(--ink-soft); margin-top:6px; line-height:1.4;}
+  details.more{margin:2px 0 8px;} details.more summary{cursor:pointer; font-size:12px; color:var(--ink-soft); font-weight:600; padding:4px 0;}
   .tip{margin-top:10px; font-size:11.5px; color:var(--ink-soft); font-style:italic; background:rgba(79,168,224,0.1); padding:8px 10px; border-radius:4px; border-left:2px solid var(--celeste);}
   .badge{display:inline-block; font-size:9.5px; padding:2px 7px; border-radius:999px; font-weight:700;}
   .badge.ok{background:var(--celeste); color:white;}
@@ -257,7 +258,7 @@
     <div class="eyebrow">Santiago · Buenos Aires</div>
     <h1 class="hero-title">MI DECRETO</h1>
     <div class="hero-sub" id="heroSub">Buenos Aires, ida y vuelta hacia mí</div>
-    <div class="ver-top">Rinasco a modo mio 🧡 · v5.11</div>
+    <div class="ver-top">Rinasco a modo mio 🧡 · v5.12</div>
     <div id="eyeToggle" title="Ocultar / mostrar cifras">👁️</div>
   </header>
 
@@ -358,6 +359,102 @@
         </div>
       </div>
 
+      <div class="acc-card open" id="acc-saldos">
+        <div class="acc-head"><span class="acc-head-title">💳 Mis medios de pago</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card">
+            <div class="note" style="margin-top:0;">Anota cuánto tienes en cada medio. El "Disponible" se actualiza solo con tus gastos y con el dinero que muevas entre medios.</div>
+            <div id="walletsContainer"></div>
+            <div class="info-row" style="font-weight:700;"><span>Tengo en total (≈ en pesos chilenos)</span><span class="money" id="walletTotal">—</span></div>
+          </div>
+          <div class="info-card">
+            <h3>🔁 Mover dinero</h3>
+            <div class="note" style="margin-top:0;">Úsalo cuando conviertas o cambies plata: por ejemplo de Global66 CLP a Global66 ARS, o de Efectivo USD a Efectivo ARS cuando cambies tus dólares. Anota lo que sale y lo que llega de verdad.</div>
+            <div class="form-row"><select id="mvFrom" style="flex:1; min-width:0;"></select><select id="mvTo" style="flex:1; min-width:0;"></select></div>
+            <div class="form-row"><input type="number" id="mvOut" placeholder="Sale" step="any" inputmode="decimal" style="flex:1; min-width:0;"><input type="number" id="mvIn" placeholder="Llega" step="any" inputmode="decimal" style="flex:1; min-width:0;"></div>
+            <div class="note" id="mvHint" style="min-height:14px; margin-top:0;"></div>
+            <div class="form-row"><button class="btn" id="mvBtn" style="width:100%;">Registrar movimiento</button></div>
+            <div class="note" id="mvMsg" style="min-height:14px; margin-top:0;"></div>
+            <div id="mvList"></div>
+          </div>
+          <div class="info-card">
+            <h3>🏠 Hostal (se paga al llegar)</h3>
+            <div class="info-row"><span>Estadía (6 noches)</span><span class="money" id="hostalUsd">—</span></div>
+            <div class="info-row"><span>…en pesos chilenos (referencia)</span><span class="money" id="hostalClp">—</span></div>
+            <div class="info-row"><span>Depósito reembolsable (efectivo)</span><span class="money">USD 10,00</span></div>
+            <div class="form-row" style="margin-top:6px;"><select id="hostalMethod" style="flex:1;"></select></div>
+            <div class="note" id="estHostalStatus" style="margin:0 0 6px;"></div>
+            <div class="note">El hostal cobra en dólares: la cifra fija es USD 142,75. El monto en pesos que ves en Booking se recalcula cada día; aquí se estima con el tipo de cambio de arriba. Si lo pagas con una tarjeta en pesos, el banco puede sumar comisión (por confirmar). Por confirmar con el hostal: si aceptan efectivo en USD.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card" id="dailyCard" style="border:1px solid rgba(212,161,61,0.55);">
+        <h3>🎯 Cuánto puedes gastar por día</h3>
+        <div class="daily-big money" id="dailyTotal">—</div>
+        <div class="daily-sub" id="dailySub"></div>
+        <div id="dailyWallets"></div>
+        <div class="note" id="dailyPlan" style="margin-top:6px;"></div>
+        <div class="note" id="dailyNote"></div>
+      </div>
+
+      <div class="acc-card open" id="acc-registro">
+        <div class="acc-head"><span class="acc-head-title">➕ Anotar gasto</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div class="info-card">
+            <div class="form-row">
+              <input type="number" id="expAmount" placeholder="Monto" step="any" inputmode="decimal">
+              <select id="expCurrency"><option value="ARS">ARS</option><option value="CLP">CLP</option><option value="USD">USD</option></select>
+            </div>
+            <div class="form-row">
+              <select id="expCategory" style="flex:1;"></select>
+              <select id="expMethod" style="flex:1;"></select>
+            </div>
+            <details class="more">
+              <summary>Descripción y fecha (opcional)</summary>
+              <div class="form-row"><input type="text" id="expConcept" placeholder="Descripción (vacía = nombre de la categoría)"></div>
+              <div class="form-row">
+                <input type="date" id="expDate">
+                <span id="expDayLabel" style="flex:1; font-size:12px; color:var(--ink-soft); font-weight:600;"></span>
+              </div>
+            </details>
+            <div class="form-row"><button class="btn" id="expAddBtn" style="width:100%;">Agregar gasto</button></div>
+            <div class="note" id="expMsg" style="min-height:14px; margin-top:0;"></div>
+            <div class="tip">✦ Hostal: al pagarlo, regístralo en <b>Alojamiento</b> con la palabra <b>Hostal</b> en la descripción (abre "Descripción y fecha"). Depósito (reembolsable): regístralo en Alojamiento y, cuando te lo devuelvan, agrégalo de nuevo con <b>monto negativo</b>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card" id="planCard" style="border:1px solid rgba(212,161,61,0.55);">
+        <h3>📅 Plan por día</h3>
+        <div class="seg" id="scenSeg"><button data-scen="normal">Plan normal</button><button data-scen="eco">Plan económico</button></div>
+        <div class="note" id="scenNote" style="margin:0 0 6px;"></div>
+        <div class="info-row" style="font-weight:700;"><span>Total estimado del viaje</span><span class="money" id="estRange">—</span></div>
+        <div class="info-row"><span>Tu tope máximo</span><span class="money" id="capVal">—</span></div>
+        <div class="est-cmp" id="capMsg" style="margin:4px 0 8px;"></div>
+        <table class="budget-table"><thead><tr><th>Día</th><th>Estimado</th><th>Gastado</th><th>Estado</th></tr></thead><tbody id="dayEstBody"></tbody></table>
+        <div class="note">Gasto diario estimado sin hostal. Semáforo según lo gastado ese día: ⚪ sin gastos · 🟢 menos del 80% del máximo · 🟡 entre 80% y 100% · 🔴 sobre el máximo. Cambia si marcas o desmarcas entradas o eliges el plan económico.</div>
+      </div>
+
+      <div class="acc-card open" id="acc-categorias">
+        <div class="acc-head"><span class="acc-head-title">🗂️ Gastos por categoría</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div id="catList"></div>
+          <div class="form-row" style="margin-top:12px;"><input type="text" id="newCatInput" placeholder="Nueva categoría"><button class="btn" id="addCatBtn">+ Agregar</button></div>
+          <div class="note" id="catMsg" style="min-height:14px; margin-top:0; color:#a9a58c;"></div>
+          <div class="form-row"><button class="btn-ghost" id="csvBtn">⬇️ Descargar CSV</button></div>
+          <div class="note" id="csvMsg" style="min-height:14px; margin-top:0; color:#a9a58c;"></div>
+        </div>
+      </div>
+
+      <div class="acc-card open" id="acc-entradas">
+        <div class="acc-head"><span class="acc-head-title">🎟️ Entradas por día (precios confirmados)</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div id="entDayList"></div>
+          <div class="info-card"><div class="info-row" style="font-weight:700;"><span>Total entradas marcadas</span><span class="money" id="entTotalClp">—</span></div><div class="info-row"><span>…en pesos argentinos</span><span class="money" id="entTotalArs">—</span></div><div class="note">Solo cuenta las entradas marcadas en el itinerario. El bus turístico está desactivado. En el Teatro Colón no se paga con moneda extranjera: lleva pesos o tarjeta. Barolo: CLP según Civitatis (más caro) o la web oficial.</div></div>
+        </div>
+      </div>
+
       <div class="acc-card" id="acc-cambio">
         <div class="acc-head"><span class="acc-head-title">💵 Dónde cambiar USD en Buenos Aires</span><span class="chevron">▶</span></div>
         <div class="acc-body">
@@ -401,103 +498,27 @@
         </div>
       </div>
 
-      <div class="info-card" id="dailyCard" style="border:1px solid rgba(212,161,61,0.55);">
-        <h3>🎯 Cuánto puedes gastar por día</h3>
-        <div class="daily-big money" id="dailyTotal">—</div>
-        <div class="daily-sub" id="dailySub"></div>
-        <div id="dailyWallets"></div>
-        <div class="note" id="dailyPlan" style="margin-top:6px;"></div>
-        <div class="note" id="dailyNote"></div>
-      </div>
-
-      <div class="acc-card open" id="acc-registro">
-        <div class="acc-head"><span class="acc-head-title">➕ Registro de gasto</span><span class="chevron">▶</span></div>
+      <div class="acc-card" id="acc-detalles">
+        <div class="acc-head"><span class="acc-head-title">🔎 Detalles del plan</span><span class="chevron">▶</span></div>
         <div class="acc-body">
           <div class="info-card">
-            <div class="form-row"><input type="text" id="expConcept" placeholder="Descripción (vacía = nombre de la categoría)"></div>
-            <div class="form-row">
-              <input type="number" id="expAmount" placeholder="Monto" step="any" inputmode="decimal">
-              <select id="expCurrency"><option value="CLP">CLP</option><option value="ARS">ARS</option><option value="USD">USD</option></select>
-            </div>
-            <div class="form-row">
-              <select id="expCategory" style="flex:1;"></select>
-              <select id="expMethod" style="flex:1;"></select>
-            </div>
-            <div class="form-row">
-              <input type="date" id="expDate">
-              <span id="expDayLabel" style="flex:1; font-size:12px; color:var(--ink-soft); font-weight:600;"></span>
-            </div>
-            <div class="form-row"><button class="btn" id="expAddBtn" style="width:100%;">Agregar gasto</button></div>
-            <div class="note" id="expMsg" style="min-height:14px; margin-top:0;"></div>
-            <div class="tip">✦ Hostal (<span class="money">CLP 132.500</span>, se paga al llegar): al pagarlo, regístralo en <b>Alojamiento</b> con la palabra <b>Hostal</b> en la descripción y forma de pago Global66. Depósito de garantía (reembolsable): regístralo en Alojamiento con la billetera en que lo dejes, y cuando te lo devuelvan agrégalo de nuevo con <b>monto negativo</b>.</div>
+            <h3>Estimado vs. lo que llevas</h3>
+            <div class="info-row"><span>🏠 Hostal Play Garden (referencia)</span><span class="money" id="estHostal">—</span></div>
+            <div class="info-row"><span>Resto del viaje (sin hostal)</span><span class="money" id="estRest">—</span></div>
+            <label class="ent-row" style="color:var(--ink); margin:8px 0; display:none;"><input type="checkbox" id="fogonToggle"> <span>Incluir Fogón Asado en la cena de cumpleaños (≈ CLP 110.000-160.000)</span></label>
+            <div class="info-row"><span>Saldo general inicial</span><span class="money" id="generalInitial">$0</span></div>
+            <div class="est-cmp" id="estCompare"></div>
+            <div class="note">El hostal va aparte porque se paga al llegar. No incluye lo ya pagado antes del viaje (vuelo, power bank, seguro). Todo se convierte a CLP al tipo de cambio configurado arriba.</div>
           </div>
-        </div>
-      </div>
-
-      <div class="acc-card open" id="acc-saldos">
-        <div class="acc-head"><span class="acc-head-title">🎯 Saldos por billetera</span><span class="chevron">▶</span></div>
-        <div class="acc-body">
           <div class="info-card">
-            <div class="note" style="margin-top:0;">Anota cuánto llevas en cada forma de pago. Puedes editarlo cuando quieras (por ejemplo si traspasas plata de un medio a otro). Cada billetera es independiente: si se agota una, no toca las otras.</div>
-            <div id="walletsContainer"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <h3>Estimado vs. lo que llevas</h3>
-        <div class="info-row"><span>🏠 Hostal Play Garden</span><span class="money" id="estHostal">—</span></div>
-        <div class="note" id="estHostalStatus" style="margin:0 0 6px;"></div>
-        <div class="info-row"><span>Resto del viaje (sin hostal)</span><span class="money" id="estRest">—</span></div>
-        <div class="info-row" style="font-weight:700;"><span>Total estimado</span><span class="money" id="estRange">—</span></div>
-        <div class="info-row"><span>Tu tope máximo</span><span class="money" id="capVal">—</span></div>
-        <div class="est-cmp" id="capMsg" style="margin-top:4px;"></div>
-        <div class="seg" id="scenSeg"><button data-scen="normal">Plan normal</button><button data-scen="eco">Plan económico</button></div>
-        <div class="note" id="scenNote" style="margin:0 0 6px;"></div>
-        <label class="ent-row" style="color:var(--ink); margin:8px 0; display:none;"><input type="checkbox" id="fogonToggle"> <span>Incluir Fogón Asado en la cena de cumpleaños (≈ CLP 110.000-160.000)</span></label>
-        <div class="info-row"><span>Saldo general inicial</span><span class="money" id="generalInitial">$0</span></div>
-        <div class="est-cmp" id="estCompare"></div>
-        <div class="note">El hostal va aparte porque se paga al llegar (Global66). No incluye lo ya pagado antes del viaje (vuelo, power bank, seguro). Todo se convierte a CLP al tipo de cambio configurado arriba.</div>
-      </div>
-
-      <div class="acc-card" id="acc-balance">
-        <div class="acc-head"><span class="acc-head-title">📊 Balance total</span><span class="chevron">▶</span></div>
-        <div class="acc-body">
-          <div class="info-card">
+            <h3>📊 Balance total</h3>
             <div class="info-row"><span>Presupuesto (saldo general inicial)</span><span class="money" id="balBudget">$0</span></div>
             <div class="info-row"><span>Gastado</span><span class="money" id="balSpent">$0</span></div>
             <div class="info-row"><span>Disponible</span><span class="money" id="balAvail">$0</span></div>
             <div class="info-row"><span>% usado</span><span class="money" id="balPct">—</span></div>
             <div class="bar-bg"><div class="bar-fill" id="balBar"></div></div>
-            <div class="note">Se calcula solo a partir de tus saldos iniciales y tus gastos. No se edita aquí.</div>
+            <div class="note">Se calcula a partir de tus saldos, tus gastos y lo que muevas entre medios (con sus comisiones).</div>
           </div>
-        </div>
-      </div>
-
-      <div class="acc-card" id="acc-categorias">
-        <div class="acc-head"><span class="acc-head-title">🗂️ Gastos por categoría</span><span class="chevron">▶</span></div>
-        <div class="acc-body">
-          <div id="catList"></div>
-          <div class="form-row" style="margin-top:12px;"><input type="text" id="newCatInput" placeholder="Nueva categoría"><button class="btn" id="addCatBtn">+ Agregar</button></div>
-          <div class="note" id="catMsg" style="min-height:14px; margin-top:0; color:#a9a58c;"></div>
-          <div class="form-row"><button class="btn-ghost" id="csvBtn">⬇️ Descargar CSV</button></div>
-          <div class="note" id="csvMsg" style="min-height:14px; margin-top:0; color:#a9a58c;"></div>
-        </div>
-      </div>
-
-      <div class="acc-card" id="acc-entradas">
-        <div class="acc-head"><span class="acc-head-title">🎟️ Entradas por día (precios confirmados)</span><span class="chevron">▶</span></div>
-        <div class="acc-body">
-          <div id="entDayList"></div>
-          <div class="info-card"><div class="info-row" style="font-weight:700;"><span>Total entradas marcadas</span><span class="money" id="entTotalClp">—</span></div><div class="info-row"><span>…en pesos argentinos</span><span class="money" id="entTotalArs">—</span></div><div class="note">Solo cuenta las entradas marcadas en el itinerario. El bus turístico está desactivado. En el Teatro Colón no se paga con moneda extranjera: lleva pesos o tarjeta. Barolo: CLP según Civitatis (más caro) o la web oficial.</div></div>
-        </div>
-      </div>
-
-      <div class="acc-card" id="acc-estimados">
-        <div class="acc-head"><span class="acc-head-title">Estimados por categoría + cuánto ARS llevar</span><span class="chevron">▶</span></div>
-        <div class="acc-body">
-          <table class="budget-table"><thead><tr><th>Día</th><th>Estimado</th><th>Gastado</th><th>Estado</th></tr></thead><tbody id="dayEstBody"></tbody></table>
-          <div class="note">Gasto diario estimado sin hostal. Semáforo según lo gastado ese día: ⚪ sin gastos · 🟢 menos del 80% del máximo · 🟡 entre 80% y 100% · 🔴 sobre el máximo. Cambia si marcas o desmarcas entradas o eliges el plan económico.</div>
           <h3 style="margin:14px 0 4px;">💵 Efectivo vs. tarjeta por día</h3>
           <table class="budget-table"><thead><tr><th>Día</th><th>Efectivo (ARS)</th><th>Tarjeta (CLP)</th></tr></thead><tbody id="cashDayBody"></tbody></table>
           <div class="note">Supuestos: efectivo ≈ 50% de la comida (ferias, kioscos, helados), 40% de traslados, 25% de la noche y 50% de las entradas; el resto va con tarjeta. Souvenirs 70% en efectivo e imprevistos 100% efectivo.</div>
@@ -598,7 +619,7 @@
   </main>
 
   <footer>Rinasco a modo mio 🧡</footer>
-  <div class="version-tag">v5.11 · Creado por Melitalove</div>
+  <div class="version-tag">v5.12 · Creado por Melitalove</div>
   <div class="nav-spacer"></div>
 </div>
 
@@ -1026,19 +1047,22 @@ days.forEach(d=>{
 
 /* ---------- Presupuesto (billeteras independientes) ---------- */
 const METHODS = [
-  {key:'Débito Global66', label:'💳 Global66 (USD)', short:'Global66', cur:'USD'},
-  {key:'Efectivo USD', label:'💵 Efectivo USD', short:'USD', cur:'USD'},
-  {key:'Efectivo ARS', label:'🇦🇷 Efectivo ARS', short:'ARS', cur:'ARS'},
-  {key:'Débito BCI', label:'💳 Débito BCI (CLP)', short:'BCI', cur:'CLP'}
+  {key:'Global66 CLP', label:'💳 Global66 · CLP', short:'Global66 CLP', cur:'CLP'},
+  {key:'Global66 ARS', label:'💳 Global66 · ARS', short:'Global66 ARS', cur:'ARS'},
+  {key:'Global66 USD', label:'💳 Global66 · USD', short:'Global66 USD', cur:'USD'},
+  {key:'Efectivo USD', label:'💵 Efectivo USD', short:'Efectivo USD', cur:'USD'},
+  {key:'Efectivo ARS', label:'🇦🇷 Efectivo ARS', short:'Efectivo ARS', cur:'ARS'},
+  {key:'Débito BCI', label:'💳 Débito BCI · CLP', short:'BCI', cur:'CLP'}
 ];
 const CURRENCIES = ['CLP','ARS','USD'];
 const BASE_CATEGORIES = ['Alojamiento','Transporte','Comida y helados','Entradas y tours','Vida nocturna','Souvenirs y regalos','Propinas','Otra'];
+const HOSTAL_USD = 142.75, DEPOSIT_USD = 10;
 let ESTIMATES = {}, EST_LOW = 0, EST_HIGH = 0;
 function recomputeEstimates(){
   const sum = (k,i)=> [1,2,3,4,5,6,7].reduce((t,n)=> t + dayEst(n)[k][i], 0);
   const fog = fogonOn();
   ESTIMATES = {
-    'Alojamiento':        {low:141840, high:141840, note:'Hostal $132.540 (se paga al llegar) + depósito $9.300 (reembolsable)'},
+    'Alojamiento':        {low:hostalCost()+DEPOSIT_USD*currentRates().uc, high:hostalCost()+DEPOSIT_USD*currentRates().uc, note:'Hostal USD 142,75 (se paga al llegar) + depósito USD 10 (reembolsable)'},
     'Transporte':         {low:sum('transp',0), high:sum('transp',1), note:'Uber, subte, traslados; incluye Uber desde el aeropuerto de Santiago el día 7'},
     'Comida y helados':   {low:sum('comida',0), high:sum('comida',1), note: fog ? "Incluye Fogón Asado (cena de cumpleaños) y helados" : "Incluye cena de cumpleaños en L'adesso y helados"},
     'Entradas y tours':   {low:sum('ent',0), high:sum('ent',1), note:'Solo las entradas marcadas en el itinerario (Barolo, Jardín, MALBA, Teatro Colón; bus turístico desactivado)'},
@@ -1051,7 +1075,8 @@ function recomputeEstimates(){
   EST_HIGH = Object.values(ESTIMATES).reduce((t,e)=>t+e.high,0);
 }
 recomputeEstimates();
-const HOSTAL_COST = 132540;
+function hostalCost(){ return HOSTAL_USD * currentRates().uc; }
+function hostalMethod(){ const v = lsGet('hostal-method','Global66 CLP'); return METHODS.some(m=>m.key===v) ? v : 'Global66 CLP'; }
 const HOSTAL_RE = /host(a|e)l|play|garden/i;
 const PREPAID = [
   {c:'Vuelo (JetSmart, ida/vuelta)', v:201561},
@@ -1092,27 +1117,42 @@ function loadExpenses(){
   const list = raw.map(e=>{
     if(!e.id){ e.id = uid(); changed = true; }
     if(!e.category){ e.category = 'Otra'; changed = true; }
+    if(e.method==='Débito Global66'){ e.method = 'Global66 USD'; changed = true; }
     return e;
   });
   if(changed) lsSet('expense-log', list);
   return list;
 }
 function saveExpenses(l){ lsSet('expense-log', l); }
-function loadBalances(){ return lsGet('method-balances', {}); }
+function loadBalances(){
+  let b = lsGet('method-balances', {}); let ch = false;
+  if(b['Débito Global66']!==undefined){ b['Global66 USD'] = (Number(b['Global66 USD'])||0) + (Number(b['Débito Global66'])||0); delete b['Débito Global66']; ch = true; }
+  if(!lsGet('balances-seeded', false)){
+    if(!Object.keys(b).length){ b = {'Global66 CLP':600598, 'Efectivo USD':200, 'Débito BCI':0}; ch = true; }
+    lsSet('balances-seeded', true);
+  }
+  if(ch) lsSet('method-balances', b);
+  return b;
+}
+function loadMoves(){ return lsGet('money-moves', []); }
+function saveMoves(l){ lsSet('money-moves', l); }
 function loadCustomCats(){ return lsGet('bud-categories', []); }
 function allCategories(){ return BASE_CATEGORIES.concat(loadCustomCats().filter(c=>!BASE_CATEGORIES.includes(c))); }
 function catOf(e){ return allCategories().includes(e.category) ? e.category : 'Otra'; }
 
 function computeAll(){
-  const exps = loadExpenses(); const bal = loadBalances();
+  const exps = loadExpenses(); const bal = loadBalances(); const moves = loadMoves();
   const wallets = METHODS.map(m=>{
     const initial = Number(bal[m.key]) || 0;
     const spent = exps.filter(e=>e.method===m.key).reduce((s,e)=> s + convert(e.amount, e.currency, m.cur), 0);
-    return {...m, initial, spent, avail: initial - spent};
+    const inn = moves.filter(x=>x.to===m.key).reduce((s,x)=> s + (Number(x.in)||0), 0);
+    const out = moves.filter(x=>x.from===m.key).reduce((s,x)=> s + (Number(x.out)||0), 0);
+    return {...m, initial, spent, inn, out, avail: initial + inn - out - spent};
   });
   const generalInitial = wallets.reduce((s,w)=> s + convert(w.initial, w.cur, 'CLP'), 0);
   const totalSpent = exps.reduce((s,e)=> s + convert(e.amount, e.currency, 'CLP'), 0);
-  return {exps, wallets, generalInitial, totalSpent, available: generalInitial - totalSpent};
+  const available = wallets.reduce((s,w)=> s + convert(w.avail, w.cur, 'CLP'), 0);
+  return {exps, wallets, generalInitial, totalSpent, available};
 }
 function spentByCategory(exps){
   const map = {}; allCategories().forEach(c=> map[c]=0);
@@ -1122,7 +1162,7 @@ function spentByCategory(exps){
 function walletsLine(){
   const c = computeAll();
   if(c.generalInitial <= 0) return 'Registra tus saldos iniciales en la pestaña 💰';
-  return c.wallets.filter(w=> w.initial>0 || w.spent!==0).map(w=> `${w.short} ${mny(w.avail, w.cur)}`).join(' · ');
+  return c.wallets.filter(w=> w.initial>0 || w.inn>0 || w.spent!==0).map(w=> `${w.short} ${mny(w.avail, w.cur)}`).join(' · ');
 }
 
 /* Hostal aparte + gasto diario */
@@ -1142,7 +1182,7 @@ function renderDaily(c){
   const wl = document.getElementById('dailyWallets'), note = document.getElementById('dailyNote');
   if(c.generalInitial <= 0){
     tot.textContent = '—'; tot.classList.remove('neg');
-    sub.textContent = 'Anota tus saldos iniciales en "Saldos por billetera" y aquí verás cuánto puedes gastar cada día.';
+    sub.textContent = 'Anota tus saldos iniciales en "Mis medios de pago" y aquí verás cuánto puedes gastar cada día.';
     wl.innerHTML = ''; note.textContent = ''; return;
   }
   if(days === 0){
@@ -1150,7 +1190,7 @@ function renderDaily(c){
     sub.textContent = 'El viaje ya terminó.'; wl.innerHTML = ''; note.textContent = ''; return;
   }
   const paid = hostalPaid(c.exps);
-  const reserve = Math.max(0, HOSTAL_COST - paid);
+  const reserve = Math.max(0, hostalCost() - paid);
   const entSpent = c.exps.filter(e=> catOf(e)==='Entradas y tours').reduce((t,e)=> t + convert(e.amount, e.currency, 'CLP'), 0);
   const entReserve = Math.max(0, plannedEntries().hi - entSpent);
   const net = c.available - reserve - entReserve;
@@ -1165,13 +1205,13 @@ function renderDaily(c){
     subTxt += ` Hoy: gastado ${mny(today)} de ${mny(allowToday)}` + (over ? ` — <span class="neg money">te pasaste por ${fmtMoney(today-allowToday,'CLP')}</span>` : ' ✓') + '.';
   }
   sub.innerHTML = subTxt;
-  wl.innerHTML = c.wallets.filter(w=> w.initial>0 || w.spent!==0).map(w=>{
-    const av = w.avail - (w.key==='Débito Global66' ? convert(reserve,'CLP','USD') : 0);
+  wl.innerHTML = c.wallets.filter(w=> w.initial>0 || w.inn>0 || w.spent!==0).map(w=>{
+    const av = w.avail - (w.key===hostalMethod() ? convert(reserve,'CLP',w.cur) : 0);
     const pd = av / days;
     const approx = w.cur==='CLP' ? '' : ` <span style="font-weight:400;">(≈ ${fmtMoney(convert(pd,w.cur,'CLP'),'CLP')})</span>`;
     return `<div class="info-row"><span>${esc(w.label)}</span><span class="money ${pd<-0.005?'neg':''}">${fmtMoney(pd,w.cur)} / día${approx}</span></div>`;
   }).join('');
-  note.innerHTML = (reserve>0 ? `Descontado: hostal pendiente ${mny(reserve)} (de Global66). ` : '') + (entReserve>0 ? `Descontado: entradas marcadas en el itinerario ${mny(entReserve)} (solo en el total, no por billetera). ` : '') + 'Los montos grandes se abrevian: 132,5 mil = 132.500.';
+  note.innerHTML = (reserve>0 ? `Descontado: hostal pendiente ${mny(reserve)} (de ${esc(hostalMethod())}). ` : '') + (entReserve>0 ? `Descontado: entradas marcadas en el itinerario ${mny(entReserve)} (solo en el total, no por billetera). ` : '') + 'Los montos grandes se abrevian: 132,5 mil = 132.500.';
 }
 
 /* Ojito: oculta todas las cifras de la app */
@@ -1193,7 +1233,9 @@ function fillCategorySelect(){
   const sel = document.getElementById('expCategory'); const cats = allCategories();
   const cur = sel.value; sel.innerHTML = optionsHTML(cats, cats.includes(cur) ? cur : 'Comida y helados');
 }
-document.getElementById('expMethod').innerHTML = optionsHTML(METHODS, 'Débito Global66');
+const DEFAULT_METHOD = {ARS:'Efectivo ARS', USD:'Efectivo USD', CLP:'Global66 CLP'};
+document.getElementById('expMethod').innerHTML = optionsHTML(METHODS, 'Efectivo ARS');
+document.getElementById('expCurrency').addEventListener('change', e=>{ document.getElementById('expMethod').value = DEFAULT_METHOD[e.target.value] || 'Efectivo ARS'; });
 fillCategorySelect();
 document.getElementById('expDate').value = localISO();
 function updateDayLabel(){
@@ -1214,7 +1256,7 @@ document.getElementById('expAddBtn').addEventListener('click', ()=>{
   const date = document.getElementById('expDate').value || localISO();
   const l = loadExpenses(); l.push({id:uid(), concept, amount, currency, method, date, category}); saveExpenses(l);
   document.getElementById('expConcept').value = ''; document.getElementById('expAmount').value = '';
-  setMsg('expMsg', `✓ Guardado en ${method}. Mira cómo cambian tus saldos.`);
+  setMsg('expMsg', `✓ Guardado en ${method}. Tu saldo ya se actualizó.`);
   renderBudgetAll();
   const target = document.getElementById('acc-saldos'); const r = target.getBoundingClientRect();
   if(r.top > window.innerHeight*0.6) target.scrollIntoView({behavior:'smooth', block:'start'});
@@ -1231,6 +1273,7 @@ function buildWallets(){
         <div><label>Gastado</label><div class="wallet-val money" id="w-spent-${i}">—</div></div>
         <div><label>Disponible</label><div class="wallet-val money" id="w-avail-${i}">—</div></div>
       </div>
+      <div class="note" id="w-move-${i}" style="margin:2px 0 0;"></div>
     </div>`).join('');
   METHODS.forEach((m,i)=>{
     document.getElementById('w-init-'+i).addEventListener('input', e=>{
@@ -1240,6 +1283,55 @@ function buildWallets(){
   });
 }
 buildWallets();
+
+
+/* Mover dinero entre medios (conversiones) */
+const mvOutEl=document.getElementById('mvOut'), mvInEl=document.getElementById('mvIn');
+let mvInManual=false, pendingMvDel=null, pendingMvTimer=null;
+function mvCur(id){ const m=METHODS.find(x=>x.key===document.getElementById(id).value); return m?m.cur:'CLP'; }
+function mvRound(n,c){ return c==='USD' ? Math.round(n*100)/100 : Math.round(n); }
+function mvUpdate(){
+  const out=parseFloat(mvOutEl.value)||0, fc=mvCur('mvFrom'), tc=mvCur('mvTo');
+  const ref=convert(out,fc,tc);
+  if(!mvInManual) mvInEl.value = out>0 ? mvRound(ref,tc) : '';
+  const inn=parseFloat(mvInEl.value)||0; let h='';
+  if(out>0 && inn>0){
+    if(fc!==tc && ref>0){ const d=(inn/ref-1)*100; h=`Con tus tasas de referencia llegarían ${fmtMoney(ref,tc)}. Tu monto es ${d>=0?'+':''}${d.toFixed(1).replace('.',',')}% (${d<0?'costo o comisión':'a favor'}).`; }
+    else if(fc===tc) h='Misma moneda: normalmente llega lo mismo que sale.';
+  }
+  document.getElementById('mvHint').textContent=h;
+}
+function fillMoveSelects(){
+  const opt = sel => METHODS.map(m=>`<option value="${esc(m.key)}" ${m.key===sel?'selected':''}>${esc(m.label)}</option>`).join('');
+  document.getElementById('mvFrom').innerHTML=opt('Global66 CLP'); document.getElementById('mvTo').innerHTML=opt('Global66 ARS');
+}
+fillMoveSelects();
+['mvFrom','mvTo'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{ mvInManual=false; mvUpdate(); }));
+mvOutEl.addEventListener('input',()=>{ mvInManual=false; mvUpdate(); });
+mvInEl.addEventListener('input',()=>{ mvInManual=true; mvUpdate(); });
+document.getElementById('mvBtn').addEventListener('click',()=>{
+  const from=document.getElementById('mvFrom').value, to=document.getElementById('mvTo').value;
+  const out=parseFloat(mvOutEl.value), inn=parseFloat(mvInEl.value);
+  if(from===to){ setMsg('mvMsg','Elige dos medios distintos.'); return; }
+  if(!isFinite(out)||out<=0||!isFinite(inn)||inn<=0){ setMsg('mvMsg','Anota cuánto sale y cuánto llega.'); return; }
+  const l=loadMoves(); l.push({id:uid(), date:localISO(), from, to, out, in:inn}); saveMoves(l);
+  mvOutEl.value=''; mvInEl.value=''; mvInManual=false; mvUpdate();
+  setMsg('mvMsg','✓ Movimiento registrado. Tus saldos ya se actualizaron.'); renderBudgetAll({keepCats:true});
+});
+function renderMoves(){
+  const box=document.getElementById('mvList'); if(!box) return;
+  const l=loadMoves().slice().sort((a,b)=> (b.date||'').localeCompare(a.date||''));
+  const nm=k=>{ const m=METHODS.find(x=>x.key===k); return m?m.short:k; };
+  const cu=k=>{ const m=METHODS.find(x=>x.key===k); return m?m.cur:'CLP'; };
+  box.innerHTML = l.length ? '<div class="subsection-title" style="margin:10px 0 4px;">Movimientos</div>' + l.map(x=>`<div class="exp-line"><div class="exp-main"><span class="exp-desc">${esc(nm(x.from))} → ${esc(nm(x.to))}</span><span class="money">${fmtExact(x.out,cu(x.from))} → ${fmtExact(x.in,cu(x.to))}</span></div><div class="exp-meta">${esc(x.date||'')}</div><div class="exp-actions"><span class="del" data-mvdel="${x.id}">${pendingMvDel===x.id?'⚠️ Toca de nuevo para eliminar':'🗑️ Eliminar'}</span></div></div>`).join('') : '';
+}
+document.getElementById('mvList').addEventListener('click', ev=>{
+  const el=ev.target.closest('[data-mvdel]'); if(!el) return; const id=el.dataset.mvdel;
+  if(pendingMvDel!==id){ pendingMvDel=id; clearTimeout(pendingMvTimer); pendingMvTimer=setTimeout(()=>{ pendingMvDel=null; renderMoves(); },4000); renderMoves(); return; }
+  clearTimeout(pendingMvTimer); pendingMvDel=null; saveMoves(loadMoves().filter(x=>x.id!==id)); renderBudgetAll({keepCats:true});
+});
+document.getElementById('hostalMethod').innerHTML = METHODS.map(m=>`<option value="${esc(m.key)}" ${m.key===hostalMethod()?'selected':''}>${esc('Lo pagaré con: '+m.label)}</option>`).join('');
+document.getElementById('hostalMethod').addEventListener('change', e=>{ lsSet('hostal-method', e.target.value); renderBudgetAll({keepCats:true}); });
 
 /* Gastos por categoría: acordeones, edición en línea, eliminar con doble toque */
 const openCats = new Set(); let editingId = null; let pendingDel = null; let pendingTimer = null;
@@ -1369,9 +1461,9 @@ function renderEstimates(c){
   document.getElementById('estCashClp').textContent = rangeCur(r1000(kLo), r1000(kHi),'CLP');
   const cLo = r1000(toARS(kLo)), cHi = r1000(toARS(kHi));
   document.getElementById('estCashArs').textContent = rangeCur(cLo, cHi,'ARS');
-  const wArs = (c.wallets||[]).find(w=> w.cur==='ARS'); const have = wArs ? wArs.initial : 0;
+  const wArs = (c.wallets||[]).find(w=> w.key==='Efectivo ARS'); const have = wArs ? (wArs.initial + wArs.inn - wArs.out) : 0;
   document.getElementById('estArsHave').textContent = fmtMoney(have,'ARS');
-  document.getElementById('estArsGap').innerHTML = have<=0 ? 'Anota cuánto ARS llevas en "Saldos por billetera" para ver cuánto te falta.' : have < cLo ? `Te faltan ${mny(cLo-have,'ARS')} para el mínimo de efectivo.` : have > cHi ? `Llevas ${mny(have-cHi,'ARS')} sobre el máximo de efectivo sugerido.` : 'Tu efectivo en ARS está dentro del rango sugerido. 👌';
+  document.getElementById('estArsGap').innerHTML = have<=0 ? 'Anota cuánto ARS llevas en "Mis medios de pago" para ver cuánto te falta.' : have < cLo ? `Te faltan ${mny(cLo-have,'ARS')} para el mínimo de efectivo.` : have > cHi ? `Llevas ${mny(have-cHi,'ARS')} sobre el máximo de efectivo sugerido.` : 'Tu efectivo en ARS está dentro del rango sugerido. 👌';
   renderEntradasDia();
 }
 function renderEntradasDia(){
@@ -1433,10 +1525,14 @@ function renderBudgetAll(opts){
   document.getElementById('capMsg').innerHTML = m >= 0 ? `Con el estimado más alto te quedan ${mny(m)} bajo tu tope.` : `<span class="neg">El estimado más alto supera tu tope por ${fmtMoney(-m,'CLP')}.</span> Recorta entradas o noches, o prueba el plan económico.`;
   renderDayEst(c);
   document.getElementById('estRange').textContent = rangeText(EST_LOW, EST_HIGH);
-  document.getElementById('estHostal').textContent = fmtMoney(HOSTAL_COST,'CLP');
-  document.getElementById('estRest').textContent = rangeText(EST_LOW - HOSTAL_COST, EST_HIGH - HOSTAL_COST);
+  document.getElementById('estHostal').textContent = fmtMoney(hostalCost(),'CLP');
+  { const aj = ESTIMATES['Alojamiento']; document.getElementById('estRest').textContent = rangeText(EST_LOW - aj.low, EST_HIGH - aj.high); }
   const hp = hostalPaid(c.exps);
-  document.getElementById('estHostalStatus').innerHTML = hp >= HOSTAL_COST - 0.5 ? '✓ Registrado como pagado.' : (hp>0 ? `Registrado ${mny(hp)}; faltan ${mny(HOSTAL_COST-hp)}.` : 'Pendiente: se paga al llegar con Global66. Al registrarlo en Alojamiento (con "hostal" en la descripción) pasa a pagado.');
+  document.getElementById('estHostalStatus').innerHTML = hp >= hostalCost() - 0.5 ? '✓ Registrado como pagado.' : (hp>0 ? `Registrado ${mny(hp)}; faltan ${mny(hostalCost()-hp)}.` : 'Pendiente: se paga al llegar. Al registrarlo en Alojamiento (con "hostal" en la descripción) pasa a pagado.');
+  document.getElementById('hostalUsd').textContent = fmtMoney(HOSTAL_USD,'USD');
+  document.getElementById('hostalClp').textContent = '≈ ' + fmtMoney(hostalCost(),'CLP');
+  document.getElementById('walletTotal').textContent = fmtMoney(c.available,'CLP');
+  renderMoves();
   renderDaily(c);
   document.getElementById('generalInitial').textContent = fmtMoney(c.generalInitial,'CLP');
   document.getElementById('estCompare').innerHTML = compareMessage(c.generalInitial);
@@ -1445,7 +1541,9 @@ function renderBudgetAll(opts){
     const av = document.getElementById('w-avail-'+i);
     av.textContent = fmtMoney(w.avail, w.cur);
     av.classList.toggle('neg', w.avail < -0.005);
-    av.classList.toggle('low-balance', w.avail >= -0.005 && w.initial>0 && w.avail < w.initial*0.15);
+    av.classList.toggle('low-balance', w.avail >= -0.005 && (w.initial+w.inn)>0 && w.avail < (w.initial+w.inn)*0.15);
+    const mvEl = document.getElementById('w-move-'+i); const net = w.inn - w.out;
+    if(mvEl) mvEl.textContent = Math.abs(net)>0.005 ? `Movido: ${net>0?'+':''}${fmtMoney(net, w.cur)}` : '';
   });
   document.getElementById('balBudget').textContent = fmtMoney(c.generalInitial,'CLP');
   document.getElementById('balSpent').textContent = fmtMoney(c.totalSpent,'CLP');
@@ -1473,7 +1571,7 @@ document.getElementById('resetBudgetBtn').addEventListener('click', ()=>{
     return;
   }
   clearTimeout(resetTimer); resetArmed = false; btn.textContent = 'Reiniciar presupuesto';
-  ['expense-log','method-balances','bud-categories'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
+  ['expense-log','method-balances','bud-categories','money-moves'].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
   editingId = null; pendingDel = null; openCats.clear();
   buildWallets(); fillCategorySelect(); renderBudgetAll();
   setMsg('resetMsg','Presupuesto reiniciado. Todo parte de cero.');
