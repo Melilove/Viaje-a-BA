@@ -1,6 +1,9 @@
 {
+  "id": "/Viaje-a-BA/mi-decreto-app",
   "name": "Mi Decreto - Buenos Aires",
   "short_name": "Mi Decreto",
+  "description": "Mi viaje a Buenos Aires: itinerario, presupuesto y pendientes",
+  "lang": "es",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -9,6 +12,7 @@
   "orientation": "portrait",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
     { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
