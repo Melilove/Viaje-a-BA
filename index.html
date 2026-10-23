@@ -258,7 +258,7 @@
     <div class="eyebrow">Santiago · Buenos Aires</div>
     <h1 class="hero-title">MI DECRETO</h1>
     <div class="hero-sub" id="heroSub">Buenos Aires, ida y vuelta hacia mí</div>
-    <div class="ver-top">Rinasco a modo mio 🧡 · v5.12</div>
+    <div class="ver-top">Rinasco a modo mio 🧡 · v5.13</div>
     <div id="eyeToggle" title="Ocultar / mostrar cifras">👁️</div>
   </header>
 
@@ -362,40 +362,37 @@
       <div class="acc-card open" id="acc-saldos">
         <div class="acc-head"><span class="acc-head-title">💳 Mis medios de pago</span><span class="chevron">▶</span></div>
         <div class="acc-body">
+          <div class="info-card" id="dailyCard" style="border:1px solid rgba(212,161,61,0.55);">
+            <div class="note" style="margin:0;">Te quedan por día</div>
+            <div class="daily-big money" id="dailyTotal">—</div>
+            <div class="daily-sub" id="dailySub"></div>
+            <div class="note" id="dailyNote"></div>
+          </div>
           <div class="info-card">
-            <div class="note" style="margin-top:0;">Anota cuánto tienes en cada medio. El "Disponible" se actualiza solo con tus gastos y con el dinero que muevas entre medios.</div>
+            <div class="note" style="margin-top:0;">Anota cuánto tienes en cada medio. "Queda" se actualiza solo con tus gastos.</div>
             <div id="walletsContainer"></div>
-            <div class="info-row" style="font-weight:700;"><span>Tengo en total (≈ en pesos chilenos)</span><span class="money" id="walletTotal">—</span></div>
+            <div class="info-row" style="font-weight:700;"><span>Tengo en total (≈ en CLP)</span><span class="money" id="walletTotal">—</span></div>
           </div>
           <div class="info-card">
-            <h3>🔁 Mover dinero</h3>
-            <div class="note" style="margin-top:0;">Úsalo cuando conviertas o cambies plata: por ejemplo de Global66 CLP a Global66 ARS, o de Efectivo USD a Efectivo ARS cuando cambies tus dólares. Anota lo que sale y lo que llega de verdad.</div>
-            <div class="form-row"><select id="mvFrom" style="flex:1; min-width:0;"></select><select id="mvTo" style="flex:1; min-width:0;"></select></div>
-            <div class="form-row"><input type="number" id="mvOut" placeholder="Sale" step="any" inputmode="decimal" style="flex:1; min-width:0;"><input type="number" id="mvIn" placeholder="Llega" step="any" inputmode="decimal" style="flex:1; min-width:0;"></div>
-            <div class="note" id="mvHint" style="min-height:14px; margin-top:0;"></div>
-            <div class="form-row"><button class="btn" id="mvBtn" style="width:100%;">Registrar movimiento</button></div>
-            <div class="note" id="mvMsg" style="min-height:14px; margin-top:0;"></div>
-            <div id="mvList"></div>
-          </div>
-          <div class="info-card">
-            <h3>🏠 Hostal (se paga al llegar)</h3>
-            <div class="info-row"><span>Estadía (6 noches)</span><span class="money" id="hostalUsd">—</span></div>
-            <div class="info-row"><span>…en pesos chilenos (referencia)</span><span class="money" id="hostalClp">—</span></div>
-            <div class="info-row"><span>Depósito reembolsable (efectivo)</span><span class="money">USD 10,00</span></div>
+            <div class="info-row"><span>🏠 Hostal pendiente</span><span class="money" id="hostalUsd">—</span></div>
+            <div class="info-row"><span>…en pesos (referencia)</span><span class="money" id="hostalClp">—</span></div>
             <div class="form-row" style="margin-top:6px;"><select id="hostalMethod" style="flex:1;"></select></div>
-            <div class="note" id="estHostalStatus" style="margin:0 0 6px;"></div>
-            <div class="note">El hostal cobra en dólares: la cifra fija es USD 142,75. El monto en pesos que ves en Booking se recalcula cada día; aquí se estima con el tipo de cambio de arriba. Si lo pagas con una tarjeta en pesos, el banco puede sumar comisión (por confirmar). Por confirmar con el hostal: si aceptan efectivo en USD.</div>
+            <div class="note" id="estHostalStatus" style="margin:0 0 4px;"></div>
+            <div class="note">Cobra en USD: el monto en pesos de Booking cambia cada día. Por confirmar con el hostal: si aceptan efectivo en USD.</div>
           </div>
+          <details class="more">
+            <summary style="color:var(--paper);">🔁 Convertí o cambié plata</summary>
+            <div class="info-card" style="margin-top:6px;">
+              <div class="note" style="margin-top:0;">Úsalo solo cuando conviertas en Global66 o cambies tus dólares: anota lo que sale y lo que llega de verdad, y los saldos se ajustan.</div>
+              <div class="form-row"><select id="mvFrom" style="flex:1; min-width:0;"></select><select id="mvTo" style="flex:1; min-width:0;"></select></div>
+              <div class="form-row"><input type="number" id="mvOut" placeholder="Sale" step="any" inputmode="decimal" style="flex:1; min-width:0;"><input type="number" id="mvIn" placeholder="Llega" step="any" inputmode="decimal" style="flex:1; min-width:0;"></div>
+              <div class="note" id="mvHint" style="min-height:14px; margin-top:0;"></div>
+              <div class="form-row"><button class="btn" id="mvBtn" style="width:100%;">Registrar movimiento</button></div>
+              <div class="note" id="mvMsg" style="min-height:14px; margin-top:0;"></div>
+              <div id="mvList"></div>
+            </div>
+          </details>
         </div>
-      </div>
-
-      <div class="info-card" id="dailyCard" style="border:1px solid rgba(212,161,61,0.55);">
-        <h3>🎯 Cuánto puedes gastar por día</h3>
-        <div class="daily-big money" id="dailyTotal">—</div>
-        <div class="daily-sub" id="dailySub"></div>
-        <div id="dailyWallets"></div>
-        <div class="note" id="dailyPlan" style="margin-top:6px;"></div>
-        <div class="note" id="dailyNote"></div>
       </div>
 
       <div class="acc-card open" id="acc-registro">
@@ -407,8 +404,8 @@
               <select id="expCurrency"><option value="ARS">ARS</option><option value="CLP">CLP</option><option value="USD">USD</option></select>
             </div>
             <div class="form-row">
-              <select id="expCategory" style="flex:1;"></select>
-              <select id="expMethod" style="flex:1;"></select>
+              <select id="expCategory" style="flex:1; min-width:0;"></select>
+              <select id="expMethod" style="flex:1; min-width:0;"></select>
             </div>
             <details class="more">
               <summary>Descripción y fecha (opcional)</summary>
@@ -420,20 +417,9 @@
             </details>
             <div class="form-row"><button class="btn" id="expAddBtn" style="width:100%;">Agregar gasto</button></div>
             <div class="note" id="expMsg" style="min-height:14px; margin-top:0;"></div>
-            <div class="tip">✦ Hostal: al pagarlo, regístralo en <b>Alojamiento</b> con la palabra <b>Hostal</b> en la descripción (abre "Descripción y fecha"). Depósito (reembolsable): regístralo en Alojamiento y, cuando te lo devuelvan, agrégalo de nuevo con <b>monto negativo</b>.</div>
+            <div class="tip">✦ Hostal: al pagarlo, regístralo en <b>Alojamiento</b> con la palabra <b>Hostal</b> en la descripción. Depósito reembolsable: cuando te lo devuelvan, agrégalo de nuevo con <b>monto negativo</b>.</div>
           </div>
         </div>
-      </div>
-
-      <div class="info-card" id="planCard" style="border:1px solid rgba(212,161,61,0.55);">
-        <h3>📅 Plan por día</h3>
-        <div class="seg" id="scenSeg"><button data-scen="normal">Plan normal</button><button data-scen="eco">Plan económico</button></div>
-        <div class="note" id="scenNote" style="margin:0 0 6px;"></div>
-        <div class="info-row" style="font-weight:700;"><span>Total estimado del viaje</span><span class="money" id="estRange">—</span></div>
-        <div class="info-row"><span>Tu tope máximo</span><span class="money" id="capVal">—</span></div>
-        <div class="est-cmp" id="capMsg" style="margin:4px 0 8px;"></div>
-        <table class="budget-table"><thead><tr><th>Día</th><th>Estimado</th><th>Gastado</th><th>Estado</th></tr></thead><tbody id="dayEstBody"></tbody></table>
-        <div class="note">Gasto diario estimado sin hostal. Semáforo según lo gastado ese día: ⚪ sin gastos · 🟢 menos del 80% del máximo · 🟡 entre 80% y 100% · 🔴 sobre el máximo. Cambia si marcas o desmarcas entradas o eliges el plan económico.</div>
       </div>
 
       <div class="acc-card open" id="acc-categorias">
@@ -447,15 +433,27 @@
         </div>
       </div>
 
-      <div class="acc-card open" id="acc-entradas">
-        <div class="acc-head"><span class="acc-head-title">🎟️ Entradas por día (precios confirmados)</span><span class="chevron">▶</span></div>
+      <div class="acc-card" id="acc-antes">
+        <div class="acc-head"><span class="acc-head-title">📌 Antes del viaje</span><span class="chevron">▶</span></div>
         <div class="acc-body">
-          <div id="entDayList"></div>
-          <div class="info-card"><div class="info-row" style="font-weight:700;"><span>Total entradas marcadas</span><span class="money" id="entTotalClp">—</span></div><div class="info-row"><span>…en pesos argentinos</span><span class="money" id="entTotalArs">—</span></div><div class="note">Solo cuenta las entradas marcadas en el itinerario. El bus turístico está desactivado. En el Teatro Colón no se paga con moneda extranjera: lleva pesos o tarjeta. Barolo: CLP según Civitatis (más caro) o la web oficial.</div></div>
-        </div>
-      </div>
-
-      <div class="acc-card" id="acc-cambio">
+          <div class="info-card">
+            <h3>Total estimado del viaje</h3>
+            <div class="info-row" style="font-weight:700;"><span>Estimado (con hostal)</span><span class="money" id="estRange">—</span></div>
+            <div class="info-row"><span>Tu máximo para el viaje</span><span class="money" id="capVal">—</span></div>
+            <div class="est-cmp" id="capMsg" style="margin-top:4px;"></div>
+            <div class="note">El máximo (CLP 780.000, hostal incluido) es el límite que definiste al inicio del plan. Esta cifra no incluye lo que ya pagaste antes (vuelo, power bank, seguro).</div>
+          </div>
+          <div class="info-card">
+            <h3>Cuánto ARS llevar</h3>
+            <div class="info-row"><span>Gasto en Argentina (sin hostal)</span><span class="money" id="estArsBaseClp">—</span></div>
+            <div class="info-row"><span>…en ARS</span><span class="money" id="estArs">—</span></div>
+            <div class="info-row"><span>Efectivo a llevar (según la tabla por día), en ARS</span><span class="money" id="estCashArs">—</span></div>
+            <div class="info-row"><span>…equivale a</span><span class="money" id="estCashClp">—</span></div>
+            <div class="info-row"><span>Ya anotado en "Efectivo ARS"</span><span class="money" id="estArsHave">—</span></div>
+            <div class="est-cmp" id="estArsGap"></div>
+            <div class="note">El hostal no entra: se paga aparte. De ese gasto, lleva en efectivo solo la parte de ferias, kioscos, propinas y entradas; el resto va con tarjeta (restaurantes, Uber, clubes). Convierte de a poco allá. Cálculo según el tipo de cambio de arriba.</div>
+          </div>
+          <div class="acc-card" id="acc-cambio">
         <div class="acc-head"><span class="acc-head-title">💵 Dónde cambiar USD en Buenos Aires</span><span class="chevron">▶</span></div>
         <div class="acc-body">
           <div class="tip" style="margin-top:0; color:var(--paper); font-style:normal;">Objetivo: recibir <b>más pesos por cada dólar</b>. Mira el precio de <b>COMPRA</b> (lo que te pagan a ti): gana el número más alto. Cotiza por WhatsApp en 2 o 3 lugares el mismo día.</div>
@@ -498,7 +496,24 @@
         </div>
       </div>
 
-      <div class="acc-card" id="acc-detalles">
+        </div>
+      </div>
+
+      <div id="legacyHidden" style="display:none;">
+        <div class="seg" id="scenSeg"><button data-scen="normal">Plan normal</button><button data-scen="eco">Plan económico</button></div>
+        <div class="note" id="scenNote"></div>
+        <div id="dailyWallets"></div>
+        <div id="dailyPlan"></div>
+        <table><tbody id="dayEstBody"></tbody></table>
+        <div class="acc-card open" id="acc-entradas">
+        <div class="acc-head"><span class="acc-head-title">🎟️ Entradas por día (precios confirmados)</span><span class="chevron">▶</span></div>
+        <div class="acc-body">
+          <div id="entDayList"></div>
+          <div class="info-card"><div class="info-row" style="font-weight:700;"><span>Total entradas marcadas</span><span class="money" id="entTotalClp">—</span></div><div class="info-row"><span>…en pesos argentinos</span><span class="money" id="entTotalArs">—</span></div><div class="note">Solo cuenta las entradas marcadas en el itinerario. El bus turístico está desactivado. En el Teatro Colón no se paga con moneda extranjera: lleva pesos o tarjeta. Barolo: CLP según Civitatis (más caro) o la web oficial.</div></div>
+        </div>
+      </div>
+
+        <div class="acc-card" id="acc-detalles">
         <div class="acc-head"><span class="acc-head-title">🔎 Detalles del plan</span><span class="chevron">▶</span></div>
         <div class="acc-body">
           <div class="info-card">
@@ -528,17 +543,11 @@
             <div id="prepaidList"></div>
             <div class="note">Esto no descuenta de tus billeteras ni entra en el estimado.</div>
           </div>
-          <div class="info-card">
-            <h3>Cuánto ARS llevar</h3>
-            <div class="info-row"><span>Gasto en Argentina (sin hostal)</span><span class="money" id="estArsBaseClp">—</span></div>
-            <div class="info-row"><span>…en ARS</span><span class="money" id="estArs">—</span></div>
-            <div class="info-row"><span>Efectivo a llevar (según la tabla por día), en ARS</span><span class="money" id="estCashArs">—</span></div>
-            <div class="info-row"><span>…equivale a</span><span class="money" id="estCashClp">—</span></div>
-            <div class="info-row"><span>Ya anotado en "Efectivo ARS"</span><span class="money" id="estArsHave">—</span></div>
-            <div class="est-cmp" id="estArsGap"></div>
-            <div class="note">El hostal no entra: se paga aparte con Global66. De ese gasto, lleva en efectivo solo la parte de ferias, kioscos, propinas y entradas; el resto va con tarjeta (restaurantes, Uber, clubes). Convierte de a poco allá. Cálculo según el tipo de cambio de arriba.</div>
-          </div>
+          
         </div>
+      </div>
+
+      
       </div>
 
       <div style="text-align:center; margin:20px 0 6px;">
@@ -619,7 +628,7 @@
   </main>
 
   <footer>Rinasco a modo mio 🧡</footer>
-  <div class="version-tag">v5.12 · Creado por Melitalove</div>
+  <div class="version-tag">v5.13 · Creado por Melitalove</div>
   <div class="nav-spacer"></div>
 </div>
 
@@ -1211,7 +1220,7 @@ function renderDaily(c){
     const approx = w.cur==='CLP' ? '' : ` <span style="font-weight:400;">(≈ ${fmtMoney(convert(pd,w.cur,'CLP'),'CLP')})</span>`;
     return `<div class="info-row"><span>${esc(w.label)}</span><span class="money ${pd<-0.005?'neg':''}">${fmtMoney(pd,w.cur)} / día${approx}</span></div>`;
   }).join('');
-  note.innerHTML = (reserve>0 ? `Descontado: hostal pendiente ${mny(reserve)} (de ${esc(hostalMethod())}). ` : '') + (entReserve>0 ? `Descontado: entradas marcadas en el itinerario ${mny(entReserve)} (solo en el total, no por billetera). ` : '') + 'Los montos grandes se abrevian: 132,5 mil = 132.500.';
+  note.innerHTML = (reserve>0 ? `Descontado: hostal pendiente ${mny(reserve)} (de ${esc(hostalMethod())}). ` : '') + (entReserve>0 ? `Descontado: entradas marcadas en el itinerario ${mny(entReserve)} (solo en el total, no por billetera). ` : '');
 }
 
 /* Ojito: oculta todas las cifras de la app */
@@ -1266,13 +1275,13 @@ document.getElementById('expAddBtn').addEventListener('click', ()=>{
 function buildWallets(){
   const bal = loadBalances();
   document.getElementById('walletsContainer').innerHTML = METHODS.map((m,i)=>`
-    <div class="wallet">
+    <div class="wallet" id="wallet-${i}">
       <div class="wallet-name">${m.label}</div>
-      <div class="wallet-grid">
+      <div class="wallet-grid" style="grid-template-columns:1fr 1fr;">
         <div><label>Inicial (${m.cur})</label><input type="number" step="any" inputmode="decimal" id="w-init-${i}" value="${bal[m.key] ? bal[m.key] : ''}" placeholder="0"></div>
-        <div><label>Gastado</label><div class="wallet-val money" id="w-spent-${i}">—</div></div>
-        <div><label>Disponible</label><div class="wallet-val money" id="w-avail-${i}">—</div></div>
+        <div><label>Queda</label><div class="wallet-val money" id="w-avail-${i}">—</div></div>
       </div>
+      <span id="w-spent-${i}" style="display:none;"></span>
       <div class="note" id="w-move-${i}" style="margin:2px 0 0;"></div>
     </div>`).join('');
   METHODS.forEach((m,i)=>{
@@ -1542,6 +1551,8 @@ function renderBudgetAll(opts){
     av.textContent = fmtMoney(w.avail, w.cur);
     av.classList.toggle('neg', w.avail < -0.005);
     av.classList.toggle('low-balance', w.avail >= -0.005 && (w.initial+w.inn)>0 && w.avail < (w.initial+w.inn)*0.15);
+    const rowEl = document.getElementById('wallet-'+i);
+    if(rowEl && w.key==='Global66 USD'){ const doc = document.activeElement && document.activeElement.id==='w-init-'+i; rowEl.style.display = (w.initial>0 || w.inn>0 || w.out>0 || w.spent!==0 || doc) ? '' : 'none'; }
     const mvEl = document.getElementById('w-move-'+i); const net = w.inn - w.out;
     if(mvEl) mvEl.textContent = Math.abs(net)>0.005 ? `Movido: ${net>0?'+':''}${fmtMoney(net, w.cur)}` : '';
   });
