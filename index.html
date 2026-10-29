@@ -258,7 +258,7 @@
     <div class="eyebrow">Santiago · Buenos Aires</div>
     <h1 class="hero-title">MI DECRETO</h1>
     <div class="hero-sub" id="heroSub">Buenos Aires, ida y vuelta hacia mí</div>
-    <div class="ver-top">Rinasco a modo mio 🧡 · v5.14</div>
+    <div class="ver-top">Rinasco a modo mio 🧡 · v5.15</div>
     <div id="eyeToggle" title="Ocultar / mostrar cifras">👁️</div>
   </header>
 
@@ -355,7 +355,7 @@
         <div class="rate-toggle" id="rateToggle">Ajustar tipo de cambio</div>
         <div class="rate-edit" id="rateEdit">
           <div class="rate-edit-row"><span>1 USD = ? CLP</span><input type="number" id="rateUsdClp" value="998"></div>
-          <div class="rate-edit-row"><span>1 USD = ? ARS</span><input type="number" id="rateUsdArs" value="1540"></div>
+          <div class="rate-edit-row"><span>1 USD = ? ARS</span><input type="number" id="rateUsdArs" value="1633"></div>
         </div>
       </div>
 
@@ -626,7 +626,7 @@
   </main>
 
   <footer>Rinasco a modo mio 🧡</footer>
-  <div class="version-tag">v5.14 · Creado por Melitalove</div>
+  <div class="version-tag">v5.15 · Creado por Melitalove</div>
   <div class="nav-spacer"></div>
 </div>
 
@@ -784,7 +784,7 @@ const tm=moonInfo(moonPhase(new Date())); document.getElementById('moonToday').t
 
 /* ---------- Checklist ---------- */
 const checklistData = {
-  "Documentos y dinero": ["Cédula de identidad","Comprobante hostal","Pase de abordar","Póliza de seguro","Tarjeta Global66","Débito BCI activada p/ extranjero","Efectivo pesos + USD 10"],
+  "Documentos y dinero": ["Cédula de identidad","Comprobante hostal","Pase de abordar","Póliza de seguro","Tarjeta Global66","Débito BCI activada p/ extranjero","USD 400 en efectivo (USD 153 en billetes chicos para el hostal)","Tarjeta Global66 con ARS cargados"],
   "Electrónica": ["Celular + cargador","Power bank Anker (comprimida)","Auriculares","Bolsa impermeable celular"],
   "Ropa": ["Poleras livianas x4","Pantalón/jeans","Abrigo liviano","Sweater","Outfits de noche","Outfit cumpleaños","Zapatillas + calzado noche","Pantuflas outdoor"],
   "Neceser": ["Toallas de microfibra","Cepillo/pasta dientes","Protector solar","Botiquín básico"],
@@ -819,9 +819,12 @@ const pendientesData = [
   "Elegir el tour del Palacio Barolo (11, 13 o 16 h) y reservarlo por Civitatis",
   "Comprar una billetera de cuero (Feria de San Telmo el domingo 1 nov o una talabartería)",
   "Llevar una bolsa de compras (para traer los souvenirs desde Buenos Aires)",
-  "1 de nov: buscar en Passline la entrada gratuita para la fiesta HYPE! (la general cuesta AR$6.000)",
+  "✅ Entrada gratuita para la fiesta Mala by Hype (jueves 5 nov) ya conseguida en Passline: está en Documentos",
+  "Comprar USD 200 en billetes chicos para el hostal (1×100, 2×20, 1×10, 3×1)",
+  "Hacer una compra pequeña de prueba con la tarjeta Global66 (para ver que cobre en ARS)",
+  "Confirmar en L'adesso si aceptan USD en efectivo (y si el 10% de descuento aplica)",
   "Llevar la Anker en el equipaje de mano (no en la maleta) con un cable USB-C de respaldo",
-  "Cambiar los USD 200 (billetes de 100, comprados a CLP 998) en una casa de cambio formal de Buenos Aires: comparar 2 o 3 y mirar el precio de COMPRA más alto"
+  "Cambiar los USD 200 que no son del hostal (billetes de 100, comprados a CLP 998) en una casa de cambio formal de Buenos Aires: comparar 2 o 3 y mirar el precio de COMPRA más alto"
 ];
 const pendContainer=document.getElementById('pendientesContainer');
 let pendItems=[];
@@ -894,9 +897,9 @@ const DAY_OPTS = {};
 const DAY_PLAN = {
   1:{comida:[28000,34000], transp:[15000,20000], noche:[12000,18000]},
   2:{comida:[18000,22000], transp:[6000,10000], noche:[10000,16000]},
-  3:{comida:[28000,40000], transp:[10000,15000], noche:[19000,40000]},
+  3:{comida:[50000,60000], transp:[10000,15000], noche:[6000,18000]}, /* comida: almuerzo + helado + L'adesso (AR$58.000); noche: Uber y Skybar opcional */
   4:{comida:[18000,22000], transp:[6000,10000],  noche:[28000,35000]},
-  5:{comida:[18000,22000], transp:[6000,12000], noche:[14000,22000]},
+  5:{comida:[18000,22000], transp:[6000,12000], noche:[20000,30000]}, /* noche: cena de barrio, Helka y fiesta Mala by Hype */
   6:{comida:[16000,20000], transp:[6000,12000],  noche:[25000,35000]},
   7:{comida:[15000,18000], transp:[15000,25000],  noche:[0,0]}
 };
@@ -958,8 +961,8 @@ const days = [
     {label:"🔮 Tarot cercano", text:"FE — Av. Santa Fe 2729, local 9 (Galería Patio del Liceo): mazos de tarot (Marsella, Rider-Waite, Thoth), piedras y sahumerios. Horario por confirmar: la galería abre de lunes a sábado, típicamente de 11:00 a 20:00."},
     {label:"🍦 Helado del día", text:"Rapanui — Uruguay 1284, Recoleta · martes 10:00–01:00."},
     {label:"♏ Tu decreto de cumpleaños", text:"Escorpio · La Muerte (transformación): 'Hoy cierro un ciclo y abro otro. Decreto que este año es mío, y lo vivo sin pedir permiso.'"},
-    {label:"Noche", text:"Cena especial de cumpleaños: L'adesso (pasta en rueda de queso, Fray Justo Sta. María de Oro 2047). Reserva confirmada para 1 persona a las 20:30 (tolerancia de 15 min: llega antes de las 20:45). Plato principal y postre ≈ AR$58.000, sin bebidas; pagando en efectivo hay 10% de descuento (≈ AR$52.200), así que lleva pesos en efectivo."},
-    {label:"Noche (baile)", text:"Fiesta HYPE! (martes 23:55–06:00, Honduras 5339: reggaeton y trap). Entrada general AR$6.000 (≈ CLP 3.800) y hay entradas gratuitas: búscalas en Passline el 1 de nov. El horario te deja pasar por el hostal a cambiarte después de la cena."}
+    {label:"Noche", text:"Cena especial de cumpleaños: L'adesso (pasta en rueda de queso, Fray Justo Sta. María de Oro 2047). Reserva confirmada para 1 persona a las 20:30 (tolerancia de 15 min: llega antes de las 20:45). Plato principal y postre ≈ AR$58.000, sin bebidas; pagando en efectivo hay 10% de descuento (≈ AR$52.200). Vas a pagar con efectivo: si es en USD, confirma allá si aceptan dólares y a qué cambio (por confirmar)."},
+    {label:"Después de la cena (opcional)", text:"🌆 Bestial Skybar (Humboldt 2495, piso 11, Palermo · martes 19:00–01:00): un cóctel tranquilo con vista para cerrar tu cumpleaños. Es más caro; si estás cansada, vuelve al hostal."}
   ]},
   {num:4, date:"Mié 4 nov", zone:"San Telmo + La Boca", slots:[
     {label:"Mañana", text:"San Telmo — Plaza Dorrego, Paseo de la Historieta."},
@@ -976,7 +979,8 @@ const days = [
     {label:"Tarde libre", text:"Palermo Soho a pie (Plaza Serrano, calles Honduras y Armenia) y vuelta al hostal para cambiarte antes de la cena. El Ateneo Grand Splendid ya está en tu Día 3 (Recoleta)."},
     {label:"🍦 Helado del día", text:"Opcional: Rapanui — Malabia 2014, Palermo Soho (cerca de tu hostal y de tu tarde libre; horario por confirmar). El helado principal de la semana en Rapanui es el del Día 3."},
     {label:"Noche", text:"Cena de barrio en Palermo (un bodegón o parrilla tradicional, lugar por elegir; unos AR$15.000-25.000) en vez de un restaurante sofisticado."},
-    {label:"Noche (bares)", text:"🔮 Helka Wine Bar (Freire 1117, Colegiales · jueves 19:00–01:30): tarot express, pedir por Instagram. Luego, si te queda energía, un bar de Palermo (Bestial Skybar, Humboldt 2495, piso 11, es opcional y más caro)."}
+    {label:"Noche (bares)", text:"🔮 Helka Wine Bar (Freire 1117, Colegiales · jueves 19:00–01:30): tarot express, pedir por Instagram. Pasa por el hostal a cambiarte antes de la fiesta si lo necesitas."},
+    {label:"Noche (baile)", text:"🎧 Fiesta Mala by Hype (Av. del Libertador 3883, Palermo): ya tienes tu entrada gratuita (está en Documentos). Entrada válida hasta las 00:00 (detalle por confirmar): sal de Helka a tiempo para llegar antes de medianoche."}
   ]},
   {num:6, date:"Vie 6 nov", zone:"Palermo · Noche electrónica", slots:[
     {label:"Mañana", text:"🎟️ Teatro Colón — visita guiada de 50 min (salidas cada 15 min de 10:00 a 16:45; en español cada 15 min; AR$34.000 ≈ CLP 21.300). Entradas en teatrocolon.org.ar o en la boletería (Tucumán 1171); acepta efectivo y tarjeta de débito o crédito en 1 pago, no moneda extranjera. Tolerancia de 5 min."},
@@ -1067,7 +1071,7 @@ function recomputeEstimates(){
     'Transporte':         {low:sum('transp',0), high:sum('transp',1), note:'Uber, subte, traslados; incluye Uber desde el aeropuerto de Santiago el día 7'},
     'Comida y helados':   {low:sum('comida',0), high:sum('comida',1), note: fog ? "Incluye Fogón Asado (cena de cumpleaños) y helados" : "Incluye cena de cumpleaños en L'adesso y helados"},
     'Entradas y tours':   {low:sum('ent',0), high:sum('ent',1), note:'Solo las entradas marcadas en el itinerario (Barolo, Jardín, MALBA, Teatro Colón; bus turístico desactivado)'},
-    'Vida nocturna':      {low:sum('noche',0), high:sum('noche',1), note:'6 noches: cenas de barrio, L\'adesso (cumpleaños), Misión BA, bares y baile'},
+    'Vida nocturna':      {low:sum('noche',0), high:sum('noche',1), note:'6 noches: cenas de barrio, Misión BA, Helka, bares y fiesta (L\'adesso va en Comida)'},
     'Souvenirs y regalos':{low:SCEN[scenKey()].souv[0], high:SCEN[scenKey()].souv[1], note:'Incluye el mazo de tarot (≈ CLP 37.000 en Magia Libros) y una billetera de cuero (precio por averiguar)'},
     'Propinas':           {low:0,      high:0,      note:''},
     'Otra':               {low:SCEN[scenKey()].otra[0],  high:SCEN[scenKey()].otra[1],  note:'Efectivo de respaldo / imprevistos'}
@@ -1088,7 +1092,7 @@ const PREPAID = [
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 function moneyWrap(t){ return String(t).replace(/(~?\$[\d.]+(?:-\$?[\d.]+)?(?:\s?CLP)?)/g,'<span class="money">$1</span>'); }
-function currentRates(){ return { uc: parseFloat(document.getElementById('rateUsdClp').value)||998, ua: parseFloat(document.getElementById('rateUsdArs').value)||1540 }; }
+function currentRates(){ return { uc: parseFloat(document.getElementById('rateUsdClp').value)||998, ua: parseFloat(document.getElementById('rateUsdArs').value)||1633 }; }
 function convert(amount, from, to){
   if(from===to) return amount;
   const {uc,ua} = currentRates();
@@ -1585,12 +1589,13 @@ renderBudgetAll();
 const convAmount=document.getElementById('convAmount'), convFrom=document.getElementById('convFrom'), convResults=document.getElementById('convResults');
 const rateUsdClp=document.getElementById('rateUsdClp'), rateUsdArs=document.getElementById('rateUsdArs');
 document.getElementById('rateToggle').addEventListener('click', ()=>document.getElementById('rateEdit').classList.toggle('show'));
-function toUSD(a,c){ const uc=parseFloat(rateUsdClp.value)||998, ua=parseFloat(rateUsdArs.value)||1540; if(c==='USD')return a; if(c==='CLP')return a/uc; return a/ua; }
-function fromUSD(u,c){ const uc=parseFloat(rateUsdClp.value)||998, ua=parseFloat(rateUsdArs.value)||1540; if(c==='USD')return u; if(c==='CLP')return u*uc; return u*ua; }
+function toUSD(a,c){ const uc=parseFloat(rateUsdClp.value)||998, ua=parseFloat(rateUsdArs.value)||1633; if(c==='USD')return a; if(c==='CLP')return a/uc; return a/ua; }
+function fromUSD(u,c){ const uc=parseFloat(rateUsdClp.value)||998, ua=parseFloat(rateUsdArs.value)||1633; if(c==='USD')return u; if(c==='CLP')return u*uc; return u*ua; }
 function fmt(n,c){ return c==='USD'?n.toFixed(2):Math.round(n).toLocaleString('es-CL'); }
 function renderConversion(){ const a=parseFloat(convAmount.value)||0, f=convFrom.value, u=toUSD(a,f); convResults.innerHTML=['CLP','USD','ARS'].filter(c=>c!==f).map(c=>`<div class="conv-result-row"><span>${c}</span><span class="val">${fmt(fromUSD(u,c),c)} ${c}</span></div>`).join(''); }
 [convAmount, convFrom, rateUsdClp, rateUsdArs].forEach(el=>el.addEventListener('input', ()=>{ renderConversion(); lsSet('exchange-rates',{usdClp:rateUsdClp.value, usdArs:rateUsdArs.value}); renderBudgetAll({keepCats:true}); }));
-(function(){ const s=lsGet('exchange-rates', null); if(s && !(String(s.usdClp)==='930' && String(s.usdArs)==='1485')){ rateUsdClp.value=s.usdClp; rateUsdArs.value=s.usdArs; } renderConversion(); renderBudgetAll(); })();
+(function(){ const s=lsGet('exchange-rates', null); if(s && String(s.usdArs)==='1540' && !lsGet('rate-v515',false)){ s.usdArs='1633'; lsSet('exchange-rates', s); } lsSet('rate-v515', true);
+  if(s && !(String(s.usdClp)==='930' && String(s.usdArs)==='1485')){ rateUsdClp.value=s.usdClp; rateUsdArs.value=s.usdArs; } renderConversion(); renderBudgetAll(); })();
 
 /* ---------- Noche con íconos por tipo + acciones de evento ---------- */
 const nocheData = [
@@ -1620,7 +1625,8 @@ const nocheData = [
   {name:"Helka Wine Bar", tag:"bar", icon:"🔮", zone:"Colegiales", addr:"Capitán Gral. Ramón Freire 1117", note:"Casona de 1917 con tarot express (~15 min). Jueves 19:00-01:30. Pídelo por mensaje directo a su Instagram."},
   {name:"CIMA", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Guatemala 4701 (sobre pizzería Orno)", note:"Cócteles de autor; noches de bingo con drag queens."},
   {name:"Augusto y Augusta", tag:"bar", icon:"🍸", zone:"Palermo", addr:"Av. Ernesto Tornquist 6385", note:"Restaurante que se vuelve pista; público mayor de 30."},
-  {name:"Fiesta HYPE!", tag:"club", icon:"🎧", zone:"Palermo", addr:"Honduras 5339", note:"Martes 23:55-06:00: hip hop, trap, reggaeton, afrobeat. Entrada general AR$6.000 (≈ CLP 3.800) y hay entradas gratuitas en Passline (revisa el 1 de nov). Calza con tu cumpleaños."},
+  {name:"Fiesta Mala by Hype", tag:"club", icon:"🎧", zone:"Palermo", addr:"Av. del Libertador 3883", note:"TU FIESTA: jueves 5 nov, después de Helka. Ya tienes la entrada gratuita (en Documentos); válida hasta las 00:00 (detalle por confirmar)."},
+  {name:"Fiesta HYPE!", tag:"club", icon:"🎧", zone:"Palermo", addr:"Honduras 5339", note:"Descartada: no quedaban entradas para el martes 3."},
   {name:"Club Lucero", tag:"club", icon:"🎧", zone:"Palermo", addr:"Nicaragua 6048", note:"Selección de DJs, mié-sáb."},
   {name:"La Del Centro Milonga", tag:"cultura", icon:"💃", zone:"Balvanera", addr:"Riobamba 416 (salón El Beso)", note:"Miércoles: clases a las 20:30; para mirar, llega desde las 22:00 (la milonga sigue hasta las 03:00). Es tu opción principal para el miércoles 4. Dirección por confirmar en su Instagram la semana del viaje (antes figuraba Rodríguez Peña 361). Precio por confirmar."},
   {name:"Yira Yira (Club Gricel)", tag:"cultura", icon:"💃", zone:"San Cristóbal", addr:"La Rioja 1180", note:"Viernes: clase a las 19:30; para mirar, llega desde las 21:00 (milonga hasta las 03:00). Opción secundaria: el viernes 6 tienes Misión BA a las 20:00. Precio por confirmar."},
